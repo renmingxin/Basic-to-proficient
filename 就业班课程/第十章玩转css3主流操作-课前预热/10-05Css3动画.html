@@ -1,12 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>css3动画</title>
+    <style>
+        * {
+            margin: 0;
+            margin-left: 200px;
+            padding: 0;
+        }
+
+        /*  tansform 可以实现元素的形状、角度、位置的变化 （多个参数，按顺序执行）
+            rotate：旋转 坐标轴也会跟着旋转
+            scale:缩小放大的倍数
+            skew:倾斜(扭曲)默认沿x轴扭曲 逆时针扭曲
+            translate: 平移
+          */
+          /* 
+            transform-origin中心点
+
+           */
+        div {
+            margin-bottom: 20px;
+        }
+        .demo0 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            transform:rotate3d(1,1,1,50deg)
+        }
+        .demo1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            transform: rotateX(50deg)
+        }
+        .demo11 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            transform-origin: top left;
+            transform: rotateX(50deg)
+        }
+        .demo2 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            transform: rotateY(50deg)
+        }
+
+        .demo3 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            transform: rotateZ(50deg)
+        }
+        .demo4 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* 放大缩小的倍数 */
+            transform: scale(0.5);
+        }
+        .demo5 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* 倾斜扭曲 */
+            transform: skew(20deg)
+        }
+        .demo6 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* 平移 */
+            transform: translate(300px)
+        }
+        .demo7 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* 平移 translate3d(x,y,z)*/
+            transform: translate3d(100px, 100px, 50px)
+        }
+        .demo8 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* 平移 translate3d(x,y,z)*/
+            transform: translate(100px,200px) rotate(40deg)
+        }
+        .demo9 {
+            margin-top: 200px;
+            width: 100px;
+            height: 100px;
+            background: blue;
+            transform: translate(0);
+            opacity: 1;
+            /* transform需要过度的css属性
+               2s代表 过渡动画的执行时间
+               linear(线性过度 匀速运动)代表过渡动画
+               ease(先慢后快)  代表过渡动画
+              */
+            transition: transform 2s ease,opacity 2s;
+            /* 相当于上面的语句transition: all 2s; */
+        }
+        .demo9:hover {
+            transform: translate(200px);
+            opacity: 0.5;
+        }
+    </style>
 </head>
+
 <body>
-    <div></div>
+    <div id="demo0" class="demo0">哈哈哈哈哈哈</div>
+    <div id="demo1" class="demo1">哈哈哈哈哈哈</div>
+    <div id="demo11" class="demo11">哈哈哈哈哈哈</div>
+    <div id="demo2" class="demo2">哈哈哈哈哈哈</div>
+    <div id="demo3" class="demo3">哈哈哈哈哈哈</div>
+    <div id="demo4" class="demo4">哈哈哈哈哈哈</div>
+    <div id="demo5" class="demo5">哈哈哈哈哈哈</div>
+    <div id="demo6" class="demo6">哈哈哈哈哈哈</div>
+    <div id="demo7" class="demo7">哈哈哈哈哈哈</div>
+    <div id="demo8" class="demo8">哈哈哈哈哈哈</div>
+    <div id="demo9" class="demo9">哈哈哈哈哈哈</div>
 </body>
+<script>
+    var demo0 = document.getElementById('demo0');
+    var demo1 = document.getElementById('demo1');
+    var demo11 = document.getElementById('demo11');
+    var demo2 = document.getElementById('demo2');
+    var demo3 = document.getElementById('demo3');
+    var xAxis = 0;
+    var xxAxis = 0;
+    var yAxis = 0;
+    var zAxis = 0;
+    var xyzAxis = 0;
+    setInterval(() => {
+        xAxis += 2;
+        demo1.style.transform = 'rotateX(' + xAxis + 'deg)';
+    }, 10);
+    setInterval(() => {
+        yAxis += 2;
+        demo2.style.transform = 'rotateY(' + yAxis + 'deg)';
+    }, 10);
+    setInterval(() => {
+        zAxis += 2;
+        demo3.style.transform = 'rotateZ(' + zAxis + 'deg)';
+    }, 10);
+    setInterval(() => {
+        xxAxis += 2;
+        demo11.style.transform = 'rotateZ(' + xxAxis + 'deg)';
+    }, 10);
+</script>
+
 </html>

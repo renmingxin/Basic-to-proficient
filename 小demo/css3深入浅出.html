@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .big {
+    }
+    .big>div{
+        height: 200px;
+        border: 1px solid red;
+    }
+    .big>div:nth-child(1){
+        width: 100px;
+        float: left;
+    }
+    .big>div:nth-child(2){
+        width: 100%;
+        
+    }
+    /* html {
+        background: orange;
+    } */
+    :root{
+        color: orange;
+    }
+    .container {
+        /* background: linear-gradient(270deg,red,blue); */
+        background: linear-gradient(to right,red,blue);
+        background: radial-gradient(circle at 50%, green, red);
+        width: 250px;
+        height: 120px;
+        
+    }
+    .font-style {
+
+    }
+    .font-style::first-letter{
+        color: red;
+    }
+    .font-style::first-line{
+        color: rgb(240, 164, 164);
+    }
+    .box {
+        width: 250px;
+        height: 120px;  
+        /* border-image: url('https://qiniu.ludanmall.com//1000/271208/test/cropDemo/IMG_0382_1493645058916.JPG') 100; */
+        background-image: url('https://qiniu.ludanmall.com//1000/271208/test/cropDemo/IMG_0382_1493645058916.JPG');
+    }
+    span:not([class="span1"]){
+        color: red;
+    }
+    input[type="text"]:disabled{
+        border: 2px solid red;
+    }
+    input[type="text"]:read-only{
+        border: 2px solid blue;
+    }
+</style>
+<body>
+    <div class="big">
+        <div></div>
+        <div></div>
+    </div>
+    <div class="container"></div>
+    <div class="font-style">
+        <p>第一行11111111111111111111111111111</p>
+        <p>第二行22222222222222222222222222222</p>
+        <p>第三行33333333333333333333333333333</p>
+    </div>
+    <span class="span1">奥术大师大所</span>
+    <span class="span2">奥术大师大所</span>
+    <div class="box"></div>
+    <p>
+        <i>first</i>
+        <i>second</i>
+    </p>
+    <input type="text" name="" id="" enabled>
+    <input type="text" name="" id="" disabled>
+    <input type="text" name="" id="" readonly="readonly">
+</body>
+</html>

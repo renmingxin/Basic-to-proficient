@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07-05iframe内联框架之巧妙跨域</title>
+    <style>
+        #demo {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 100px;
+            left: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <div id="message"></div>
+    </div>
+    <script>
+        //需要在服务器打开的情况下才能记录cookie
+        var oDemo = document.getElementById('demo');
+        var oMessage = document.getElementById('message');
+        //自己封装一个对cookie增删改查的函数
+        var manageCookie = {
+            //name 名字 value 值 time 存储时间
+            setCookie: function (name, value, time) {
+                document.cookie = name + '=' + value + ';' + 'max-age=' + time;
+                //返回this使用js链式调用
+                return this;
+            },
+            removeCookie: function (name) {
+                this.setCookie(name, '', -1);
+                return this;
+            },
+            getCookie: function (name, callback) {
+                //获取所有的cookie转化成数组,用; 空格的形式拆分
+                var allCookieArr = document.cookie.split('; ');
+                for (let i = 0; i < allCookieArr.length; i++) {
+                    var itemCookieArr = allCookieArr[i].split('=');
+                    if (itemCookieArr[0] == name) {
+                        callback(itemCookieArr[1]);
+                        return this;
+                    }
+                }
+                callback(undefined);
+                return this;
+            }
+        }
+        var drag = {
+            init: function (dom) {
+                this.dom = dom;
+                this.bindEvent();
+                var _this = this;
+                manageCookie.getCookie('newLeft',function(data){
+                    _this.dom.style.left = data + 'px';
+                }).getCookie('newTop',function(data){
+                    _this.dom.style.top = data + 'px';
+                })
+            },
+            bindEvent: function () {
+                this.dom.onmousedown = this.mouseDown.bind(this);
+            },
+            mouseDown: function (e) {
+                document.onmousemove = this.mouseMove.bind(this);
+                document.onmouseup = this.mouseUp.bind(this);
+                //鼠标在方块里面的X,Y值
+                this.disY = e.clientY - this.dom.offsetTop;
+                this.disX = e.clientX - this.dom.offsetLeft;
+            },
+            mouseMove: function (e) {
+                //方块本身的top值和left值
+                this.newLeft = e.clientX - this.disX;
+                this.newTop = e.clientY - this.disY;
+
+                this.dom.style.left = this.newLeft + 'px';
+                this.dom.style.top = this.newTop + 'px';
+            },
+            mouseUp: function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                manageCookie
+                    .setCookie('newLeft',this.newLeft,10000)
+                    .setCookie('newTop',this.newTop,10000)
+            }
+        };
+        drag.init(oDemo);
+       
+    </script>
+</body>
+
+</html>

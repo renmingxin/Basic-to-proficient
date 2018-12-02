@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>立即执行函数</title>
+</head>
+<body>
+    <script>
+        //立即执行函数
+        //针对初始化功能的函数
+        //两种写法
+        // 1.
+        // (function(){
+            
+        // })()
+        // 2.W3C标准 这种写法为标准写法
+        // (function(){
+            
+        // }())
+
+
+
+        // (function(a,b,c){
+        //     console.log(a+b+c);//6
+        // }(1,2,3));
+
+
+
+        // var sum = (function(a,b,c){
+        //     var d = a+b+c;
+        //     return d;
+        // }(1,2,3));
+        // console.log(sum);//6
+
+
+
+        //只有表达式才能被执行符号执行，执行后舍弃test名字
+        // var test = function(){
+        //     console.log("test");
+        // }();//test
+
+
+
+        //阿里巴巴恶心的笔试题
+        //不报错 
+        // function test(a,b,c,d){
+        //     console.log(a+b+c+d);
+        // }(1,2,3,4);
+        //↓↓↓↓↓↓↓↓↓↓↓↓解析成
+        // function test(a, b, c, d) {
+        //     console.log(a + b + c + d);
+        // }
+        // (1,2,3,4);
+        //所以不报错
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10-01Css3选择器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin-bottom: 20px;
+        }
+
+
+        span {
+            display: block
+        }
+        /* 查找有属性data 并且data=demo的div */
+        div[data="demo"] {
+            background: blue;
+        }
+
+        /* ^:查找有属性data 并且data的值是以f开头的div 
+           $:..............................以f结尾的div
+           *:..............................中间存在有f的div的模糊查询
+           ~:..............................中且单独只有f的div
+        */
+        div[data*="f"] {
+            background: yellowgreen;
+        }
+
+        div[data~="f"] {
+            background: yellow;
+        }
+
+
+        /* 伪类选择器 */
+        /* html == :root */
+        :root {
+            background: rgb(100, 100, 100, 0.5)
+        }
+
+        /* 否定选择器 */
+        div:not([data~="demo"]) {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* 空选择器:div中没有值得情况下的选择器(连空格都不允许有) */
+        div:empty {
+            border-radius: 20px;
+        }
+
+        /* 目标选择器：用来匹配被location.hash选中的元素(即锚点元素) */
+        div:target {
+            background: orchid;
+        }
+
+        .ff>div {
+            width: 30px;
+            height: 30px;
+            background: yellow;
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .gg>div {
+            width: 30px;
+            height: 30px;
+            background: yellowgreen;
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+      
+
+        /*
+
+        :first-child  第一个子元素
+        :last-child   最后一个子元素
+        :nth-child(){}   第xxx个子元素，n代表变量自然数
+        :nth-last0child(){}  从后往前数
+        (以上四个选择器均有彼端，如果当前位置元素不是前面所修饰的元素，那么无效)
+        */
+
+        .ff>div:first-child {
+            background: red;
+        }
+
+        /* 从第5个开始 */
+        .ff>div:nth-child(n+5) {
+            background: red;
+        }
+
+        /* 偶数渲染 */
+        .gg>div:nth-child(2n) {
+            background: red;
+        }
+
+        /* 
+        :enabled  可用的元素
+        :disabled 不可用的元素
+        在web的表单中,有些表单元素有可用( "enabled" )和不可用( "disabled" )状态,比如输入框,密码框,复选框等。在默认情况下,
+        这些表单元素都处在可用状态。那么我们可以通过伪类选择器enabled进行选择, disabled则相反。
+        */
+        input:enabled {
+            background: red;
+        }
+        input:disabled {
+            height: 50px;
+        }
+        /* 选中 */
+        input:checked {
+            height: 30px;
+            width: 30px;
+        }
+
+
+
+        /* 伪元素选择器 */
+        span::selection {
+            background: greenyellow;
+        }
+        /* 标签前面添加样式 */
+        dd::before {
+            /* 样式内容 */
+            content: "";
+            display: block;
+            width: 50px;
+            height: 50px;
+            background: turquoise
+        }
+        /* 标签后面添加样式 */
+        dd::after {
+            /* 样式内容 */
+            content: "哈哈哈哈";
+            display: block;
+            width: 50px;
+            height: 50px;
+            background:springgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div>我有值不会被div:empty选中</div>
+    <div></div>
+    <div class="demo" data="demo"></div>
+    <div class="ff" data="f11">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="gg" data="f">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div>我有值不会被div:empty选中</div>
+    <input type="text" name="name">
+    <input type="text" name="age" disabled>
+    <input type="text" readonly value="我是只读">
+    <input type="checkbox">
+    <input type="radio">
+    <span>来复制我这段文字吧！变颜色</span>
+    <dd>洒洒水</dd>
+</body>
+
+</html>

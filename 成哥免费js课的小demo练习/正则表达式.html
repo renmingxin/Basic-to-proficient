@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            正则表达式：//写在双斜杠的中间，使用reg.test(str)来测试，是不是中间有reg里面的数，是则返回true，不是则false
+            后面跟i：忽视大小写
+            m:多行搜索
+            g:全局搜索，匹配到了第一个直接返回
+        */
+        // var reg = /abc/igm;
+        // //↓↓↓↓↓↓一样的功能
+        // var reg = new RegExp("abc","igm");
+        // var str = "abc";
+        //↓↓↓↓↓↓↓
+        // reg.test(str)
+
+
+
+
+        //g的全局匹配的运用,m运用\n（换行的知识）进行多行搜索^符号代表表示除了（非），这样的结果是["ab","ab"]
+        // [^a]：代表除了a
+        //var reg = /[^a][b]/g;
+        //var str = "ab1cd";
+        //str.match(reg);//["b1","cd"]
+
+
+        //   /(abc|bcd)/跟或||一样的道理
+
+        // var reg = /ab/gm;
+        // var str = "ababab\nabab";
+        // str.match(reg); //(5) ["ab", "ab", "ab", "ab", "ab"]如果没有g 就返回ab
+        
+
+        //1.匹配字符串里面有没有连续的三个数字挨在一起
+        //[]就代表表达式[1234567890]就意味着里面符合1~9的数字 ,一个[]代表以为，里面的数就代表区间，还可以[0-9][A-Z][a-z][A-z]
+        //
+        // var str = "123asfsadfsdf333asdsaf324235412345sdfa";
+        // var reg = /[1234567890][1234567890][1234567890]/g;//   
+        // str.match(reg);//["123","333","324","235","412","345"]
+
+
+        //world  \w === [0-9A-z_]       \W(大写的W) === [^\w] 可以查找*&（ 符号之类的字符
+        //       \d === [0-9]           \D === [^\d]  => var reg = /\d\d\d/g; 这个匹配三个连着一起的数字
+        //       \s === [\t\n\r\v\f ](后面还有个空格)  \S=[^\s]         =>空格 space tab enter 。。。。回车 换行 垂直换行 换页符 
+        //       \b === 单词便捷         \B === 非单词边界  => var reg = /\bcde\b/ 
+        // /[\d\D]/ =>代表一切 \w\W \d\D \s\S \b\B 都可以
+        // . === [^\r\n] 代表一切字符 除了\r \n
+
+       
+
+        //贪婪匹配原则
+        //n+ === {1,正无穷} => {1,}
+        //n* === {0,正无穷} 
+        //n? === {0,1}
+        //n{x} === {x}个
+        //n{x,y} === {x,y} 能Y个 尽量x个
+        //n{x, } === {x,} x到正无穷
+
+        // var reg = /\w?/g;//(15) ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", ""]
+        // var reg1 = /\w{3}/g;//(4) ["aaa", "aaa", "aaa", "aaa"]
+        // var reg2 = /\w{3,5}/g;//(3) ["aaaaa", "aaaaa", "aaaa"] 能五个就五个
+        // var reg3 = /^aaa/g;//以a开头的abc  ["aaa"]
+        // var reg4 = /aa$/g;//以a结尾 ["aa"]
+        // var reg5 = /^aaa$/g;//必须是aaa 限定死了  null
+        // var str = "aaaaaaaaaaaaaa"
+        // str.match(reg);
+        
+        //游标的移动 从后面继续检索
+        // var reg = /ab/g;
+        // var str = "abababab";
+        // console.log(reg.exec(str));//["ab", index: 0, input: "abababab", groups: undefined]
+        // console.log(reg.lastIndex);//2 从索引位2开始 实际是第三个开始
+        // console.log(reg.exec(str));//["ab", index: 2, input: "abababab", groups: undefined]
+        // console.log(reg.exec(str));//["ab", index: 4, input: "abababab", groups: undefined]
+        // console.log(reg.exec(str));//["ab", index: 6, input: "abababab", groups: undefined]
+        // //lastIndex可以重新制定游标位置
+        // reg.lastIndex = 0;
+
+        // var str = "aaabbb";
+        // var reg = /(\w)\1\1(\w)\2/;//()括号里面代表一个子表达式（记录里面匹配的内容） 后面的\1代表跟他一模一样的值（）引用第一个值匹配的内容,\2代表第一个索引的内容
+        //                             //所以=> ["aaa", "bbb"]
+        // str.match(reg);
+        // console.log(reg.exec(str)); //["aaabb", "a", "b", index: 0, input: "aaabbb", groups: undefined] 把表达式的值可以直接装进数组里面来使用
+        // console.log(str.search(reg));//0     reg正则表达式是是从多少位开始匹配的 我们直接从第一位开始匹配所以为0，如果匹配不到则返回-1
+        
+
+
+
+
+
+        // var str = "asldjflksajd0sjdflasjdf0asldfj"
+        // var reg = /\d/g;
+        // console.log(str.split(reg))//(3) ["asldjflksajd", "sjdflasjdf", "asldfj"] 分割字符串 里面匹配的啥从哪里拆
+        // console.log(str.replace(reg,"1"));//asldjflksajd1sjdflasjdf1asldfj 把第一个参数的值替换成第二个参数的值 注意匹配的表达式要加g不然就只替换第一个
+   
+   
+   
+        //把aabb 倒过来
+        // var reg = /(\w)\1(\w)\2/g;
+        // var str = "aabb";
+        // console.log(str.replace(reg,"$2$2$1$1"));//bbaa  $引用表达式里面的值 $1引用第一歌 $2引用第二个
+        // //函数高级写法↓↓↓↓↓↓↓
+        // console.log(str.replace(reg,function($,$1,$2){
+        //     return $2 + $2 + $1 +$1;
+        // }));//bbcc
+        // console.log(str.replace(reg,function($,$1,$2){
+        //     return $2 + $2 + $1 +$1 + $1 +"kkkk";
+        // }));//bbaaakkkk
+
+
+
+        //把字符串the-first-name转化为小驼峰写法theFirstName
+        // var str = "the-first-name";
+        // var reg = /-(\w)/g;
+        // console.log(str.replace(reg,function($,$1){
+        //     return $1.toUpperCase();
+        // }));//theFirstName
+
+
+        //正向预查 正向断言：意思就是我只找后面跟着b的a↓
+        // var str = "abaaaaaa"; //
+        // var reg = /a(?=b)/g;//["a"]
+        // var reg1 = /a(?!b)/g;//["a", "a", "a", "a", "a", "a"]
+        // console.log(str.match(reg1));
+
+
+        //字符串去重
+        // var str = "aaaaaaabbbbbbbbcccccc";//变成abc
+        // var reg = /(\w)\1*/g;//abc
+        // console.log(str.replace(reg,"$1"));
+
+
+
+        //百度面试题 正则表达式把10000000 转化为 10,000,000
+        // var str = "1000000000";
+        // var reg = /(?=(\B)(\d{3})+$)/g;
+        // console.log(str.replace(reg,","));
+
+
+
+
+        // 匹配字符串里面是否含有数字和小写字母
+        // var a = '213asf';
+        // var reg = /^[0-9a-z]{4}$/g;
+        // var b = reg.test(a);
+        // console.log(b);
+    </script>
+</body>
+</html>

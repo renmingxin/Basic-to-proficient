@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+//检测所有的键盘按钮
+document.onkeydown = function(e){
+    // console.log(e);
+    console.log("按下键盘")
+}
+//检测所有的字符键盘，可以检测大小写字母（这个比较准确）
+document.onkeypress = function(e){
+    // console.log(e);
+    console.log("键盘")
+}
+document.onkeyup = function(e){
+    // console.log(e);
+    console.log("抬起键盘")
+}
+</script>
+</html>

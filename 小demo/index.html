@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .sanjiao {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 30px;
+            width: 0px;
+            height: 0px;
+            border-color: transparent transparent #06c transparent;
+        }
+
+
+        .first {
+            width: 200px;
+            height: 200px;
+            border: 3px solid red;
+            float: left;
+            
+        }
+
+        .second {
+            width: 200px;
+            height: 100px;
+            border: 5px solid blue;
+            float: left;
+            
+            }
+        .box {
+            width: 100px;
+            height: 30px;
+            background: red;
+        }
+        .box:active{
+            background: blue;
+            margin-top: 5px;
+        }
+        .div11 {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+        .div11:after {
+            content: '1122111';
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .test{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            
+            border: 1px solid red;
+        }
+        .test>span{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="sanjiao"></div>
+    </div>
+    
+    <div class="box">点我</div>
+    <div id="div111" class="div11" ></div>
+    <div class="test">
+        <span>ahahahha</span>
+    </div>
+    <script>
+        // var div111 = document.getElementById('div111');
+        // console.log(getComputedStyle(div111).width);
+        // console.log(div111.offsetWidth + '   ' + div111.offsetHeight);
+        // console.log(div111.offsetLeft + '   ' + div111.offsetTop + '   ' + div111.offsetParent);
+        
+        // function Rectangle(){
+        //     this.width = 0;
+        //     this.height = 0;
+        //     this.setWidth = function (width){
+        //         this.width = width;
+        //     }
+        //     this.setHeight = function(height){
+        //         this.height = height;
+        //     }
+        //     this.getWidth = function(){
+        //         return this.width;
+        //     }
+        // }
+        // // var a = new Rectangle();
+        // // Rectangle.prototype.gethah = 'aaa';
+        // // Rectangle.prototype.name = function(){
+        // //     console.log('bbbb')
+        // // }
+        // Square.prototype = new Rectangle();
+        // function Square(){
+        //     // console.log('Square');
+        //     this.setWidth = function(width){
+        //         this.width = width;
+        //         this.height = width;
+        //     };
+        //     this.haha = function(){
+        //         console.log('hahaha')
+        //     }
+        // }
+
+
+
+
+        // const name = 'chinaBerg';
+        // const age = 88;
+        // const money = 12.88;
+        // const obj = {
+        //     status:"很积极"
+        // };
+        // console.log("我叫%s,%d岁,有%f元,状态:%o",name,age,money,obj.status,'打印');
+
+
+
+        // var duixiang = {
+        //     name:'老王',
+        //     age:11,
+        //     sex:'男',
+        //     height:180
+        // }
+        // for(var i = 0;i<duixiang.length;i++){
+        //     console.log(duixiang[i]);
+        // }
+        // for(var k in duixiang){
+        //     console.log(duixiang[k])
+        // }
+
+
+
+
+        // var a = 0;
+        // var b = 0;
+        // setInterval(function(){
+        //     console.log(a++);
+
+        // },1000)
+        // setInterval(function(){
+
+        //     b = b + 100;
+        //     console.log(b);
+        // },1000)
+
+
+
+        // let timer = null;
+        // let Deg = 0;
+        // let distance = 360;
+        // var _requestAnimationFrame_ = window.requestAnimationFrame || window.webkitRequestAnimationFrame;
+        // let angleDiv = document.querySelector(".angle-div");
+        // cancelAnimationFrame(timer);
+        // let fn = () => {
+        //     if (Deg < distance) {
+        //         Deg++;
+        //     } else {
+        //         Deg = 0;
+        //     };
+        //     angleDiv.style.transform = `rotateZ(${Deg}deg) translateZ(0)`;
+        //     angleDiv.style.WebkitTransform = `rotateZ(${Deg}deg) translateZ(0)`;
+        //     timer = _requestAnimationFrame_(fn);
+        // }
+        // timer = _requestAnimationFrame_(fn);
+
+        // function sum(a,b){
+        //     var a = 1;
+        //     a = 2;
+        //     arguments[1] = 3;
+        //    // b =4;
+        //     console.log(a);
+        //     console.log(b);
+        // }
+        // sum(1);
+
+
+
+        // var m = new Map();
+        // m.set(1,'first');
+        // m.set(2,'two');
+        // m.set(3,'three');
+        // m.set(1,'asdasd');
+        // m.set('four',4);
+        // m.forEach(function(item,key,mapObj){
+        //     console.log(item + "     " + key + "       " + mapObj);
+        // })
+
+
+
+
+        //面试题(1-3)--->[1,2,3]
+        // let strAll = 'flight_node[1-3,5,7-10].qunar.com';
+        // let arr = [];
+            
+        // if(strAll.indexOf('[') != -1){
+        //     if(strAll.indexOf(']') != -1){
+        //         console.log(strAll);
+        //         let b = strAll.indexOf('[');
+        //         let c = strAll.indexOf(']');
+        //         console.log(b+'   '+c);
+        //         let strAll2 = strAll.slice(b+1,c);
+        //         console.log(strAll2);
+        //         let e = strAll2.split(',');
+        //         console.log(e);
+        //         for(var i = 0;i<e.length;i++){
+        //             if(e[i].indexOf('-') == -1){
+        //                 arr.push('flight_node'+e[i]+'.qunar.com');
+        //             }else{
+        //                 let f = e[i][0];
+        //                 let g = e[i][2];
+        //                 console.log(f+'    '+g)
+        //                 for(let j =f;j<=g;j++){
+        //                     console.log(j);
+        //                     arr.push('flight_node'+j+'.qunar.com');
+        //                 }
+        //             }
+        //         }
+        //     }else{
+        //         arr.push('flight_site.qunar.com');
+        //     }
+        // }
+        // console.log(arr);
+
+
+
+        var a1 = {
+            b:{
+                c:{}
+            }
+        };
+        // var a2 = shallowClone(a1);//浅拷贝
+        // console.log(a2.b.c === a1.b.c);
+
+        // var a3 = clone(a1);//深拷贝
+        // console.log(a3.b.c === a1.b.c);
+    </script>
+</body>
+
+</html>

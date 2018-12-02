@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+</head>
+<body>
+   
+    <script>
+        // 预编译
+        // 四部曲：
+        // 1.创建AO对象（Activation Object）：（执行期上下文）;
+        // 2.找形参和变量声明，将变量和形参名作为A0属性名，值为undefined,比如有var a,var b,AO里面的key值就是a和b
+        // 3.将实参值和形参统一
+        // 4.在函数体里面找函数声明，值赋予函数体,表达式不能提升比如var a = function (){},函数可以提升,比如：function a(){};
+        // GO 才是等于window
+       
+        // 比如下面function
+        // 第一次执行都赋值为undefined
+        // 第二次实参形参相统一就是a:1
+        // 第三次都是找函数声明，值赋予函数体a:function a(){} 和 a :123
+        // AO:{
+        //   a:undefined,
+        //   b:undefined,
+        // }
+        // function fn(a){
+        //     console.log(a);//function a(){}
+        //     var a = 123;
+        //     console.log(a);//123
+        //     function a(){};
+        //     console.log(a);//123
+        //     var b = function(){};
+        //     console.log(b);//function(){}
+        //     function d(){};//funtion d(){}
+        // }
+        // fn(1);
+
+
+        //函数变量整体提升
+        //变量 声明提升  比如：var a = 100; 他会把var a; 提升到前面, a = 100在后面
+        //不管你function写在哪里 他都会提升到script的最前面
+        // console.log(a);//undefined
+        // var a = 100;
+        // test();
+        // function test1(){
+        //     console.log("test1函数");
+        // }
+       
+
+
+        //举个例子
+        // var a = 123;
+        // var b = 234;
+        // var c = 345;
+        // //相当于
+        // window:{
+        //     a:123,
+        //     b:234,
+        //     c:345
+        // }
+
+
+
+
+        //如果变量不经过声明变量赋值，此变量就归全局对象(window)所有，比如：a = 10就相当于window.a = 10,var a =10也归window所有;
+        // var a = b = 100;
+        // function test2(){
+        //     var a = b = 100;
+        // }
+        // test2(); //console.log(window.a) => undefined ;  console.log（window.b） =>100 ,因为分成了var a 和 b = 100
+
+
+
+
+        // function test3(){
+        //     var b = 123;
+        // }
+        // test3(window.b); //undefined 在局部变量test3里面定义的var b = 123; window.b 不能访问
+
+        
+
+
+
+        //预编译发生在函数执行的前一刻，因为function函数提升所以首先输出函数表达式，后面才是变量声明
+        // function fn(a){
+        //     console.log(a);//function a(){}
+        //     var a = 123;
+        //     console.log(a);//123
+        //     function a(){};
+        //     console.log(a);//123
+        //     var b = function(){};
+        //     console.log(b);//function(){}
+        //     function d(){};
+        //     console.log(d);//funtion d(){}
+        // }
+        // fn(1);
+        
+
+
+        // function test4(a,b){
+        //     console.log(a);//1
+        //     c = 0;
+        //     var c = 0;
+        //     a = 3;
+        //     b = 2;
+        //     console.log(b);//2
+        //     function b(){};
+        //     function d(){};
+        //     console.log(b);//2
+        // }
+        // test4(1);
+        // //1,2,2
+
+
+        // function test5(a,b){
+        //     console.log(a);//function a(){}
+        //     console.log(b);//undefined 表达式不能提升比如var b = function(){},函数可以提升,比如：function a(){}
+        //     var  b =234;
+        //     console.log(b);//234
+        //     a = 123;
+        //     console.log(a);//123
+        //     function a(){};
+        //     var a;
+        //     b = 234;
+        //     var b = function(){};
+        //     console.log(a);//123
+        //     console.log(b);//function(){}
+        // }
+        // test5(1);
+        //function a(){},undefined,234,123,123,function(){}
+
+
+
+
+        // console.log(test);//function test(test){******下面的函数体*******}
+        // function test(test){
+        //     console.log(test);//function test(){}
+        //     var test = 234;
+        //     console.log(test);//234
+        //     function test(){
+        //     }
+        // }
+        // test(1);
+        // var test = 123;
+
+
+
+
+
+        // AO里面没有就向GO里面找
+        // var a = 100;
+        // function fn(){
+        //     console.log(a);
+        // }
+        // fn();//100
+
+
+
+
+        // GO:{
+        //     a:100;
+        // }
+        // AO:{
+        //     a:undefined
+        // }
+        // a = 100;
+        // function fn(){
+        //     console.log(a);//undefined
+        //     a = 200;
+        //     console.log(a);//200
+        //     var a = 300;
+        // }
+        // fn();
+        // var a;
+
+
+
+        //首先生成不用看if直接取var b; var b 提升，然后看a里面是undefined;所以b不能赋值100；
+       
+        // function test(){
+        //     console.log(b);//undefined
+        //     if(a){
+        //         var b = 100;
+        //     }
+        //     console.log(b);
+        //     c = 234;
+        //     console.log(c);//234
+        // }
+        // var a;
+        // test();
+        // // AO:{
+        // //     b:undefined
+        // // }
+        // a = 10;
+        // console.log(c);//234
+        //undefined,234,234
+        
+
+
+        // function bar(){
+        //     return foo;
+        //     foo = 10;
+        //     function foo(){}
+        //     var foo = 11;
+        // }
+        // console.log(bar());//function foo(){}
+
+
+        
+
+        // console.log(bar());//11
+        // function bar(){
+        //     foo = 10;
+        //     function foo(){};
+        //     var foo = 11;
+        //     return foo;
+        // }
+
+
+
+
+
+        // console.log(a);//undefined  只把var a 提升;并不能提升表达式
+        // var a = function(){};
+
+
+
+
+
+        // a = 100;
+        // function demo(e){
+        //     function e(){};
+        //     arguments[0] = 2;
+        //     console.log(e);//2
+        //     if(a){
+        //         var b = 123;
+        //         function c(){};
+        //     }
+        //     var c;
+        //     a = 10;
+        //     var a;
+        //     console.log(b);//undefined
+        //     f = 123;
+        //     console.log(c);//undefined(function c(){}) 因为新的浏览器规定function 不允许定义在if里面 所以为undefined
+        //     console.log(a);//10
+        // }
+        // var a;
+        // demo(1);
+        // console.log(a);//100
+        // console.log(f);//123
+
+
+
+
+
+        // var str = false + 1;
+        // console.log(str);
+        // var demo = false == 1;
+        // console.log(demo);
+        // if(typeof(a) && -true + (+undefined) + ""){
+        //     console.log('基础扎实');
+        // }
+        // if(11 + '11' * 2 == 33){
+        //     console.log('基础扎实2');
+        // }
+        // !!" " + "" - !!false||document.write('打印');
+
+
+
+        // var x = 1;
+        // if(function f(){}){
+        //     x += typeof(f)
+        // }
+        // console.log(x); //1undefined
+
+
+
+
+
+        // (window.foo || (window.foo = 'bar'));
+
+
+
+
+
+    
+        
+
+
+
+        
+    </script>
+</body>
+</html>

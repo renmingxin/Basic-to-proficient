@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Css3文字和颜色</title>
+    <style>
+        .demo1 {
+
+        }
+        p {
+            text-shadow: 10px 10px 5px gray;
+            width: 300px;
+            height: 50px;
+            border: 1px solid;
+            /* 是否换行 
+                word-break:文字换行。
+                break-all:强制换行，不区分单词。
+                keep-all:区分单词,把单词展示完全。
+            */
+            word-break: break-all;
+            /* 
+                overflow:超出隐藏；
+                white-space:nowrap  超出不换行
+                text-overflow:ellipsis 超出用省略号代替
+             */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        p:nth-child(2){
+            /* 
+            pre:保留空格符 也可用于换行
+            nowrap:不换行 文字将展示在一行内 并且不识别换行符 和多个空格
+            */
+            white-space: pre;
+            /* text-overflow: ellipsis; */
+            font-family: myFont;
+        }
+        /* 
+         引入外部下载的字体样式
+         */
+         @font-face {
+             src: url('./font/Beautyface.ttf'),
+                /*
+                兼容写法
+                format:此值指的是你自定义的字体的格式,主要用来帮助浏览器识别浏览器对@font face的兼容问题,这里涉及到一个字体format的问题,因为不同的浏
+                览器对字体格式支持是不一致的,浏览器自身也无法通过路径后缀来判断字体!
+                */
+                  url('./font/Beautyface.otf') format('otf');
+             
+             /* 自己起个名字 */
+             font-family: 'myFont';
+         }
+         .demo2 {
+             width: 300px;
+             height: 300px;
+             border: 1px solid red;
+             /* 第一个参数一列多宽  第二个参数分几列 */
+             columns: 100px 2;
+             word-wrap: break-word; 
+             column-rule: 3px solid red;
+         }
+         .demo3 {
+            width: 300px;
+            height: 50px;
+            color:hsl(220, 100%, 40%);
+            border: 1px solid red;
+
+         }
+         /* 
+            渐变色：线性渐变(linear-gradient)渐变函数(渐变到什么方向，起始颜色(到百分之多少变)....结束颜色)
+          */
+         .demo4 {
+            margin: 20px 0;
+            width: 500px;
+            height: 70px;
+            background: linear-gradient(to top,red,yellow,gray);
+         }
+         .demo5 {
+            margin: 20px 0;
+            width: 500px;
+            height: 70px;
+            background: linear-gradient(to right,red 10%,yellow 90%,gray);
+         }
+         .demo6 {
+            margin: 20px 0;
+            width: 300px;
+            height: 300px;
+            /* 对角线 */
+            background: linear-gradient(to top right,red 10%,yellow 90%,gray);
+         }
+         .demo7 {
+            margin: 20px 0;
+            width: 300px;
+            height: 300px;
+            /* 角度值 */
+            background: linear-gradient(155deg,red ,yellow ,gray);
+         }
+
+         /* 
+            径向渐变(radial-gradien)
+
+          */
+          .demo8 {
+            margin: 20px 0;
+            width: 300px;
+            height: 300px;
+            /* 圆从中心开始 */
+            background: radial-gradient(circle at center,red,yellow,green)
+          }
+          .demo9 {
+            margin: 20px 0;
+            width: 300px;
+            height: 300px;
+            /* 圆从x轴100px和y轴100px开始 */
+            background: radial-gradient(circle at 100px 100px,red,yellow,green)
+          }
+          .demo10 {
+            margin: 20px 0;
+            width: 300px;
+            height: 300px;
+            /* 圆从x轴0和y轴100%开始 */
+            background: radial-gradient(circle at 0% 100%,red,yellow,green)
+          }
+          .top {
+              width: 0px;
+              height: 0px;
+              /* background-color: red; */
+              border: 50px solid transparent;
+              /* border-left-color: aqua;
+              border-right-color: blueviolet;
+              border-top-color: violet; */
+              border-bottom-color: springgreen;
+          }
+          .right {
+              width: 0px;
+              height: 0px;
+              /* background-color: red; */
+              border: 50px solid transparent;
+              /* border-left-color: aqua;*/
+              border-right-color: blueviolet;
+              /* border-top-color: violet;  */
+              /* border-bottom-color: springgreen; */
+          }
+          .bottom {
+              width: 0px;
+              height: 0px;
+              /* background-color: red; */
+              border: 50px solid transparent;
+              /* border-left-color: aqua;*/
+             /* border-right-color: blueviolet;*/
+              border-top-color: violet;
+              /* border-bottom-color: springgreen; */
+          }
+          .left {
+              width: 0px;
+              height: 0px;
+              /* background-color: red; */
+              border: 50px solid transparent;
+              border-left-color: aqua;
+              /* border-right-color: blueviolet; */
+             /* border-top-color: violet; */
+              /* border-bottom-color: springgreen; */
+          }
+    </style>
+</head>
+<body>
+    <div class="demo1">
+        <p>    aaaaaaa  哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+        <p>           aaaaaaa   哈哈哈哈啊aaaa   哈哈哈哈啊aaaa   哈哈哈哈啊aaaa   哈哈哈哈啊aaaa   哈哈哈哈啊啊啊</p>
+    </div>
+    <div class="demo2">
+        kljsdkljflsa哈哈哈哈哈哈酸辣粉就来看撒娇地方卢卡斯江东父老asd撒娇地方卢卡斯江东父老asd撒娇地方卢卡斯江东父老asd撒娇地方卢卡斯江东父老asdkjlaksjdlkjaklsjdkaldsjlaksjdlk
+    </div>
+    <div class="demo3">
+        asdkljsadkjaslgdjlksajdg
+    </div>
+    <div class="demo4"></div>
+    <div class="demo5"></div>
+    <div class="demo6"></div>
+    <div class="demo7"></div>
+    <div class="demo8"></div>
+    <div class="demo9"></div>
+    <div class="demo10"></div>
+    <div class="top"></div>
+    <div class="right"></div>
+    <div class="bottom"></div>
+    <div class="left"></div>
+
+</body>
+</html>

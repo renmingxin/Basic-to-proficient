@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包</title>
+</head>
+<body>
+    <script>
+        // function a(){
+        //     function b(){
+        //         var bbb = 234;
+        //         console.log(aaa);//123
+        //     }
+        //     var aaa = 123;
+        //     return b; //把a的GO和 a的AO给保存在外部
+        // }
+        // var glob = 100;
+        // var demo = a();
+        // demo();//123
+
+
+
+
+        //  闭包的作用
+        //  1.实现公有变量
+        //  eg:函数累加器
+        // function a(){
+        //     var num = 100;
+        //     function b(){
+        //         num++;
+        //         console.log(num);
+        //     }
+        //     return b;
+        // }
+        // var demo = a();
+        // demo();//101
+        // demo();//102
+
+
+        //  2.可以做缓存（存储结构）
+        //  eg:eater
+        // function test(){
+        //     var num = 100;
+        //     function a(){
+        //         num++;
+        //         console.log(num);
+        //     }
+        //     function b(){
+        //         num--;
+        //         console.log(num);
+        //     }
+        //     return [a,b];
+        // }
+        // var myArr = test();
+        // myArr[0]();//101
+        // myArr[1]();//100
+        // 缓存的典型使用
+        // function eater(){
+        //     var food = "";//隐式的存储单位
+        //     var obj = {
+        //         eat:function(){
+        //             console.log("I am eating" + food);
+        //             food = "";
+        //         },
+        //         push:function(myFood){
+        //             food = myFood;
+        //         }
+        //     }
+        //     return obj;
+        // }
+        // var eater1 = eater();
+        // eater1.push('苹果');
+        // eater1.eat();//I am eating苹果
+
+
+        // 3.可以实现封装，属性私有化
+        // eg:Person();
+
+
+
+        // 4.模块化开发，防止污染全局变量
+    </script>
+</body>
+</html>

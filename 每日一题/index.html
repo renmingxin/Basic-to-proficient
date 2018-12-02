@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //2018-09-20
+        // var oUl = document.getElementById('wrapper');
+        // var data = [];
+        // for (var k = 0; k < 3; k++) {
+        //     data[k] = function () {
+        //         console.log(k)
+        //     }
+        // }
+        // data[0]();
+        // data[1]();
+        // data[2]();   
+        // // 3
+        // // 3
+        // // 3
+
+
+
+
+        /**
+        2018-09-24
+        写一个方法，统计字符串中的字母个数或统计最多字母数
+        */
+        // var str = 'aaaaaaaaaabbbbccccdsafasd';
+        // var obj = {};
+        // for(var i = 0;i < str.length;i++){
+        //     var v = str.charAt(i);
+        //     if(obj[v] && obj[v].value ==v){
+        //         obj[v].count = ++obj[v].count;
+        //     }else{
+        //         obj[v] = {};
+        //         obj[v].count = 1;
+        //         obj[v].value = v;
+        //     }
+        // }
+        // for(key in obj){
+        //     document.write(obj[key].value+ '=' + obj[key].count + '&nbsp');
+        // }
+        //a=12 b=4 c=4 d=2 s=2 f=1 
+
+
+        //2018-10-21
+        //子类如何重写父类的属性和方法
+        // function AClass(){
+        //     this.Property = 1;
+        //     this.Method = function(){
+        //         console.log(1);
+        //     }
+        // }
+        // function AClass2(){
+        //     this.Property2 = 2;
+        //     this.Method2 = function(){
+        //         console.log(2);
+        //     }
+        // }
+        // AClass2.prototype = new AClass();
+        // AClass2.prototype.Property = 3;
+        // AClass2.prototype.Method = function(){
+        //     console.log(4);
+        // }
+        // var obj = new AClass2();
+        // console.log(obj.Property);//3
+        // obj.Method();//4
+
+
+        //2018-10-22
+        // function fun(n,o){
+        //     console.log(o);
+        //     return {
+        //         fun:function(m){
+        //             return fun(m,n);
+        //         }
+        //     }
+        // }
+        // var a = fun(0);
+        // a.fun(1);
+        // a.fun(2);
+        // a.fun(3);
+        // var b = fun(0).fun(1).fun(2).fun(3);
+        // var c = fun(0).fun(1);
+        // c.fun(2);
+        // c.fun(3);
+
+
+        
+        //2018-10-23
+        (function(){
+            try{
+                throw new Error();
+            }catch(x){
+                var x = 1,y = 2;
+                console.log(x);
+            }
+            console.log(x);
+            console.log(y)
+        })();
+
+        // function Foo() {
+        //     var i = 0;
+        //     return function() {
+        //         console.log(i++);
+        //     }
+        // }
+        // var f1 = Foo(),
+        //     f2 = Foo();
+        // f1();
+        // f1();
+        // f2();
+
+
+
+
+
+
+        //2018-10-24
+        (function () {
+            var a = b = 3;
+        }());
+        console.log('a defined?' + (typeof a !== 'undefined'));
+        console.log('b defined?' + (typeof b !== 'undefined'));
+
+
+
+        // ajax的优点是什么缺点是什么？
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    分:<input type="text" value="0">
+    秒:<input type="text" value="0">
+</body>
+<script>
+    var oneinput = document.getElementsByTagName('input')[0];
+    var twoinput = document.getElementsByTagName('input')[1];
+    var oneinputValue = oneinput.getAttribute('value');
+    var twoinputValue = twoinput.getAttribute('value');
+    var twoinputValueNum = parseInt(twoinputValue);
+    var oneinputValueNum = parseInt(oneinputValue);
+    var intTime = setInterval(()=>{
+        twoinputValueNum++;
+        
+        console.log(twoinputValueNum);
+        if(twoinputValueNum == 60){
+            twoinputValueNum=0;
+            oneinputValueNum++;
+
+        }
+        twoinput.value = twoinputValueNum;
+        oneinput.value = oneinputValueNum;
+        if(oneinputValueNum == 3){
+            clearInterval(intTime);
+        }
+    },10)
+</script>
+<style>
+    
+</style>
+</html>

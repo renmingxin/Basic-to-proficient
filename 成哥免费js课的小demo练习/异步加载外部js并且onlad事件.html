@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--defer：（只有IE能用）异步加载js外部文件，不会因为网速堵塞页面的渲染，里面写的代码也是异步执行的比如var a = 123；
+        async:  (W3C标准，低版本IE浏览器没法用)跟defer也是异步加载，但不用等到dom树加载完，但是async只能加载外部js不能在里面写代码
+        注意：defer和async不能同时写在行间 下面的写法是错误了，只是方便记忆↓
+    -->
+    <script type="text/javascript" src="tools.js" defer="defer" async="async">
+        var a = 123;
+    </script>
+
+    <!--第四种写法 最高级的写法 等文档解析完就执行，比onload（）更快
+
+    -->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded',function(){
+            console.log("jq里面的ready函数的本身");
+        },false)
+    </script>
+</head>
+<body>
+    <div></div>
+    <!-- 第三种方法也能去加载外部的js，但是可能js没被加载好就会找不到js里面的方法
+        onlad可以等script全部加载完成就等待被调用跟setTimeout一样的道理
+    -->
+    <script>
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'tools.js';
+        //兼容性比较好，但是IE不兼容，IE不支持onload方法
+        script.onload = function(){
+
+            test();
+        }
+        //下面是兼容IE的写法↓↓↓↓↓↓↓
+        script.onreadystatechange = function(){
+            if(script.readyState == "complete" || script.readyState == "loaded"){
+                test();
+            }
+        }
+
+        //兼容写法（重点！！！！！！）
+        // if (script.readyState) {
+        //     script.onreadystatechange = function () {
+        //         if (script.readyState == "complete" || script.readyState == "loaded") {
+        //             test();
+        //         }
+        //     }
+        // }else{
+        //     script.onload = function(){
+        //     test();
+        //     }
+        // }
+
+        document.head.appendChild(script);
+    </script>
+</body>
+
+</html>

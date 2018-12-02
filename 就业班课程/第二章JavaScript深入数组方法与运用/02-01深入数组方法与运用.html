@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深入数组扩展方法并应用一(1)</title>
+</head>
+
+<body>
+    <div>
+    </div>
+    <script>
+        var arr = [1, 2, 3, 4, 5];
+        //移除最后一项
+        // arr.pop();//1,2,3,4
+
+        // //移除第一项
+        // arr.shift();//2,3,4,5
+
+        // //添加一项 在第一个位置
+        // arr.unshift(10);//10,1,2,3,4,5
+
+        // //数组每一项用传进来的值拼接在一起
+        // arr.join('--');//1--2--3--4--5
+
+        // //反转当前数组
+        // arr.reverse();//5,4,3,2,1
+
+        // //把传进来的值拼接在后面并不会改变原数组
+        // arr.concat(0,0,0);//1,2,3,4,5,0,0,0
+
+
+        //some函数是如果数组里面的值有一项满足条件就是true
+        // arr.some(function(elem){
+        //     if(elem>4){
+        //         return true;
+        //     }
+        // })
+        // //every函数是如果数组里面的值所有项满足条件才是true
+        // arr.every(function(elem){
+        //     if(elem>4){
+        //         return true;
+        //     }
+        // })
+
+        var arr1 = [2, 4, 5, 6, 10, 20, 5, 6];
+        //判断传入值在数组中的第一次出现的索引值,否则则为-1
+        arr1.indexOf(5);//2
+
+        //判断传入值在数组中的最后一次出现的索引值,否则则为-1
+        arr1.lastIndexOf(5);//6
+
+        //splice拼接
+        //从索引1开始截取2位4,5  然后插入3 ,33,333  会改变原数组
+        // arr1.splice(1,2,3,33,333);// [2, 3, 33, 333, 6, 10, 20, 5, 6]
+
+
+        //slice截取 
+        //截取数组前三项，但不会改变原数组
+        arr1.slice(3)//(5) [6, 10, 20, 5, 6]
+            
+
+        //数组对象 
+        var arrObj = [
+            {
+                name: 'aa',
+                age: '20',
+                like: 'dog'
+            },
+            {
+                name: 'bb',
+                age: '17',
+                like: 'cat'
+            },
+            {
+                name: 'cc',
+                age: '22',
+                like: 'dog'
+            },
+            {
+                name: 'dd',
+                age: '24',
+                like: 'game'
+            },
+        ];
+
+        //传统遍历 ele + index
+        // for(var i = 0; i<arrObj.length; i++){
+        //     console.log(JSON.stringify(arrObj[i])+'   '+i);
+        // }
+
+        //forEach arr2就是传进来的值arrObj
+        // arrObj.forEach(function(ele,index,arr2){
+        //     console.log(ele,index,arr2);
+        //     // aa like dog 
+        //     console.log(ele.name + '  like  ' + ele.like);
+        //     // 每一项末尾加一项
+        //     ele.height = '1000';
+        //     console.log(ele); //{name: "aa", age: "20", like: "dog", height: "1000"}......
+        //         if(ele.like == 'dog'){
+        //             console.log(ele)
+        //         }
+        // })
+
+        //for in 
+       
+        // for(k in arrObj){
+        //     console.log(arrObj[k])
+        // }
+
+        //--------------------自己封装一个forEach------------------------------
+        // Array.prototype.myForEach = function(fn){
+        //     console.log(fn);//function(ele,index,newArr){console.log(ele,index,newArr)}
+        //     console.log(this)//arrObj
+        //     var len = this.length;
+        //     for(var i = 0;i < len; i++){
+        //         fn(this[i],i,this);
+        //     }
+        // }
+        // arrObj.myForEach(function(ele,index,newArr){
+        //     console.log(ele,index,newArr)
+        // })
+
+
+        //filter过滤器
+        var filterArr = arrObj.filter(function (ele, index) {
+            if (ele.age > 21) {
+                return true;
+            }
+        })
+        // 0: {name: "cc", age: "22", like: "dog"}
+        // 1: {name: "dd", age: "24", like: "game"}
+        // console.log(filterArr, arrObj);
+
+
+
+        //--------------------自己封装一个filter过滤器------------------------------
+        Array.prototype.myFilter = function (fn) {
+            var newArr = [];
+            var len = this.length;
+            for (var i = 0; i < len; i++) {
+                if (fn(this[i], i)) {
+                    if(typeof this[i] == 'object'){
+                       newArr.push(deepClone({},this[i]));
+                    }else{
+                        newArr.push(this[i]);
+                    }
+                }
+            }
+            return newArr;
+        }
+        var fArr = arrObj.myFilter(function (ele, index) {
+            if (ele.age > 21) {
+                return true;
+            }
+        })
+        // console.log(fArr)
+
+        //深度克隆  因为只要改变了原数组的值 不管是是否过滤 都会改变 因为过滤器拿到的是地址的索引 并不会拿到值
+        var obj1 = {
+            name: "老王",
+            age: 20,
+            gf: {
+
+            }
+        }
+        var obj2 = {
+            name: "老李",
+            age: 21,
+            gf: {
+                gf1: {
+                    name: "小红",
+                    age: 20
+                },
+                gf2: {
+                    name: "小芳",
+                    age: 20
+                }
+            }
+        }
+        //把obj2里面的值克隆到obj1里面去
+        function deepClone(target, option) {
+            var copy, src;
+            if (option) {
+                for (var prop in option) {
+                    copy = option[prop];
+                    src = target[prop];
+                    //引用值的时候
+                    if (copy && typeof copy == 'object') {
+                        //[] || {}
+                        if (Object.prototype.toString.call(copy) == '[object Array]') {
+                            src = src ? src : [];
+                        } else {
+                            src = src ? src : {};
+                        }
+                        target[prop] = deepClone(src,copy);
+                    } else {
+                        target[prop] = copy;
+                    }
+                }
+            }
+            return target;
+        }
+        //深度克隆成功把obj2给克隆到obj1
+        deepClone(obj1, obj2);
+        
+        
+        //每一项的age都加10，返回一个新的数组，数组为(4) [30, 27, 32, 34]
+        var d = arrObj.map(function(ele,index){
+            return +ele.age + 10;
+        })
+        // console.log(d)
+
+
+
+        //--------------------自己封装一个Map函数------------------------------
+       Array.prototype.myMap = function(fn){
+           var len = this.length;
+           var newArr =[];
+           for(var i = 0;i<len;i++){
+               newArr.push(fn(this[i],i))
+           }
+           return newArr;
+       }
+       var dd = arrObj.myMap(function(ele,index){
+            return +ele.age + 10;
+        })
+    </script>
+</body>
+
+</html>

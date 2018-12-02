@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function Foo(){
+        //     getName = function(){
+        //         alert(1);
+        //     };
+        //     return this;
+        // }
+        // Foo.getName = function(){
+        //     alert(2);
+        // };
+        // Foo.prototype.getName = function(){
+        //     alert(3);
+        // };
+        
+        // var getName = function(){
+        //     alert(4);
+        // };
+        // function getName(){
+        //     alert(5);
+        // };
+        // Foo.getName();//2
+        // getName();//4
+        // Foo().getName();//1
+        // getName();//1
+        // new Foo.getName();//2
+        // new Foo().getName();//3
+        // new new Foo().getName();//3
+
+
+
+
+        // for(var i = 0;i<5;i++){
+        //     setTimeout(()=>{
+        //         console.log(i)
+        //     }, 500);
+        // }
+        // console.log(i);
+
+
+        /*
+        JAVASCRIPT经典基础题
+        
+        */
+
+
+        // (function () {
+        //     var a = b = 3;
+        // })();
+        // console.log("a defined? " + (typeof a !== 'undefined'));
+        // console.log("b defined? " + (typeof b !== 'undefined') + b);
+
+
+        // var myObject = {
+        //     foo: "bar",
+        //     func: function () {
+        //         var self = this;
+        //             console.log("outer func:  this.foo = " + this.foo);
+        //             console.log("outer func:  self.foo = " + self.foo);
+        //         (function () {
+        //             console.log("inner func:  this.foo = " + this.foo);
+        //             console.log("inner func:  self.foo = " + self.foo);
+        //         }());
+        //     }
+        // };
+        // myObject.func();
+
+
+        // function foo1() {
+        //     return {
+        //         bar: "hello"
+        //     }
+        // }
+        // function foo2() {
+        //     return
+        //     {
+        //         bar: "hello"
+        //     };
+        // };
+        // console.log("foo1 returns:");
+        // console.log(foo1());
+        // console.log("foo2 returns:");
+        // console.log(foo2());
+
+
+
+        // console.log(0.1 + 0.2);
+        // console.log(0.1 + 0.2 == 0.3);
+
+
+        // (function () {
+        //     console.log(1);
+        //     setTimeout(function () { console.log(2) }, 1000);
+        //     setTimeout(function () { console.log(3) }, 0);
+        //     console.log(4);
+        // })();
+
+        // function isPalindrome(str) {
+        //     str = str.replace(/\W/g, '').toLowerCase();
+        //     return (str == str.split('').reverse().join(''));
+        // }
+        // console.log(isPalindrome("level"));
+
+
+        // function sum(x) {
+        //     if (arguments.length == 2) {
+        //         return arguments[0] + arguments[1];
+        //     } else {
+        //         return function (y) { 
+        //             return x + y; 
+        //         };
+        //     }
+        // }
+        // console.log(sum(2,3));
+        // console.log(sum(2)(3));
+
+
+
+        function sum(x, y) {
+                if (y !== undefined) {
+                    return x + y;
+                } else {
+                    return function (y) { return x + y; };
+                }
+            }
+    </script>
+</body>
+</html>

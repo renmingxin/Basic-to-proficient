@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            width: 3000px;
+            height: 3000px;
+        }
+        div {
+            position: absolute;
+            left: 500px;
+            top:1500px;
+            width: 250px;
+            height: 250px;
+            background: red;
+            /* opacity: 0.3; */
+        }
+    </style>
+</head>
+<body>
+    <div id="demo" style="opacity:0.3">
+       
+    </div>
+    <iframe src="./29-3全面理解this关键字.html" width="400" height="400"  frameborder="0"></iframe>
+    <script>
+        // 实现懒加载的原理：根据滑动的距离来决定是否加载目标事件
+        // X,Y轴的滚动的距离，比如滚动条拉动了多少距离就显示多少距离
+        // console.log(window.pageXOffset);
+        // console.log(window.pageYOffset);
+        // 你的可视窗口大小，X,Y的距离
+        // console.log(window.innerHeight);
+        // console.log(window.innerWidth);
+        //运用场景window.pageYOffset的滚动条距离+ window.innerHeight的高度 大于等于你要加载的模块的位置（offsetTop:对于窗口顶部的高度值），实现懒加载
+        // window.pageYOffset  window.innerHeight  offsetTop
+        // function check(id){
+        //     var div = document.getElementById(id);
+        //     if(window.pageYOffset + window.innerHeight >= div.offsetTop){
+        //         console.log("a");
+        //         // div.style.opacity = '1';
+        //         div.timer = setInterval(function(){
+        //             if(div.style.opacity == '1'){
+        //                 clearInterval(div.timer);
+        //             }else{
+        //                 div.style.opacity = parseFloat(div.style.opacity) + 0.01;
+        //             }
+        //         },60)
+        //     }
+        // }
+        
+        // window.onscroll = function(){
+        //     // console.log("我在滚动");
+        //     check('demo');
+
+        // }
+
+        
+
+        //窗口距离屏幕的边距(并没有占满屏幕，小窗口概念)
+        // console.log(window.screenX);
+        // console.log(window.screenY);
+      
+
+
+        //如同电影天堂点关闭窗口标签的时候问你是否离开
+        // window.onbeforeunload = function(){
+        // //    console.log("aaaa");
+        //     return 'aaaa';
+        // }
+
+
+
+        //第一个参数是URL地址，第二个是描述（window.name）可以查看，第三个是窗口的大小宽高
+        // window.open('https://www.baidu.com','baidu','width=500,height=500')
+
+
+        //判断浏览器是否处于脱机状态
+        // navigator.onLine  :返回是true是连接状态 false是离线状态
+
+
+        // 打开网页的时间轴 标签页代表一个父级
+        // history.length    :比如你打开了百度 和淘宝 加上自己一开始的空白页 就是3
+        // history.forward() :前进一格（相当于浏览器左上角的左右箭头）
+        // history.back();   :后退一格（相当于浏览器左上角的左右箭头）
+        // history.go(x)     :x代表你要跳的级数  -1往后跳一个  1往前跳一格
+
+
+        // location   重点1 https://www.taobao.com/markets/nvzhuang/taobaonvzhuang?spm=a21bo.2018.201867-main.1.5af911d9VSkuX8#10
+        // location.protocol //返回协议 如"https:"
+        // location.host     //返回域名 "www.taobao.com"
+        // location.pathname //返回路径 "/markets/nvzhuang/taobaonvzhuang"
+        // location.search   //返回参数 "?spm=a21bo.2018.201867-main.1.5af911d9VSkuX8"
+        // location.hash     //返回锚点  "#10" 
+
+        // location.host = 'www.baidu.com' //也可以跳转到百度页面
+        // 以下都可以手动修改↓↓↓↓↓↓
+        // location.host location.protocol  location.pathname  location.search  location.hash 
+        
+        // location.assign('https://www.baidu.com')//当前页面重新加载为百度首页
+        // location.reload();//重新刷新页面
+
+
+        
+    </script>
+</body>
+</html>

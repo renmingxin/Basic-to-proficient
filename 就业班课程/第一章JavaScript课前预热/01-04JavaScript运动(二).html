@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .div1 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+        .div2 {
+            position: absolute;
+            left: 0;
+            top: 120px;
+            width: 100px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+        }
+        .span1{
+            position: absolute;
+            left: 300px;
+            top:120px;
+            width: 1px;
+            height: 100px;
+            background: #ccc;
+        }
+        .div3 {
+            position: absolute;
+            top: 200px;
+        }
+        ul{
+            position: relative;
+            width: 600px;
+            height: 80px;
+            margin: 100px auto 0;
+        }
+        ul li.nav {
+            width: 148px;
+            height: 78px;
+            line-height: 78px;
+            text-align: center;
+            border: 1px solid black;
+            color: red;
+            float: left;
+        }
+        ul li.libg{
+            position: absolute;
+            top:0px;
+            left: 0;
+            width: 150px;
+            height: 80px;
+            background: #f40;
+            opacity: 0.5;
+        }
+        .div4 {
+            position: relative;
+            margin-top: 50px;
+            border: 1px solid blueviolet;
+            width: 1400px;
+            height: 700px;
+        }
+        .div44 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+        span{
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <span class="span1"></span>
+    <div class="div3">
+        <ul>
+            <li class="nav">Es6</li>
+            <li class="nav">Webpack</li>
+            <li class="nav">Node</li>
+            <li class="nav">Vue</li>
+            <li class="libg"></li>
+        </ul>
+    <div class="div4">
+        <div class="div44"></div>
+    </div>
+    </div>
+    <script>
+        //div1的运动
+        var oDiv1 = document.getElementsByClassName("div1")[0];
+        oDiv1.onclick = function(){
+            console.log(this);
+            startMove(this);
+        };
+        function startMove(obj){
+            clearInterval(obj.timer);
+            //速度
+            var iSpeed = 0;//ve = v0 +at;
+            var a = 3;
+            obj.timer = setInterval(function(){
+                iSpeed = iSpeed + a;//加速度
+                obj.style.left = obj.offsetLeft + iSpeed + 'px';
+            },30)
+        }
+
+        //div2来回弹弹弹的运动
+        var oDiv2 = document.getElementsByClassName("div2")[0];
+        oDiv2.onclick = function(){
+            console.log(this);
+            startMove2(this);
+        };
+        function startMove2(obj){
+            clearInterval(obj.timer);
+            var iSpeed = 30;
+            var a;
+            //u代表摩擦
+            var u = 0.9;
+            obj.timer = setInterval(function(){
+                a = (300 - obj.offsetLeft) / 8;
+                console.log(iSpeed);
+                iSpeed = iSpeed + a;
+                iSpeed = iSpeed * u;
+                if(Math.abs(iSpeed) < 1  && Math.abs(300 - obj.offsetLeft) < 1){
+                    clearInterval(obj.timer);
+                }else{
+                    obj.style.left = obj.offsetLeft + iSpeed + 'px';
+                }
+            },30)
+        }
+
+        //列表动画
+        //变成真正的数组
+        var oLiArray = Array.prototype.slice.call(document.getElementsByClassName('nav'),0);
+        var obg = document.getElementsByClassName('libg')[0];
+        oLiArray.forEach((elem,index) => {
+            elem.onmouseenter = function(){
+                var newLeft = this.offsetLeft;
+                startMove3(obg,newLeft);
+            }
+        });
+        function startMove3(obj,target){
+            clearInterval(obj.timer);
+            var iSpeed = 30;
+            var a;
+            //u代表摩擦
+            var u = 0.8;
+            obj.timer = setInterval(function(){
+                a = (target - obj.offsetLeft) / 8;
+                iSpeed = iSpeed + a;
+                iSpeed = iSpeed * u;
+                if(Math.abs(iSpeed) <= 1  && Math.abs(target - obj.offsetLeft) <= 1){
+                    clearInterval(obj.timer);
+                    obj.style,left = target + 'px';
+                }else{
+                    obj.style.left = obj.offsetLeft + iSpeed + 'px';
+                }
+            },30)
+        }
+        
+
+        //div4重力小方块。
+
+        var oDiv4 = document.getElementsByClassName('div44')[0];
+        oDiv4.onclick = function(){
+            startMove4(this);
+        }
+        // oDiv4.onmousedown = function(e){
+        //     var event = e || window.event;
+        //     var disX = e.clientX - this.offsetLeft;
+        //     var disY = e.clientY - this.offsetTop;
+        //     var that = this;
+        //     document.onmousemove = function(e){
+        //         var newLeft = e.clientX - disX;
+        //         var newTop = e.clientY - disY;
+        //         var oSpan = document.createElement('span');
+        //         oSpan.style.left = newLeft + 'px';
+        //         oSpan.style.top = newTop + "px";
+        //         // document.body.appendChild(oSpan);
+        //         oDiv4.appendChild(oSpan);
+        //         // that.appendChild(oSpan);
+        //         that.style.left = newLeft + 'px';
+        //         that.style.top = newTop + 'px';
+        //     }
+        //     document.onmouseup = function(){
+        //         document.onmousemove = null;
+        //         document.onmouseup = null;
+        //     }
+        // };
+        function startMove4(obj){
+            clearInterval(obj.timer);
+            var iSpeedX = 6;
+            var iSpeedY = 8;
+            //g 为重力
+            var g = 8;
+            obj.timer = setInterval(function(){
+                iSpeedY += g;
+                var newLeft = obj.offsetLeft + iSpeedX;
+                var newTop = obj.offsetTop + iSpeedY;
+                //document.documentElement.clientHeight 可见区域高度
+                console.log(document.documentElement.clientHeight);
+                if(newTop >= document.documentElement.clientHeight - obj.offsetHeight){
+                    iSpeedY *= -1;
+                    //重力
+                    iSpeedY *= 0.8;
+                    iSpeedX *= 0.8;
+                    newTop = document.documentElement.clientHeight - obj.offsetHeight;
+                }
+                if(newTop <= 0){
+                    iSpeedY *= -1;
+                    //重力
+                    iSpeedY *= 0.8;
+                    iSpeedX *= 0.8;
+
+                    newTop = 0;
+
+                }
+                if(newLeft >= document.documentElement.clientWidth - obj.offsetWidth){
+                    iSpeedX *= -1;
+                    //重力
+                    iSpeedY *= 0.8;
+                    iSpeedX *= 0.8;
+                    newLeft = document.documentElement.clientWidth - obj.offsetWidth;
+                }
+                if(newLeft <= 0){
+                    iSpeedX *= -1;
+                    //重力
+                    iSpeedY *= 0.8;
+                    iSpeedX *= 0.8;
+
+                    newLeft = 0;
+                }
+                obj.style.left = newLeft + 'px';
+                obj.style.top = newTop + 'px';
+            },30)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+</body>
+<script>
+    var input = document.getElementsByTagName('input')[0];
+    //每次输入都会触发的事件
+    input.oninput = function(){
+        console.log(this.value);
+    }
+    //输入完之后 输入框失去焦点
+    input.onchange = function(){
+        console.log(this.value);
+    }
+</script>
+</html>

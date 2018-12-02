@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400px" height="300px"></canvas>
+    <script>
+        //获取Canvas对象(画布)
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext("2d");
+        //开始一个新的绘制路径
+        ctx.beginPath();
+        //设置狐线的颜色为蓝色
+        ctx.strokeStyle = "blue";
+        var circle = {
+            x:100,//圆心的X轴坐标值
+            y:100,//圆心的y轴坐标值
+            r:50  //圆的半径
+        }
+        //沿着坐标点（100,100）为圆心，半径为50px的圆的顺时针方向绘制弧线
+        ctx.arc(circle.x,circle.y,circle.r,0,Math.PI * 2,false);
+        //按照指定的路径绘制弧线
+        ctx.stroke();
+    </script>
+</body>
+</html>

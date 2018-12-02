@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://qzs.qq.com/tencentvideo_v1/js/tvp/tvp.player.js" charset="utf-8"></script> 
+
+</head>
+    <style>
+            .active{
+                color: blue;
+            }
+            div {
+                display: none;
+            }
+            .act{
+                display: block;
+                border: 10px solid red;
+            }
+    </style>
+<body>
+    <button class="active">111</button>
+    <button>222</button>
+    <button>333</button>
+    <div class="act">111</div>
+    <div>222</div>
+    <div>333</div>
+</body>
+<script>
+    var btn = document.getElementsByTagName('button');
+    var div = document.getElementsByTagName('div');
+    for (let i = 0; i< btn.length; i++) {
+      btn[i].onclick = function(){
+          for(let j = 0;j<btn.length;j++){
+              btn[j].className="";
+              div[j].style.display = "none";
+          }
+          this.className = "active";
+          div[i].style.display = "block";
+          div[i].className = "act";
+      }
+       
+    }
+
+    // try{
+    //     console.log('a');
+    //     console.log(b);
+    //     console.log('c');
+    // }catch(e){
+    //     console.log("有问题");
+    // }
+    // console.log("ddd")
+
+
+    // function retDate(data){
+    //     var arr = ['','','']
+    // }
+
+
+
+
+    // function test(){
+    //     console.log(typeof(arguments));
+    // }
+    // test();
+
+
+
+
+    // function Person(name,age,sex){
+    //     var a = 0;
+    //     this.name = name;
+    //     this.age = age;
+    //     this.sex = sex;
+    //     function sss(){
+    //         a ++;
+    //         document.write(a);
+    //     }
+    //     this.say = sss;
+    // }
+
+    // var oPerson = new Person();
+    // oPerson.say();
+    // oPerson.say();
+    // var oPerson1 = new Person();
+    // oPerson1.say();
+</script>
+<style>
+
+</style>
+</html>

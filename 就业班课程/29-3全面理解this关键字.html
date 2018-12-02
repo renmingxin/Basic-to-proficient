@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            width: 100%;
+            height: 100%;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        // function Person(name){
+        //     this.name = name;
+        // }
+        // Person.prototype.getName = function(){
+        //     return this.name;
+        // }
+
+        //apply , call , bind用来改变this指向的
+
+        //this => p
+        // var p = {
+        //     name:'wxb',
+        //     print:function(){
+        //         console.log(this)
+        //     }
+        // }
+        // p.print()//p自身
+       
+       
+        // var q = {
+        //     name:"老王",
+        //     show:function(ctx){
+        //         console.log(ctx.name);
+        //     }
+        // }
+        // var x = {
+        //     name:"老李"
+        // }
+        // q.show(q);//老王
+        // q.show(x);//老李
+
+
+
+
+        // Object Array Function 都是对象
+        // 谁调用this指向谁，没有调用this指向window
+        // function add(){
+        //     console.log(this);//指向全局window
+        // }
+        // bind, call, apply
+        // new() 饭后一个this={}
+
+
+
+
+
+        // function show(){
+        //     console.log(this.name);
+        // }
+        // var name = "window";
+        // var obj = {
+        //     name:'obj',
+        //     print: show.bind(window)
+        // }
+        // obj.print();//指向全局window
+        // var obj1 = {
+        //     name:'obj1',
+        //     print:obj.print
+        // }
+        // obj1.print();//指向全局window
+
+
+        //this的默认绑定
+        // var name = "window";
+        // function show(){
+        //     var name = "show";
+        //     console.log(this.name);
+        // }
+        // show();//指向全局window
+        // window.show();//指向全局window show() == window.show();
+        
+
+        // var obj = {
+        //     name:'obj',
+        //     tellme:function(){
+        //         setTimeout(function(){
+        //             console.log(this);
+        //         },1000)
+        //     }
+        // }
+        // obj.tellme();//指向全局window
+
+
+        // var arr = [1,2,3,4];
+        // arr.forEach(function(){
+        //     console.log(this);//输出4次window，为什么arr调用了却还是指向window？？
+        // })
+
+
+        // var name = "window";
+        // function dir(fn){
+        //     var name = 'dir';
+        //     fn();
+        // }
+        // function show(){
+        //     console.log(this.name);//还是指向window
+        // }
+        // dir(show);
+
+
+        //隐式绑定
+        // var obj = {
+        //     name:"obj",
+        //     show:function(){
+        //         console.log(this);
+        //         console.log(this.name);
+        //     }
+        // }
+        // obj.show();//"obj"
+
+
+        //隐式绑定
+        // window.name = "window";
+        // function show(){
+        //     console.log(this.name);
+        // }
+        // var obj = {
+        //     name:"obj",
+        //     show:show
+        // }
+        // var obj1 = {
+        //     name:"obj1"
+        // }
+        // obj.show();//"obj"
+        // //显式绑定(bind, call, aplly)
+        // //bind 返回一个带有明确this指向的函数
+        // obj.show = show.bind(window);
+        // obj.show();//"window"
+        // show.call(obj1)//"obj1"
+
+        //显式绑定(bind, call, aplly)
+        //bind 返回一个带有明确this指向的函数
+        //apply , call 在函数执行的时候改变this指向
+        //默认绑定   没人调用，this=>window
+        //隐式绑定   谁调用this指向谁
+        //显式绑定   bind apply call
+        //new绑定    优先级最高
+
+
+
+        // //58笔试题
+        // var a = 111;
+        // var b = 222;
+        // function test(){
+        //     var a = 123;
+        //     var b = 456;
+        //     console.log(this.a);
+        //     console.log(this.b);
+        // }
+        // var n = new test(); //=>{} <=this {}里面没有a也没有b
+        // console.log(n.a);
+        // console.log(n.b);
+        //结果是四个undefined
+    </script>
+</body>
+</html>

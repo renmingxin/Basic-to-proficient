@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .cssdiv {
+            background: red;
+            width: 200px;
+            height: 200px;
+        }
+
+        .cssdiv222 {
+            background: blue;
+            width: 100px;
+            height: 100px;
+        }
+
+        ul>li {
+            background: yellow;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .active {
+            background: red;
+        }
+        .aaa {
+            background: yellow
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="div1" class="cssdiv" data-age="22" onclick="aaa(event)" data-name="你">
+            <div id="div2" class="cssdiv222" data-age="18" onclick="bbb(event)" data-name="是我"></div>
+        </div>
+        <div>
+            <ul id="ul">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // function aaa(event) {
+        //     console.log(event.target.id);
+        //     console.log(event.target.className);
+        //     console.log(event.target.dataset)
+        //     console.log(event)
+        // };
+        // function bbb(event) {
+        //     event.stopPropagation()
+        //     console.log(event.target.id);
+        //     console.log(event.target.className);
+        //     console.log(event.target.dataset)
+        //     console.log(event)
+        // }
+        // var oul = document.getElementById('ul');
+        // var oli = oul.getElementsByTagName('li');
+        // console.log(oli.length)
+        // var blue = 'bule';
+        // var red = 'red111';
+        // var key =true;
+        // for (let i = 0; i < oli.length; i++) {
+        //     oli[i].addEventListener('click', function () {
+        //         if(this.style.backgroundColor == 'red'){
+        //             this.style.backgroundColor = 'yellow';
+        //         }else{
+        //             this.style.backgroundColor = 'red'
+        //         }
+        //     }, true)
+        // }
+
+        // var arr = ['老王','老李','老张'];
+        // var arr1 = [20,30,40];
+        // function fn(a,b){
+        //     var obj = {};
+        //     for(let i =0;i<arr.length;i++){
+        //         obj[arr[i]] =arr1[i];
+        //     }
+        //     console.log(obj);
+        // }
+        // fn(arr,arr1);
+        // function foo(num){
+        //     console.log("foo:"+num);
+
+        //     data.count++;
+        //     console.log(`执行了${data.count}次`)
+        // }
+
+        // var data = {
+        //     count:0
+        // }
+
+        // var i;
+        // for(i=0;i<10;i++){
+        //     if(i>5){
+        //         foo(i);
+        //     }
+        // }
+
+
+        // function aaa(x){
+        //     this.x = x;
+        // }
+        // function test(){
+        //     this.x = 1;
+        //     alert(this.x);
+        // }
+        // aaa(5);
+        // console.log(x);
+
+        // test();
+
+
+
+    </script>
+</body>
+
+</html>

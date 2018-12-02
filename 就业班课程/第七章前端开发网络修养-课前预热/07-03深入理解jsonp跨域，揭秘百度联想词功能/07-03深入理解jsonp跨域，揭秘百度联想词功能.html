@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用JSONP跨域制作百度搜索</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        .warpper {
+            margin: 100px;
+        }
+        input {
+            width: 400px;
+            height: 34px;
+        }
+        ul{
+            display: none;
+            width: 400px;
+            border: 1px solid #ccc;
+        }
+        li{
+            
+        }
+        li:hover{
+            background: #ddd;
+        }
+        a{
+            margin: 10px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="warpper">
+        <input type="text">
+        <ul>
+        </ul>
+    </div>
+    <!-- <script src="./index.txt"></script> -->
+    <script>
+
+        //解决跨域的几种办法
+        //1.Flash（不做讨论，用的很少）
+        //2.服务器代理中转   （aa浏览器向同源的bb服务器请求数据是可以的，但是请求不到不在同一域名下的cc服务器的数据，可以通过bb向cc请求数据，因为不是浏览器，服务器可以互相拿到数据bb拿到cc，然后aa再向bb请求数据）
+        //3.Jsonp
+        //4.document.domain(针对基础域名相同的情况)
+        //bj.58.con    document.domain = '58.con'
+        //tj.58.com    document.domain = '58.com'
+
+
+        /**
+            -------------JSONP原理--------------------
+            原理就是利用了script标签src属性外联引入文件不受同源策略的限制，在页面中动态插入了script, script标签的src属性就是后端api接口的地址,
+            并且以get的方式将前端回调处理函数名称告诉后端,后端在响应请求时会将回调返还,并且将数据以参数的形式传递回去。
+            -------------JSONP步骤--------------------
+            1.WEB页面上用<script>引入js文件时则不受是否跨域的影响（不仅如此，我们还发现凡是拥有“src”这个属性的标签都拥有跨域的能力,比如<script>   <img>    <iframe>）
+            2.于是我们把数据放到服务器上，并且数据为json形式（因为js可以轻松处理json数据）
+            3.因为我们无法监控通过<srcipt>的src属性是否把数据获取完成，所以我们要做一个处理
+            4.实现定义好处理跨域获取数据的函数，如function doJSON (data){}
+            5.用src获取数据的时候添加一个参数cb='doJSON'(服务端会根据参数cb的值返回对应的内容)此内容为以cb对应的值doJSON为函数真实要传递的数据为函数的参数的一串字符如doJSON(数据)
+        */
+        //ajax不管用get还是post请求，用jsonp都是get        
+
+
+        //异步加载的过程 直接拿值拿不到的，用回调函数的方式才行
+        // var oScript = document.createElement('script');
+        // // oScript.src = './index.txt';
+        // oScript.src = './index.txt?callback=aa';
+        // document.body.appendChild(oScript);
+        // function aa(data) {
+        //     console.log(data)
+        // }
+        // function bb(data) {
+        //     console.log(data);
+        // }
+
+
+
+        var oInput = document.getElementsByTagName('input')[0];
+        var oUl = document.getElementsByTagName('ul')[0];
+
+        oInput.oninput = function () {
+            var value = this.value;
+            var oScript = document.createElement('script');
+            oScript.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + value + '&cb=doJson';
+            document.body.appendChild(oScript);
+            //因为每调用一次就会产生一个js src 可以清除掉之前的
+            document.body.removeChild(oScript);
+        }
+        function doJson(data) {
+            var ulList = data.s;
+            var ohtml = '';
+            if (ulList.length > 0) {
+                ulList.forEach((element, index) => {
+                    ohtml += '<li><a href=https://www.baidu.com/s?wd='+element+'>' + element + '</li>';
+                });
+                oUl.innerHTML = ohtml;
+                oUl.style.display = 'block';
+            }else {
+                oUl.style.display = 'none';
+            }
+            
+        }
+
+    </script>
+</body>
+
+</html>

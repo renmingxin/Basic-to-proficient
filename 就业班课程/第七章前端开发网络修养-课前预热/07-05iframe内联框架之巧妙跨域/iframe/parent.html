@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <iframe src="./son.html#1" frameborder="1" name="son"></iframe>     -->
+    <iframe src="./son.html" frameborder="1" name="son"></iframe>    
+    <script>
+        var oIframe = document.getElementsByTagName('iframe')[0];
+        oIframe.onload = function(){
+            //两种获取方法
+            console.log(oIframe.contentWindow.age);
+            console.log(window.frames['son'].age)
+        }
+        var oldAge = 55;
+        var oSrc = oIframe.src;
+        document.onclick = function(){
+            oIframe.src = oSrc + '#'+oldAge;
+            oldAge++;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <iframe src="./grandson.html" frameborder="1"></iframe>
+    <div>儿子</div>
+    <script>
+        var age = 20;
+        var lastHahs = window.location.hash;
+        setInterval(()=>{
+            if(lastHahs !== window.location.hash){
+                console.log(location.hash);
+                lastHahs = window.location.hash;
+            }
+        },100)
+    </script>
+</body>
+</html>

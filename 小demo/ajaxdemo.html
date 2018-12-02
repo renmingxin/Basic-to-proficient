@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>查询</h1>
+        <label for="">请输入：</label>
+        <input type="text" id="shangjiaId">
+        <button id="search">查询</button>
+        <p id=searchResult""></p>
+    </div>
+    <script>
+        document.getElementById('search').onclick = function(){
+            var request = new XMLHttpRequest();
+            request.open("GET","http://admin.design1988.com:8019/v1/shop?merchantId=" + document.getElementById('shangjiaId').value);
+            request.send();
+        };
+    </script>
+</body>
+</html>

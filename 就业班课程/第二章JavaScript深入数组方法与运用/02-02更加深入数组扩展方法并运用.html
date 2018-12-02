@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02-02更加深入数组扩展方法并运用</title>
+</head>
+<body>
+    <div></div>
+    <script>
+        var arr = [2,3,4,5,7,20];
+        //reduce从左到右，reduceRight从右到左 
+        //该reduce()方法在数组的每个成员上执行函数（您提供），从而生成单个输出值。
+        //prev上一次运算的结果 
+        //cur运算了一次把结果拿着
+        //curIndex当前累加到那个索引
+        //array当前的arr数组
+        //0代表init相当于第一位从init累加，如果init位10 最后结果为51,可以加if判断如果小于3让前三位相加在返回结果
+        var sumArr = arr.reduce(function(prev,cur,curIndex,array){
+            return prev + cur;
+        })
+        console.log(sumArr);//41
+
+        var joinArr = arr.reduce(function(prev,cur,curIndex,array){
+            return prev +'-'+ cur;
+        },10)
+        console.log(joinArr);//10-2-3-4-5-7-20
+
+        //反转拼接
+        var rightJoinArr = arr.reduceRight(function(prev,cur,curIndex,array){
+            return prev +'-'+ cur;
+        },10)
+        console.log(rightJoinArr);//10-20-7-5-4-3-2
+
+
+
+        //--------------------自己封装一个reduce函数------------------------------
+        Array.prototype.myReduce = function(fn,init){
+            var prev = init;
+            var i = 0;
+            var len = this.length;
+            if(init == undefined){
+                prev = this[0];
+                i = 1;
+            }
+            for(i; i < len; i++){
+                prev = fn(prev,this[i],i);
+            }
+            return prev;
+        }
+        var testArr = arr.myReduce(function(prev,cur,curIndex,array){
+            return prev +'-'+ cur;
+        },10)   
+        console.log(testArr);//"10-2-3-4-5-7-20"
+    </script>
+</body>
+</html>

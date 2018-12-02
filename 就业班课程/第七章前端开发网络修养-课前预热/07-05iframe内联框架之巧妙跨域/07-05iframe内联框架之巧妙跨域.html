@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07-05iframe内联框架之巧妙跨域</title>
+</head>
+<body>
+    <!-- 内联框架 -->
+    <iframe src="./demo.html" frameborder="1"></iframe>
+    <iframe src="https://www.baidu.com" frameborder="0"></iframe>
+    <script>
+        //需要在服务起里面调试
+        //iframe优缺点
+        //触发window的onload事件是非常重要的。onload事件触发使浏览器的"忙"指示器停止，告诉用户当前网页已经加载完毕。
+        //当onload事件加载延迟后，他给用户的感觉就是这个网页非常慢。
+        //window的onload事件需要在所有的iframe加载完毕后（包含里面的元素）才会触发。通过js动态设置iframe的SRC可以避免这个阻塞情况
+        //解决跨域问题。。这个很牵强 其实他已经不怎么用了
+
+        var oIframe = document.getElementsByTagName('iframe')[0];
+        // oIframe.contentWindow.age
+
+    </script>
+</body>
+</html>

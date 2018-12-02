@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01-04JavaScript运动(二)拖拽</title>
+    <style>
+        div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+
+        span {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+<script>
+    //div4重力小方块。拖拽
+
+    var oDiv = document.getElementsByTagName('div')[0];
+    var lastX = oDiv.offsetLeft;
+    var lastY = oDiv.offsetTop;
+    oDiv.onmousedown = function (e) {
+        var event = e || window.event;
+        var disX = e.clientX - this.offsetLeft;
+        var disY = e.clientY - this.offsetTop;
+        var that = this;
+        var iSpeedX = 0;
+        var iSpeedY = 0;
+        document.onmousemove = function (e) {
+            var newLeft = e.clientX - disX;
+            var newTop = e.clientY - disY;
+            
+            iSpeedX = newLeft - lastX;
+            iSpeedY = newTop - lastY;
+
+            lastX = newLeft;
+            lastY = newTop;
+
+            that.style.left = newLeft + 'px';
+            that.style.top = newTop + 'px';
+        }
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+            startMove4(that,iSpeedX,iSpeedY)
+        }
+    };
+    function startMove4(obj,iSpeedX,iSpeedY) {
+        clearInterval(obj.timer);
+        // var iSpeedX = 6;
+        // var iSpeedY = 8;
+        //g 为重力
+        var g = 8;
+        obj.timer = setInterval(function () {
+            iSpeedY += g;
+            var newLeft = obj.offsetLeft + iSpeedX;
+            var newTop = obj.offsetTop + iSpeedY;
+            //document.documentElement.clientHeight 可见区域高度
+            if (newTop >= document.documentElement.clientHeight - obj.offsetHeight) {
+                iSpeedY *= -1;
+                //重力
+                iSpeedY *= 0.8;
+                iSpeedX *= 0.8;
+                newTop = document.documentElement.clientHeight - obj.offsetHeight;
+            }
+            if (newTop <= 0) {
+                iSpeedY *= -1;
+                //重力
+                iSpeedY *= 0.8;
+                iSpeedX *= 0.8;
+
+                newTop = 0;
+
+            }
+            if (newLeft >= document.documentElement.clientWidth - obj.offsetWidth) {
+                iSpeedX *= -1;
+                //重力
+                iSpeedY *= 0.8;
+                iSpeedX *= 0.8;
+                newLeft = document.documentElement.clientWidth - obj.offsetWidth;
+            }
+            if (newLeft <= 0) {
+                iSpeedX *= -1;
+                //重力
+                iSpeedY *= 0.8;
+                iSpeedX *= 0.8;
+
+                newLeft = 0;
+            }
+            if(Math.abs(iSpeedX) < 1){
+                iSpeedX = 0;
+            }
+            if(Math.abs(iSpeedY) < 1){
+                iSpeedY = 0;
+            }
+            if(iSpeedX == 0 && iSpeedY == 0 && newTop == document.documentElement.clientHeight - obj.offsetHeight){
+                clearInterval(obj.timer);
+                console.log('over');
+            }
+            obj.style.left = newLeft + 'px';
+            obj.style.top = newTop + 'px';
+        }, 30)
+    }
+</script>
+
+</html>

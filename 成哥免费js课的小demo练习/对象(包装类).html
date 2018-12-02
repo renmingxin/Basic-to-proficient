@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象、包装类</title>
+    <style>
+        .aaa{
+            width: 20px;
+            height: 40px;
+            border: 1px solid red;
+            border-radius: 50%;
+            border-width: 10px 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="aaa"></div>
+    <script>
+        //对象创建方法
+        //1.var obj = {} plainObject  对象字面量/对象直接量
+        //2.构造函数
+        //  (1)系统自带的构造函数new Object()  var obj = new Object() == var obj = new Object()
+        //  (2)自定义
+        // var obj = new Object();
+        // obj.name = '小王';
+        // obj.age = 20;
+        // // console.log(obj);//{name: "小王", age: 20}
+        
+
+
+        // function Person(){}//构造函数跟普通函数极像 所以一般用大驼峰命名规则来标识此函数为构造函数
+        // person1 = new Person();
+        // person1.name = '小李';
+        // person1.age = 18;
+        // // console.log(person1);//Person {name: "小李", age: 18}
+
+
+        // //车的制造工厂
+        // function Car(color) {
+        //     this.name = 'BMW';
+        //     this.height = '1400';
+        //     this.lang = '4900';
+        //     this.weight = 1000;
+        //     this.color = color;//车主自选颜色
+        //     this.health = 100;//车的保养度
+        //     this.run = function(){
+        //         this.health--;
+        //     }
+        // }
+        // var firstCar = new Car('red');
+        // var secondCar = new Car('yellow');
+
+
+
+        // function Student(name,age,sex){
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        //     this.grade = 2015;
+        // }
+        // var xiaoMing = new Student('小明',20,'男');
+        // console.log(xiaoMing);//Student {name: "小明", age: 20, sex: "男", grade: 2015}
+        // var xiaoHong = new Student('小红',22,'女');
+        // console.log(xiaoHong);//Student {name: "小红", age: 22, sex: "女", grade: 2015}
+
+
+
+
+
+
+
+
+
+
+        //构造函数内部原理
+        //1.在函数体最前面隐式的加上this={}
+        //2.执行this.xxx = xxx;
+        //3.隐式的返回this
+        //一旦new了这个构造函数在构造函数中的第一行加上了var this = {}并执行this.xxx =xxx,最后一行 return this
+        // function Person(name,age){
+        //     //var this = {
+        //     //     name:'',
+        //     //     age:'',
+        //     // }
+        //     this.name = name;
+        //     this.age = age;
+        //     this.say = function(){
+        //         console.log('我叫' + this.name)
+        //     }
+        //     // return this;
+        // }
+        // var student = new Person('小王',20);//{name: "小王", age: 20, say: ƒ}
+        // //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓模拟构造函数↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+        // function PersonConstructor(name,age){
+        //     var that = {};
+        //     that.name = name;
+        //     that.age = age;
+        //     return that;
+        // }
+        // var newStudent1 =  PersonConstructor('小王',22);//{name: "小王", age: 22}
+        // var newStudent2 =  PersonConstructor('小李',20);//{name: "小李", age: 20}
+    
+    
+    
+    
+    
+        //--------------------包装类--------------------
+        //new String();              new Boolean();             new Number();
+        //三种都一样  下面举例new Number();
+        // var num = 123;//原始值不能有属性和方法 （num.name = 'xiaowang'）×
+        // var newNum = new Number(123);//var str = new String('aaa')     var bol = new Boolean();
+        // newNum.name = '老王';    //Number {123, name: "老王"}
+        // console.log(newNum *2) //246
+        // newNum.say = function(){
+        //     console.log(this.name);
+        // }
+        // console.log(newNum.say());//老王
+
+        
+        //隐式中间进行包装类
+        // var num1 = 4;
+        // num1.len = 3;//这里浏览器不报错 中间经历了 new Number(4).len = 3; 然后再delete,所以打印出来的还是undefined
+        // console.log(num1.len)//undefined
+
+        // var str = 'aaaa';
+        // str.length = 2;
+        // //系统帮你，中间经历了new String('aaaa').length = ; 然后再delete
+        // console.log(str.length);//4
+
+
+        // var str = 'abc';
+        // str += 1;
+        // var test = typeof(str);
+        // if(test.length == 6){
+        //     test.sign = 'typeof的返回结果可能是String'//确实进入到这一步来了 但是原始值赋值后 会自动delete销毁
+        //     //new String(test).sign = 'xxx';
+        // }
+        // console.log(test.sign);//undefined
+
+
+        //1.运行test() 和 new test()的结果分别是什么？
+        // var a =5;
+        // function test(){
+        //     a = 0;
+        //     console.log(a);
+        //     console.log(this.a);
+        //     var a;
+        //     console.log(a);
+        // };
+        // test();0 5 0
+        // new test();0  undefined 0
+
+
+
+        // function Person(name,age,sex){
+        //     var a = 0;
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sex = sex;
+        //     function sss(){
+        //         a++;
+        //         console.log(a);
+        //     }
+        //     this.say = sss;
+        // }
+        // var oPerson = new Person();
+        // oPerson.say();//1
+        // oPerson.say();//2
+        // var oPerson1 = new Person();
+        // oPerson1.say();//1
+
+
+        //x,y,z值分别是多少
+        // var x = 1,y = z = 0;
+        // function add(n){
+        //     return n = n+1;
+        // }
+        // y = add(x);
+        // function add(n){
+        //     return n = n+3;
+        // }
+        // z = add(x);
+        // console.log('x:'+x+'    '+'y:'+y+'    '+'z:'+z)//x:1    y:4    z:4
+
+
+
+        
+    </script>
+</body>
+</html>

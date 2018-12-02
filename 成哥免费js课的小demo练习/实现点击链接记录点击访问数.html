@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        contarner {
+            color: red;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" data-log="1">点我啊
+    </a>
+</body>
+
+<script>
+    var a = document.getElementsByTagName('a')[0];
+    a.onclick = function(){
+        console.log(this.getAttribute('data-log'));
+    };
+
+    // var strong = document.getElementsByTagName('div')[0];
+    // var span = strong.children[0];
+    // var test = "asdsdfasdkfjlasjdf200asdkjklasdfjlkj255askdjklasjd100";
+    // var arr= test.split("");
+    // var aaa = new Array();
+    // for(let i = 0 ;i<arr.length;i++){
+    //     if(arr[i] >= 0 && arr[i]<=9){
+    //         aaa.push(arr[i]);
+    //     }
+    // }
+    //  var a = 0;
+   
+    // var time = setInterval(function(){
+        
+    //     a++;
+    //     document.getElementById('shuzi').innerHTML = a;
+    //     if(a == 5){
+    //         window.location.reload();
+    //     }
+
+    // },1000)
+</script>
+</html>

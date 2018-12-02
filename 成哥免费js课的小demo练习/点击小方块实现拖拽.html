@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .diamonds {
+        width: 200px;
+        height: 200px;
+        background: red;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+</style>
+
+<body>
+    <div style="width: 200px;height: 200px;background: red;position: absolute;left: 0;top: 0;">
+    </div>
+</body>
+<script>
+    var div = document.getElementsByTagName('div')[0];
+    this.drag(div);
+    function drag(elem) {
+        // var div = document.getElementsByTagName('div')[0];
+        var disX;
+        var disY;
+        elem.onmousedown = function (e) {
+            // var event = e || window.event;
+            disX = e.pageX - parseInt(div.style.left);
+            disY = e.pageY - parseInt(div.style.top);
+            console.log(disX);
+            console.log(disY);
+            document.onmousemove = function (e) {
+                var event = e || window.event;
+                // console.log(e.pageX + "  " + e.pageY);
+                div.style.left = e.pageX - disX + 'px';
+                div.style.top = e.pageY - disY + 'px';
+            }
+            document.onmouseup = function () {
+                div.onmousemove = null;
+                drag = null;
+            }
+        }
+    }
+
+
+</script>
+
+</html>

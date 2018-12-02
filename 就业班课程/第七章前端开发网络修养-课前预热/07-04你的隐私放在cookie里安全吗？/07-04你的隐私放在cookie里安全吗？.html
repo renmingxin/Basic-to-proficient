@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07-04你的隐私放在cookie里安全吗？</title>
+</head>
+
+<body>
+    <script>
+        //谷歌浏览器必须在有请求的情况下才能设置cookie，在本地手动设置不行
+        // document.cookie = 'age=18';
+        // console.log(document.cookie)
+
+        /**怎么标记用户
+         * 1.标记用户身份的http请求首部
+         *      form：e-mail
+         *      user-agen:浏览器信息
+         *      referer:跳转之前的链接
+         * 
+         * 2.IP地址(不稳定一个IP可能会有多个用户，比如网吧，也可能用了vpn形成假的IP)
+         * 
+         * 3.用户登录
+         * 
+         * 4.胖URL(在已有的URL扩展拼接一些东西)(只是在窗口没有关闭的生命周期之类)
+         * 
+         * 5.cookie(本地文件)(可以自己设置生命周期)分为：会话cookie 和 永久cookie
+         *   cookie有个数和大小的限制，大小一般是4K左右
+         * 
+         * 
+         * 
+         * 
+         * Chrome 存储cookie的形式
+         * #domain       path      expires     name    value
+         * .baidu.com    /index    20181111     age     18
+         * .baidu.com    /index    20181111     name    laowang
+         * 
+         */
+        document.cookie = 'age=18;max-age=1000';
+        document.cookie = 'name=laowang';
+        document.cookie = 'school=duyi';
+
+        //自己封装一个对cookie增删改查的函数
+        var manageCookie = {
+            //name 名字 value 值 time 存储时间
+            setCookie: function (name, value, time) {
+                document.cookie = name + '=' + value + ';' + 'max-age=' + time;
+                //返回this使用js链式调用
+                return this;
+            },
+            removeCookie: function (name) {
+                this.setCookie(name, '', -1);
+                return this;
+            },
+            getCookie: function (name, callback) {
+                //获取所有的cookie转化成数组,用; 空格的形式拆分
+                var allCookieArr = document.cookie.split('; ');
+                for (let i = 0; i < allCookieArr.length; i++) {
+                    var itemCookieArr = allCookieArr[i].split('=');
+                    if (itemCookieArr[0] == name) {
+                        callback(itemCookieArr[1]);
+                        return this;
+                    }
+                }
+                callback(undefined);
+                return this;
+            }
+        }
+        manageCookie
+            .setCookie('color', 'red', 10000)
+            .setCookie('size', 'big', 10000)
+            .setCookie('age', '20', 10000)
+            .removeCookie('size')
+            .getCookie('age', function (data) {
+                console.log(data)
+            })  
+    </script>
+
+</body>
+
+</html>

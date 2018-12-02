@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Div的居中方式</title>
+    <style>
+        .wrapper {
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+            position: relative;
+        }
+
+        /* 第一种方法 */
+        /* .demo{
+            width: 200px;
+            height: 100px;
+            border: 1px solid;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -100px;
+        } */
+
+
+        /* 第二种方法 */
+        /* .demo{
+            width: 200px;
+            height: 100px;
+            border: 1px solid;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%)
+        } */
+
+
+        /* 第三种方法 */
+        .demo {
+            width: 200px;
+            height: 100px;
+            border: 1px solid;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+
+        /* -------------------------- */
+        /* 第四种方法 */
+        .wrapper2 {
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .demo2 {
+            width: 200px;
+            height: 100px;
+            background: red;
+        }
+
+
+
+        /* 第五种方法 */
+        .wrapper3 {
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+            line-height: 500px;
+            text-align: center;
+        }
+
+        .demo3 {
+            width: 200px;
+            height: 100px;
+            background: black;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="demo"></div>
+    </div>
+    <div class="wrapper2">
+        <div class="demo2"></div>
+    </div>
+    <div class="wrapper3">
+        <div class="demo3"></div>
+    </div>
+</body>
+
+</html>

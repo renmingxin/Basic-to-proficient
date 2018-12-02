@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .p1{
+        font-size: 20px;
+    }
+    .p1-s {
+        font-size: 16px;
+    }
+</style>
+<body>
+    <div>
+        <p class="p1">浏览器有一个很重要的概念--同源策略</p>
+        <p class="p1">所谓的同源是指:协议，域名，端口相同。</p>
+        <p class="p1">不同源的客户端脚本在没明确授权的情况下，不能读写对方的资源。</p>
+        <p class="p1-s">简单来说，浏览器不允许包含在腾讯页面的脚本访问阿里巴巴页面的数据资源，会受到同源策略的限制</p>
+    </div>
+    <script>
+        /**
+            https 比http 更安全 https加入了ssl层
+
+            https://www.baidu.com:443/   https默认端口如果是:443就会被隐藏   
+            协议       域名       端口
+            http://www.w3school.com.cn:80/  http默认端口如果是:80就会被隐藏   
+
+
+            https://zhidao.baidu.com/
+            域名是倒着解析的
+            .com  是顶级域名
+            baidu.com   是二级域名
+            zhidao.baidu.com  是三级域名
+
+            www.baidu.com属于特殊的三级域名
+        */
+        
+
+        //解析过程
+        //1.浏览器通过DNS域名解析到服务IP
+        //2.客户端（浏览器）通过tcp协议建立到服务器的TCP连接(三次握手)
+        //3.客户端(浏览器)向web服务器端（HTTP服务器）发送HTTP协议包，请求服务器里的资源文档(telnet模拟)
+        //4.服务器向客户端发送HTTP协议应答包
+        //5.客户端和服务器断开(四次挥手),客户端开始解析处理html文档        
+    </script>
+</body>
+</html>

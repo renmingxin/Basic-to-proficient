@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 300px;
+            border:3px solid black;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="img"></div>
+    <p>
+        <label for="demo">username:</label>
+        <input type="text" id="demo">
+    </p>
+    <p>
+        <!--特性就是type value id本身就自带的值，属性就是data后期加上去的值
+            特性可以通过var a = document.getElementById('aademo')那几种方式获取，然后 
+            a.type  a.value 取出来 但是 a.data 不能取出来，只能通过a.getAttribute('data')取值
+            和setAttribute来赋值
+        -->
+        <input type="text" value="aaa" id="aademo" data="duyi">
+    </p>
+    <ul id="wrapper">
+
+    </ul>
+    <div id="">
+
+    </div>
+    <ul id="debugul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <script>
+        //输入网站敲回车到看见页面内容，经历了哪些东西
+        //1.url 经过DNS解析成IP
+        //2.tcp三次握手
+        //3.js html css img
+        //4.js时间线
+        //5.渲染过程  ->  渲染殷勤 
+        //6.tcp四次挥手
+
+
+        //浏览器的基本组成
+        //1.用户界面  2.浏览器引擎   3.渲染引擎    4.网络   5.UI后端   6.JS引擎   7.数据储存
+        
+        //什么是渲染？渲染引擎,渲染过程
+        //渲染:在电脑绘图中是指用软件从模型生成图像的过程
+        //渲染引擎：其职责就是渲染，即在浏览器窗口中显示所请求的内容
+        //过程：解析html从而构建DOM树----->CSS Rule树 ---> 构建Render树 ----->布局Render树 ---->Render树
+
+        // console.log(document.compatMode) //标准模式是css1compat  混杂模式（怪异模式是）backcompat
+        
+
+        //图片预加载：不想图片因为网速一行一行慢慢加载出来，等到图片加载关闭后直接显示出来
+        //图片懒加载：监听滑轮事件 到了图片的位置才开始准备加载图片
+        // var oImg = new Image();
+        // oImg.onload = function(){
+        //     var imgDiv = document.getElementById('img');
+        //     console.log(this);
+        //     imgDiv.appendChild(this); //this指代img标签
+        // }
+        // oImg.src = 'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1537409620&di=7bc1f9c5b5d29fd76ecec3893c8e6b8f&src=http://file29.mafengwo.net/M00/7B/34/wKgBpVYdGOiAS71LAABuKaLQB_887.groupinfo.w600.jpeg';
+        //实际过程中是懒加载和预加载合作完成：方法思路如下：
+        //1.监听滑轮事件 不断的区判断当前div的位置，到了div的位置实现懒加载
+        //2.采取预加载(可以写一个灰色的底层div背景色)
+        //3.图片加载完成才正式的把图片添加到页面之中
+
+
+        //Math.random() [0,1)左闭右开的区间，可以为0 永远不可能为1
+        //生成0到5之间的随机数↓↓↓↓
+        //         Math.random()*5
+        //生成12到36之间的数 : 36-12 = 24  24*[0,1) =>[0,24)
+        // 12+Math.random()*24
+
+
+        //还算有良心的抽奖O(∩_∩)O哈哈~
+        // var num =Math.random() *100;
+        // if(num <= 1){
+        //     console.log('一等奖');
+        // }else if(num <= 2){
+        //     console.log('二等奖');
+        // }else if(num <=3){
+        //     console.log('三等奖');
+        // }else {
+        //     console.log('谢谢惠顾')
+        // }
+       
+       
+
+        //文档碎片 虚拟DOM
+        // var oF = document.createDocumentFragment();
+        // var oUl = document.getElementById('wrapper');
+        // for (var i = 0; i < 10; i++) {
+        //     var newLi = document.createElement('li');
+        //     newLi.innerHTML = i + '';
+        //     // oUl.appendChild(newLi)
+        //     oF.appendChild(newLi);
+        // } 
+        // oUl.appendChild(oF);
+
+        
+
+        //封装byClasName
+        //getElementsByClassName Document Element
+
+
+
+
+        //断点调试
+        var debugul = document.getElementById('debugul');
+        var debugliArray = document.getElementsByTagName('li');
+        for(var i = 0;i < 12;i++){
+            debugliArray[i].innerHTML = parseInt(debugliArray[i].innerHTML)+1;
+        }
+  </script>
+</body>
+</html>

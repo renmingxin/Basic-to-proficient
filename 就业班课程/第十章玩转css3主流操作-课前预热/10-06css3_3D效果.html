@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3_3D效果</title>
+    <style>
+        /* 
+            perspective: 2000px;
+            transform-style: preserve-3d;
+         */
+        .wrapper {
+            perspective: 2000px;
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        .box {
+            position: absolute;
+            top:50px;
+            left: 50px;
+            transform-style: preserve-3d;
+            width: 200px;
+            height: 200px;
+            transform-origin: center center -100px;
+            animation: rotate111 6s infinite;
+        }
+        .box .item {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 50px;
+            position: absolute;
+            opacity: 0.5;
+            text-align: center;
+            line-height: 200px;
+            transform-origin: center center -100px;
+        }
+        .item1 {
+            background: red;
+            transform: rotateY(0deg);
+        }
+        .item2 {
+            background: blue;
+            transform: rotateY(90deg);
+        }
+        .item3 {
+            background:goldenrod;
+            transform: rotateX(90deg);
+        }
+        .item4 {
+            background: green;
+            transform: rotateX(-90deg);
+        }
+        .item5 {
+            background: black;
+            transform: rotateY(-90deg);
+        }
+        .item6 {
+            background:saddlebrown;
+            transform: rotateY(180deg);
+        }
+        @keyframes rotate111 {
+            0%{
+                transform: rotateY(0deg)
+            }
+            50%{
+                transform: rotateY(-720deg)
+            }
+            51%{
+                transform: rotateX(0deg)
+            }
+            100%{
+                transform: rotateX(-720deg)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box">
+            <div class="item item1">1</div>
+            <div class="item item2">2</div>
+            <div class="item item3">3</div>
+            <div class="item item4">4</div>
+            <div class="item item5">5</div>
+            <div class="item item6">6</div>
+        </div>
+    </div>
+</body>
+</html>

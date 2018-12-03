@@ -10,9 +10,9 @@
     <div>
 
     </div>
-    <script src="./moduleNode/bundle.js"></script>
+    <script src="./commonJs/bundle.js"></script>
     <script>
-        console.log("aaaa")
+        console.log("index加载了")
         /*
         基础方法：1.封装函数。2.命名空间。3.立即执行函数
         1.封装函数
@@ -32,13 +32,15 @@
         /*
         模块化规范
         1.CommonJs(运用在服务器端)(同步加载，如果请求文件较多，则倒置页面瘫痪)
-        2.AMD（异步加载模块）(允许制定回调函数。等模块异步加载完成后即可调用回调函数)
+        2.AMD（异步加载模块）(提前全部加载完成)(允许制定回调函数。等模块异步加载完成后即可调用回调函数)
         3.CMD
         4.Es6
         
         */
         // 1.CommonJs(运用在服务器端)
         //app.js(服务器端认识，浏览器不认识)-->工具转换-->bundle.js(浏览器认识的)
+        // 2.AMD（异步加载模块）(提前全部加载完成)
+        // 3.CMD(按需加载)
     </script>
 </body>
 </html>

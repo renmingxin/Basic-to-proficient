@@ -1,0 +1,11 @@
+(function(){
+    require.config({
+        paths:{
+            index:'../module/index',
+            demo:'../modele/demo'
+        }
+    })
+    require(['index'],function(index){
+        index.showMsg();
+    })
+})(); 

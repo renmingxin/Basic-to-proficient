@@ -1,4 +1,10 @@
 var path = require('path');
+//解析html的插件
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+//解析js的的插件
+var UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
+//单独打包css文件的插件
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     //入口文件
     // entry:'./src/main.js',
@@ -30,31 +36,32 @@ module.exports = {
                 //用正则表达式匹配以css结尾的，遇到css文件
                 test:/\.css$/,
                 //从后往前解析的先css-loader 再 style-loader
-                use:['style-loader','css-loader']
+                // use:['style-loader','css-loader']
+                use:[MiniCssExtractPlugin.loader,'css-loader']
             },
             //html loader
-            {
-                //用正则表达式以html结尾的,遇到html文件
-                test:/\.html$/,
-                //从后往前解析
-                use:[
-                    //单独抽离的html文件进行配置
-                    {
-                        loader:'file-loader',
-                        options:{
-                            name:'index.html'
-                        }
-                    },
-                    //单独抽离html文件
-                    {
-                        loader:'extract-loader'
-                    },
-                    //找到html文件
-                    {
-                        loader:'html-loader'
-                    }
-                ]
-            },
+            // {
+            //     //用正则表达式以html结尾的,遇到html文件
+            //     test:/\.html$/,
+            //     //从后往前解析
+            //     use:[
+            //         //单独抽离的html文件进行配置
+            //         {
+            //             loader:'file-loader',
+            //             options:{
+            //                 name:'index.html'
+            //             }
+            //         },
+            //         //单独抽离html文件
+            //         {
+            //             loader:'extract-loader'
+            //         },
+            //         //找到html文件
+            //         {
+            //             loader:'html-loader'
+            //         }
+            //     ]
+            // },
             //js loader
             // {
             //     //用正则表达式以js结尾的,遇到js文件
@@ -75,5 +82,23 @@ module.exports = {
                 ]
             },
         ]
-    }
+    },
+    //应用插件
+    plugins:[
+        //解析html的插件
+        new HtmlWebpackPlugin({
+            title:'不是用loader解析html,用plugin插件解析的html',
+            template:'./src/index.html',
+            // minify:{
+            //     //是否压缩空白
+            //     collapseWhitespace:true
+            // }
+        }),
+        //解析js的插件
+        new UglifyjsWebpackPlugin(),
+        //解析css的插件
+        new MiniCssExtractPlugin({
+            filename:'[name]_[contenthash:8].css'//href转化为哈希值
+        }),
+    ]
 }

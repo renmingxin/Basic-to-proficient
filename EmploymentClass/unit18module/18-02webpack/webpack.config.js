@@ -32,13 +32,13 @@ module.exports = {
     module:{//应用loader
         rules:[
             //css loader
-            {
-                //用正则表达式匹配以css结尾的，遇到css文件
-                test:/\.css$/,
-                //从后往前解析的先css-loader 再 style-loader
-                // use:['style-loader','css-loader']
-                use:[MiniCssExtractPlugin.loader,'css-loader']
-            },
+            // {
+            //     //用正则表达式匹配以css结尾的，遇到css文件
+            //     test:/\.css$/,
+            //     //从后往前解析的先css-loader 再 style-loader
+            //     // use:['style-loader','css-loader']
+            //     use:[MiniCssExtractPlugin.loader,'css-loader']
+            // },
             //html loader
             // {
             //     //用正则表达式以html结尾的,遇到html文件
@@ -76,10 +76,15 @@ module.exports = {
                         loader:'url-loader',
                         options:{
                             limit:8192,
-                            name:"img/[name].[ext]"
+                            name:"[name].[hash:8].[ext]"
                         }
                     }
                 ]
+            },
+            {
+                test:/\.less$/,
+                //先解析less成css 再从解析css
+                use:[MiniCssExtractPlugin.loader,'css-loader','less-loader']
             },
         ]
     },

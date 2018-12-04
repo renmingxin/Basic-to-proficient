@@ -1,5 +1,6 @@
 var math = require('./math');
-require('./index.css');
+// require('./index.css');
+require('./demo.less');
 // require('./index.html');
 math(1,2)
 math(33,22)

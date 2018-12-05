@@ -1,20 +1,81 @@
-//嵌套语法
-*{
-    margin: 0;
-    padding: 0; 
+//引入外部less样式
+@import './reset.less';
+@import './triangle';
+
+//嵌套语法 less结构与html结构吻合
+//开发人员看到的
+/*用户也能看到的注释*/
+/*包裹注释 会被编译到css文件当中*/
+//变量写法
+
+
+@width:200px;
+@color:red;
+@height:@width + 100px;
+
+//变量作用域(变量延迟加载)
+@fontSize:20px;
+
+//less混合(复用样式)
+.border1 {
+    border-top: 1px solid black;
+    border-bottom:1px dotted orange;
 }
+
+//带参数的混合
+.border2(@w,@color){
+    border: @w solid @color;
+}
+
+//复用样式
+.triangle(@width,@color){
+    width: 0;
+    height: 0;
+    border-width: @width;
+    border-style: solid;
+    border-color: transparent transparent transparent @color;
+};
+
+
 body{
     background: antiquewhite;
     .wrapper {
         margin: 0 auto;
         width: 50%;
-        border: 1px solid black;
+        .border1;
         .nav {
-            width: 500px;
-            height: 100px;
+            //数学运算
+            width: 200+300px;
+            height: @height;
             border: 1px solid red;
-            text-align: center;
-            line-height: 100px;
+            .top{
+                width: @width;
+                color: @color;
+                .border2(2px,blue);
+            }
+            .bottom {
+                @fontSize:30px;
+                color: orange;
+                .border2(2px,green);
+                font-size:@fontSize;//40px
+                @fontSize:40px;
+                // .bottom:hover {
+                //     color: red;
+                // }
+                //等同于&:hover(但是要写在同级的{}中)
+                &:hover {
+                    color: red;
+                }
+            }
+            //nav的hover事件
+            &:hover {
+                background: black;
+            }  
+        };
+        .trianglediv{
+            .triangleRight(50px,black);
+            .triangleLeft(30px,red);
         }
     }
 }
+

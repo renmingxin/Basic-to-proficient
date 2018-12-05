@@ -1,6 +1,13 @@
 * {
   margin: 0;
   padding: 0;
+  list-style: none;
+}
+/*用户也能看到的注释*/
+/*包裹注释 会被编译到css文件当中*/
+.border1 {
+  border-top: 1px solid black;
+  border-bottom: 1px dotted orange;
 }
 body {
   background: antiquewhite;
@@ -8,12 +15,36 @@ body {
 body .wrapper {
   margin: 0 auto;
   width: 50%;
-  border: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px dotted orange;
 }
 body .wrapper .nav {
   width: 500px;
-  height: 100px;
+  height: 300px;
   border: 1px solid red;
-  text-align: center;
-  line-height: 100px;
+}
+body .wrapper .nav .top {
+  width: 200px;
+  color: red;
+  border: 2px solid blue;
+}
+body .wrapper .nav .bottom {
+  color: orange;
+  border: 2px solid green;
+  font-size: 40px;
+}
+body .wrapper .nav .bottom:hover {
+  color: red;
+}
+body .wrapper .nav:hover {
+  background: black;
+}
+body .wrapper .trianglediv {
+  border-width: 50px;
+  border-color: transparent transparent transparent black;
+  width: 0;
+  height: 0;
+  border-width: 30px;
+  border-style: solid;
+  border-color: transparent transparent transparent red;
 }

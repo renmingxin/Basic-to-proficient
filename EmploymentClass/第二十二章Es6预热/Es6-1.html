@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Es6-1</title>
+</head>
+<body>
+    <div></div>
+    <script>
+        /**
+         * Es6-1 javascript的发展 和let&&const的区别？
+         * 
+         * ECMAScript 是制定规范的 JavaScript是基于实现
+         * 
+         * 1995 javascript 表单验证 liveScript ->Javascript
+         * 1996 javascript 1.0 1.1
+         * 1997 网景 javascript
+         *      微软 Jscript     IE3
+         *      Nombas ScriptEase
+         *      ECMA 以javaScript1.1 为蓝本 => ECMAScript1.0 
+         * 1999 HTML4.0  ActiveX  XMLHttpRequest web2.0
+         * 2008 Chrome V8引擎
+         *      
+         * ES3.1 => 2009 ES5 => 2015 ES6 ES2015
+         * 
+         * 
+         * 
+         **/
+
+
+         //块级作用域 {} 在块级作用域当中定义的变量，他的作用域只会在当前的作用域下有效
+         //全局作用域 window
+         //函数作用域 由于函数执行产生的作用域被称为函数作用域
+
+
+
+        //  var a = 10; 
+        //  function person(){
+        //      var classname = 'rmx';
+        //      return function(){
+        //          console.log(classname)
+        //      };
+        //  }
+         
+        //  var fn = person();
+        //  fn();
+
+        /**
+         * let声明 暂时性死区(TDZ)
+         * javascript    引擎在扫描代码的时候
+         * var           变量声明整体提升
+         * let a = 10    把a放到TDZ当中去
+         * 如果使用的变量在DTZ当中就会报错
+         * let a = 10    在遇到声明变量的那段代码时，才把a从TDZ中拿出去
+         * 
+         **/
+
+        //1.let的作用域 
+        // {
+        //     let a = 10;
+        //     var b = 20;
+        // }
+        // console.log(b);//20
+        // console.log(a);//a is not defined
+        
+
+        //2.let的值不能重复定义
+        // let a = 10;
+        // let a = 20;
+        // console.log(a);//Identifier 'a' has already been declared
+
+
+        //3.let的值不存在变量提升
+        // console.log(a);//undefined
+        // console.log(b);//b is not defined
+        // var a = 10;
+        // let b = 20;
+
+        //const 常量
+        // 1.const的值是不能被更改的 
+        // const PI = 3.14;
+        // PI = 4;
+        // console.log(PI); //Assignment to constant variable.
+
+
+        //2.const 也不存在变量提升
+        // console.log(PI);//PI is not defined
+        // const PI = 3.14; 
+
+
+        //3.const也存在作用域
+        // {
+        //     const A = 10;
+        //     var B = 20;
+        // }
+        // console.log(B);//20
+        // console.log(A);//A is not defined
+
+
+    </script>
+</body>
+</html>

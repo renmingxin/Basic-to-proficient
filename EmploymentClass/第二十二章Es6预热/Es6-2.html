@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Es6-2</title>
+</head>
+<body>
+    <script>
+        //普通函数
+        // function show(){
+        //     console.log('welcome 2 duyi!');
+        // }
+        // show();
+        // // 构造函数
+        // function Person(name,age){
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // var p1 = new Person('xiaowang',20);
+        // var p2 = new Person('xiaoli',18);
+
+
+        //实现返回长度为n的随机数字符串的函数
+        // function Random(n){
+        //     let max = 1;
+        //     for(let i = 0;i < n;i++){
+        //         max = max *10;
+        //     }
+        //     return function(){
+        //         let str = '' + parseInt(Math.random() * max);
+        //         console.log(str.length);
+        //         let count = n - str.length;
+        //         console.log(count)
+        //         for(let i = 0;i<count;i++){
+        //             str += '0';
+        //         }
+        //         return str;
+        //     }
+        // }
+        // let random8 = Random(8);
+        // random8();
+
+
+
+        //ES6函数式编程
+        //1.普通javascript函数的默认值
+        // function Person(name){
+        //     this.name = name === undefined ? 'none' : name;
+        // }
+        // let p1 = new Person('xiaowang');   //Person {name: "xiaowang"}
+        // let p2 = new Person();             //Person {name: "none"}
+        // let p3 = new Person(null);         //Person {name: null}
+        // let p4 = new Person(undefined);    //Person {name: "none"}
+        // let p5 = new Person(0);            //Person {name: 0}
+        // let p6 = new Person('');           //Person {name: ""}
+        // let p7 = new Person(false);        //Person {name: false}
+
+        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓等同于↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+        //2.ES6中的函数默认值
+        // function Person(name = 'none'){
+        //     this.name = name;
+        // }
+        // let p1 = new Person('xiaowang');   //Person {name: "xiaowang"}
+        // let p2 = new Person();             //Person {name: "none"}
+        // let p3 = new Person(null);         //Person {name: null}
+        // let p4 = new Person(undefined);    //Person {name: "none"}
+        // let p5 = new Person(0);            //Person {name: 0}
+        // let p6 = new Person('');           //Person {name: ""}
+        // let p7 = new Person(false);        //Person {name: false}
+    
+    
+    
+        //2.ES6中的函数默认值
+        // function Person(name,age = 30,weight){
+        //     this.name = name;
+        //     this.age = age;
+        //     this.weight = weight;
+        // }
+        // let p1 = new Person('wangbaoqiang',20,60);
+        // let p2 = new Person('xiaoli');//{name: "xiaoli", age: 30, weight: undefined}
+        // let p3 = new Person('xiaozhao',undefined,80); //{name: "xiaozhao", age: 30, weight: 80}
+        
+
+
+        //arguments
+        // function max(num1=0,num2){
+        //     console.log(num1,arguments[0]);
+        //     console.log(num2,arguments[1]);
+        //     num1 = 4;
+        //     console.log(num1,arguments[0]);
+        //     arguments[0] = 6;
+        //     console.log(num1,arguments[0])
+        // }
+        
+
+
+        //如果没有参数 则运行默认值的函数
+        // function getValue(){
+        //     console.log('hello');
+        //     return 6;
+        // }
+        // function count(n,m = getValue()){
+        //     console.log(n + m)
+        // }
+        // count(2,3);//5
+        // count(2);//hello 8
+
+
+        // function add(m,n = m){
+        //     console.log(m + n);
+        // }
+        // add(1,2);//3
+        // add(2);//4
+
+
+
+        //2.无命名参数和扩展运算符
+        // 默认值问题
+        // 参数不定的时候,通过下标访问，不直接，不方便
+        // 箭头函数不支持arguments
+
+        //把若干数字+1，添加到指定数组当中
+        // function count(arr,...arg){
+        //     console.log(arr)
+        //     console.log(arg);
+        //     console.log(arguments);
+        //     for(let i = 0;i<arg.length;i++){
+        //         arr[i] = arg[i] + 1;
+        //     }
+        // }
+        // let arr = [];
+        // count(arr,1,2,3,4,5);
+        // console.log(arr);// [2, 3, 4, 5, 6]
+
+
+        //每个函数当中最多有且只能有一个不定参数...,且不可有默认值，必须是最后一个参数
+        // function fn(a,...arg){
+        // }
+ 
+
+        //拔掉括号
+        // var a = [1,2,3,4,5,6,6,6,11];
+        // console.log(...a)//1 2 3 4 5 6 6 6 11
+
+        let arr = [1,2,3,4,5]
+        max(...arr);
+        
+   </script>
+</body>
+</html>

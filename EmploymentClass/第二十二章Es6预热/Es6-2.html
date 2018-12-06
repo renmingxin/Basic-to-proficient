@@ -117,7 +117,7 @@
 
 
 
-        //2.无命名参数和扩展运算符
+        //2.无命名参数和扩展运算符 拔掉括号
         // 默认值问题
         // 参数不定的时候,通过下标访问，不直接，不方便
         // 箭头函数不支持arguments
@@ -145,9 +145,109 @@
         // var a = [1,2,3,4,5,6,6,6,11];
         // console.log(...a)//1 2 3 4 5 6 6 6 11
 
-        let arr = [1,2,3,4,5]
-        max(...arr);
+        // let arr1 = [1,2,3,4,5];
+        // let arr2 = [6,7,8,9];
+        // let concatArr = arr1.concat(arr2);
+        // console.log(concatArr)//[1, 2, 3, 4, 5, 6, 7, 8, 9]
+        // let arr3 = [...arr1,...arr2];
+        // console.log(arr3);//[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+
+        //3.箭头函数   箭头函数   箭头函数   箭头函数  箭头函数
+        //基本结构  数据的流向
+        //()=>{}    ==   function(){}
+
+        //对于小括号()函数的参数有且只有一个的时候不需要括号
+        //对于花括号{}函数体有且只有一条语句的时候不需要括号
+        // let getName = name => name 
+        // let getName = (name) =>({name:name})
+        // let getName1 = function(name){
+        //     return name;
+        // }
+        // let show = (name,age) => console.log(name,age);
+        // console.log(show('老王',20))//老王 20
+
+        // let fn = () =>{} == function fn(){}
         
-   </script>
+        //在箭头函数中，返回对象
+        // let returnObj = (name) =>({name:name})
+
+        //立即执行箭头函数
+        // let fn = ((name)=>console.log(name))('老王');//老王
+        
+
+        // let fn = (name => name)('老李');
+        // let fn1 = function(name) {return name}('老李2');
+        // console.log(fn);//老李
+        // console.log(fn1);//老李2
+
+
+        //箭头函数中没有this,没有arguments,没有super(class),没有prototype
+        // let fn = () => {}
+        // new fn();//fn is not a constructor(构造函数)
+
+        //箭头函数不能被作为构造函数,更多功能用于计算，数据流向,方便JavaScript引擎优化代码
+
+        //箭头函数具有绑定this的能力
+        //this绑定分为四种
+        //1.默认绑定(控制性函数，函数单纯执行，this指向window)
+        //2.隐式绑定(谁调用this指向谁)
+        //3.显式绑定(apply call bind)
+        //4.new绑定
+
+
+        //箭头函数中没有this，箭头函数具有绑定this的能力，箭头函数中绑定的this是绑定离自己最近的非箭头函数作用域中的this
+        //箭头函数的非箭头函数产生的父级作用域，this
+        
+        // var name = 'window';
+        // var obj = {
+        //     name:'obj',
+        //     print:function(){
+        //         console.log(this.name)
+        //     }
+        // }
+        // obj.print();//obj
+        // var newPrint = obj.print.bind(window);
+        // newPrint();//window
+        // var newnewPrint = newPrint.bind(obj);
+        // newnewPrint();//window
+        // var obj1 = {
+        //     name:'obj1',
+        //     print:()=>console.log(this.name)
+        // }
+        // //scope1(箭头函数) -> window
+        // obj1.print();//window
+        // var newPrint1 = obj1.print.bind(obj1);
+        // newPrint1();//window
+
+
+        //箭头函数中没有this，箭头函数具有绑定this的能力，箭头函数中绑定的this是绑定离自己最近的非箭头函数作用域中的this
+        //箭头函数的非箭头函数产生的父级作用域，this
+
+        // let obj3 = {
+        //     name:'obj3',
+        //     getName: function(){
+        //         let show = () => console.log(this.name);
+        //         show();
+        //     }
+        // }
+        // // scope2(show)  ->  scope1(getName)  ->  window
+        // obj3.getName();//obj3
+
+        var name = 'mywindow';
+        function scope(){
+            setInterval(()=>{
+                console.log(this);
+                console.log(this.name);
+            },1000)
+        }
+        // scope();
+        var obj = {
+            name:'now you see me'
+        }
+        scope.apply({name:'now you see me'})
+        scope.call(obj);
+  </script>
 </body>
 </html>

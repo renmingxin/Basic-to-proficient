@@ -1,0 +1,29 @@
+module.exports = {
+    entry:{
+        index:'./src/js/index.js',
+        goodsInfo:'./src/js/goodsInfo.js'
+    },
+    output:{
+        filename:'[name].js',
+        path:__dirname + '/out',
+        publicPath:'http://localhost:8080/index.html',
+    },
+    module:{
+        rules:[
+            {
+                test:/\.css$/,
+                use:['style-loader','css-loader']
+            },
+            {
+                test:/\.(jpg|png|svg|ttf|woff|eot|)$/,
+                use:['url-loader']
+            },
+            {
+                test:/\.js$/,
+                use:['babel-loader']
+            },
+        ]
+    },
+    plugins:[],
+    mode:'development'
+}

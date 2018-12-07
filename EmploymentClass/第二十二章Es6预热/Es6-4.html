@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Es6-4</title>
+</head>
+
+<body>
+    <script>
+        //数据结构 计算机中组织数据的方式
+        // let arr = [1,2,3,4];
+        //  特点 有序，不定长 支持栈，队列操作
+        //  FILO尾部增加删除        arr.push    arr.pop
+        //  FIFO尾部增加头部删除     arr.push    arr.shift
+
+
+
+
+
+        //去重
+        // let arr = [1,2,2,3,3,4,6,1,7];//[1, 2, 3, 4, 6, 7]
+        // let arr1 = [1,'1',1,{}]
+        // Array.prototype.unique = function(){
+        //     let itemIndex = {};
+        //     let resArr = [];
+        //     this.forEach(item =>{
+        //         if(!itemIndex[item]){
+        //             itemIndex[item] = 1;
+        //             resArr.push(item);
+        //         }
+        //     })
+        //     // console.log(itemIndex)
+        //     return resArr;
+        // }
+        // arr.unique();//[1, 2, 3, 4, 6, 7]
+        // arr1.unique();//[1, {}]
+
+
+
+
+
+        //ES6新的数据结构
+        //Map Set
+        //Map是字典,加强的对象
+        // let map = new Map();
+        // let obj = {};
+        // map.set('name','老王');
+        // map.set('1',1);
+        // map.set(1,11);
+        // obj['name'] = '老李';
+        // obj['1'] = 1;
+        // obj[1] = 11;
+        // //map可以辨别是1和字符串'1'的key值
+        // console.log(map);//Map(3) {"name" => "老王", "1" => 1, 1 => 11}
+        // console.log(obj);//{1: 11, name: "老李"}
+        // map.set('age',20);
+        // obj['age'] = 18;
+        // console.log(map);//Map(4) {"name" => "老王", "1" => 1, 1 => 11, "age" => 20}
+        // console.log(obj);//{1: 11, name: "老李", age: 18}
+        // console.log(map.get('name'));//老王
+        // console.log(obj['name']);//老李
+        // //判断有没有这个键值对 返回true 和 false
+        // console.log(map.has('height'))//false
+        // map.clear();//清空里面的值
+        // console.log(map)//Map(0) {}
+
+
+
+
+
+        // let map1 = new Map();
+        // map1.set('name','老王');
+        // map1.set('age','20');
+        // map1.set('height','180');
+        // map1.set('weight','120');
+        // // console.log(map1)//Map(4) {"name" => "老王", "age" => "20", "height" => "180", "weight" => "120"}
+        // map1.forEach((value,key,map)=>{
+        //     console.log(value);//老王 20 180 120
+        //     console.log(key);//name age height weight
+        //     console.log(map);//循环4次{"name" => "老王", "age" => "20", "height" => "180", "weight" => "120"}
+        // })
+
+
+
+        // let obj = {};
+        // let arr = [1, '1', 1, obj, 1, obj];
+        // Array.prototype.unique1 =  function(){
+        //     let itemIndex = new Map();
+        //     let resArr = [];
+        //     this.forEach(item=>{
+        //         if(!itemIndex.has(item)){
+        //             itemIndex.set(item,1);
+        //             resArr.push(item);
+        //         }
+        //     })
+        //     return resArr;
+        // }
+        // console.log(arr.unique1());//[1, "1", {…}]
+
+
+
+
+        //hash(哈希)算法
+        //手写Map方法
+        function myMap() {
+            this.__entries__ = [];
+        }
+        myMap.prototype.len = 8;//8个桶
+        myMap.prototype.bucket = [];//每个桶
+        myMap.prototype.init = function () {
+            for (let i = 0; i < this.len; i++) {
+                this.bucket[i] = { next: null }
+            }
+        }
+        //先哈希算一遍
+        myMap.prototype.makeHash = function (key) {
+            let hash = 0;
+            //处理字符串，如果是字符串就取后三位获得哈希
+            if ((typeof key) == 'string') {
+                //取后三位字符串处理
+                let len = (key.length > 3) ? key.length : 3;
+                for (let i = len - 3; i < len; i++) {
+                    hash += (key[i] !== undefined) ? key[i].charCodeAt() : 0;
+                }
+            } else {
+                hash = +key
+            }
+            return hash;
+        }
+
+        myMap.prototype.set = function (key, value) {
+            //先去哈希一遍
+            let hash = this.makeHash(key);
+            //剩下的值模8
+            let list = this.bucket[hash % this.len];
+            let nextNode = list;
+            //看nextNodes是不是为空
+            while (nextNode.next) {
+                if (nextNode.key == key) {
+                    nextNode.value = value;
+                    return
+                } else {
+                    nextNode = nextNode.next
+                }
+            }
+            nextNode.next = { key, value, next: null }
+        }
+        myMap.prototype.get = function (key) {
+            //先去哈希一遍
+            let hash = this.makeHash(key);
+            //剩下的值模8
+            let list = this.bucket[hash % this.len];
+            let nextNode = list;
+            //看nextNodes是不是为空
+            while (nextNode.next) {
+                if (nextNode.key == key) {
+                    return nextNode.value = value;
+                } else {
+                    nextNode = nextNode.next
+                }
+            }
+            return
+        }
+        myMap.prototype.has = function (key) {
+            //先去哈希一遍
+            let hash = this.makeHash(key);
+            //剩下的值模8
+            let list = this.bucket[hash % this.len];
+            let nextNode = list;
+            //看nextNodes是不是为空
+            while (nextNode.next) {
+                if (nextNode.key == key) {
+                    return true;
+                } else {
+                    nextNode = nextNode.next
+                }
+            }
+            return false;
+        }
+        myMap.prototype.delete = function (key) {
+            //先去哈希一遍
+            let hash = this.makeHash(key);
+            //剩下的值模8
+            let list = this.bucket[hash % this.len];
+            let nextNode = list;
+            //看nextNodes是不是为空
+            while (nextNode.next) {
+                if (nextNode.key == key) {
+                    return true;
+                } else {
+                    nextNode = nextNode.next
+                }
+            }
+            return false;
+        }
+        myMap.prototype.clear = function () {
+
+        }
+        //邻接链表
+        let hash = myMap.prototype.makeHash
+        let sett = myMap.prototype.set
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // var ooo = {
+        //     name:'asdasd',
+        //     age:20,
+        //     height:100,
+        //     weight:120
+        // }
+        // Object.prototype.getkeys = function(){
+        //     let keyarr = [];
+        //     let valuearr = [];
+        //     for(let k in ooo){
+        //         console.log(k);
+        //         keyarr.push(k);
+        //         valuearr.push(ooo[k]);
+        //     }
+        //     return keyarr;
+        // }
+        // Object.prototype.getvalue = function(){
+        //     let keyarr = [];
+        //     let valuearr = [];
+        //     for(let k in ooo){
+        //         keyarr.push(k);
+        //         valuearr.push(ooo[k]);
+        //     }
+        //     return valuearr;
+        // }
+        // console.log(ooo.getkeys());
+        // console.log(ooo.getvalue())
+        // console.log(Object.keys(ooo))
+        // console.log(Object.values(ooo))
+    </script>
+</body>
+
+</html>

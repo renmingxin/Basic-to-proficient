@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Es6-3</title>
+</head>
+
+<body>
+    <script>
+        /**原生javascript对象字面量**/
+        // let obj = {};
+        // //new 
+        // let obj1 = new Object();
+        // //Object.create
+        // let obj2 = Object.create(null);
+
+
+        // obj.name = 'xxxx';//(增加和修改)
+        // obj['age'] = 20;//(增加和修改)
+        // delete obj.name
+
+
+        // ES6 扩展 对象
+        // 1.ES6 属性简写
+        // let name = 'laowang';
+        // let age = 20;
+        // let person = {
+        //     name: name,  
+        //     //属性名和属性值相同的时候可以省略
+        //     age
+        // }
+        // console.log(person);//{name: "laowang", age: 20}
+
+
+        // ES6 属性简写
+        // 2.ES6 函数简写
+        // let name = 'laoli';
+        // let age = 20;
+        // let person = {
+        //     name,
+        //     age,
+        //     sayName: function(){
+        //         console.log(this.name);
+        //     },
+        //     //在对象中 可以简写函数 xxx:function(){}  ==   xxx(){}
+        //     sayAge(){
+        //         console.log(this.age);
+        //     }
+        // }
+        // console.log(person.sayName());//laoli
+        // console.log(person.sayAge());//20
+
+
+
+        // 3.ES6可计算属性
+        // let firstName = '胡';
+        // let lastName = '汉三';
+        // let work = '敲代码';
+        // let workList = {
+        //     //属性的拼接
+        //     [firstName + lastName]:work //{胡汉三: "敲代码"}
+        // }
+
+
+
+
+        //4.ES6中关于对象新增的一些方法、
+        //ECMA 定义新的方法时，不在全局定义，Object.prototype
+        //静态方法 Object.is() 加强的比较运算符  ==  === 判断是否相等
+        // console.log(NaN == NaN)//false
+        // console.log(NaN === NaN)//false
+        // console.log(Object.is(NaN,NaN))//true
+
+        // console.log(Object.is(+0,-0));//false
+        // console.log(+0===-0)//true
+
+
+
+        //6.ES6混合mix-in copy属性  Object.assign(v1,v2,v3,v4)把v2以后的属性都赋值给v1中
+        //friend对象上面的属性copy到person对象上面
+        // function mixin(receive,obj){
+        //     for(let prop in obj){
+        //         receive[prop] = obj[prop]
+        //     }
+        //     return receive;//属性会被覆盖
+        // }
+        // let person = {
+        //     name:'老王',
+        //     age:20,
+        //     height:200
+        // };
+        // let friend = {
+        //     weight:100,
+        //     height:180
+        // }
+        // mixin(person,friend);//属性会被覆盖
+        // console.log(person) //{name: "老王", age: 20, height: 180, weight: 100}
+        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Object.assign()↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        // let person = {
+        //     name: '老王',
+        //     age: 20,
+        //     height: 200
+        // };
+        // let friend = {
+        //     weight: 100,
+        //     height: 180
+        // }   
+        // Object.assign(person,friend);
+        // console.log(person)//{name: "老王", age: 20, height: 180, weight: 100}
+
+
+
+        //7.ES6 keys values值的api
+        //Object.keys()  返回对象的key值
+        //Object.value();返回对象的value值
+        //Object.entries(); 把每个key,value值拆成一个数组 ,再用数组组合起来
+        // let person = {
+        //     name:'laowang',
+        //     age: 20,
+        //     height: 170
+        // }
+        // let keys = Object.keys(person); 
+        // let values = Object.values(person);
+        // let entries = Object.entries(person);
+        // console.log(keys);//["name", "age", "height"]
+        // console.log(values);//["laowang", 20, 170]
+        // console.log(entries);//[Array(2), Array(2), Array(2)]    0: (2) ["name", "laowang"]    1: (2) ["age", 20]    2: (2) ["height", 170]
+
+
+
+
+
+
+        //ES6增强对象原型
+        // let p = {
+        //     sayName(){
+        //         console.log(this.name)
+        //     }
+        // }
+        // let person = Object.create(p);
+        // console.log(person.__proto__ === p); //true
+        // console.log(Object.getPrototypeOf(person) === p);//true
+        // //虽然可以用xxx.__proto__查看原型但他不是语言暴露给我们的接口用ES6的Object.getPrototypeOf(xxx)查看原型更加友善，更加安全
+        // console.log(person.__proto__ === Object.getPrototypeOf(person));//true
+
+
+
+        //ES6原型之间的调用
+        // function Person(name = 'none'){
+        //     this.name = name;
+        // };
+        // Person.prototype.sayName = function(){
+        //     console.log(this.name);
+        // }
+        // var p1 = new Person();
+        // p1.sayName();//none
+        // Person.prototype.sayName = function(){
+        //     console.log(this.name + 'proto')
+        // };
+        // var p2 = new Person();
+        // p1.sayName();//noneproto
+        // p2.sayName();//noneproto
+        // // Object.getPrototypeOf()
+        // let obj = {
+        //     sayName(){
+        //         console.log(this.name +'obj');
+        //     }
+        // }
+        // Object.setPrototypeOf(p1,obj);//p1的原型等于obj
+        // console.log(Object.getPrototypeOf(p1) === obj)//true
+        // p1.sayName();//noneobj
+        // p2.sayName();//noneproto
+        // let p3 = {
+        //     name:'p3',
+        //     sayName(){
+        //         return Object.getPrototypeOf(this).sayName();
+        //     }
+        // }
+        // Object.setPrototypeOf(p3,p1);
+        // p3.sayName();//noneobj
+        // let p4 = {
+        //     name:'p4',
+        //     sayName(){
+        //         return Object.getPrototypeOf(this).sayName.call(this);
+        //     }
+        // }
+        // Object.setPrototypeOf(p4,p1);
+        // p4.sayName();//p4obj
+        // let p5 = {
+        //     name:'p5',
+        //     sayName(){
+        //         //super相当于Object.getPrototypeOf(this) 只能在简写函数里面编写xxx(){}  ，不能在xxx:function(){}里面编写
+        //         super.sayName();
+        //     }
+        // }
+        // Object.setPrototypeOf(p5,p1);
+        // p5.sayName();//p5obj
+
+
+
+
+        //ES6解构赋值
+        //实质：模式匹配   keys:values
+        //把对象里面的值给声明了，可以直接调用
+        // resData = {
+        //     director:'xxx',
+        //     imgs:[],
+        //     casts:{}
+        // }
+        // // ({director,imgs,casts} = resData)
+        // let {director,imgs,casts,name:name = '老王'} = resData;
+        // console.log(director);//xxx
+        // console.log(imgs)//[]
+        // console.log(name)//老王
+        // let {PI,random,pow,E,floor} = Math;
+        // console.log(PI);//3.141592653589793
+        // console.log(E);//2.718281828459045
+
+
+
+        //ES6嵌套结构
+        // let node = {
+        //     type:1,
+        //     parentNode:{
+        //         tagName:'div',
+        //         value:{
+        //             value: 123
+        //         }
+        //     }
+        // }
+        // let {parentNode,parentNode:{tagName,value:{value}}} = node;
+        // console.log(parentNode)//{tagName: "div", value: {…}}
+        // console.log(tagName);//div
+        // console.log(value);//123
+
+
+
+        //ES6数组的解构赋值 位置对应
+        // let = [a,b,c] = [1,2,3];
+        // let = [d,[e],f] = [1,[2],3];
+        // let = [g=10,h,i] = [,,10];
+        // console.log(a,b,c);//1 2 3
+        // console.log(d,e,f);//1 2 3
+        // console.log(g,h,i);//10 undefined 10
+
+
+        //普通交换
+        // let a = 1;
+        // let b = 2;
+        // let temp = a
+        //     a = b
+        //     b = temp
+
+        // ES6交换
+        // let a = 1;
+        // let b = 2;
+        // [a,b] = [b,a];
+        /*0x000 1 a
+          0x001 2 b
+          0x002 a 2
+          0x003 b 1
+         */
+        // console.log(a,b);//2,1
+
+
+    </script>
+</body>
+
+</html>

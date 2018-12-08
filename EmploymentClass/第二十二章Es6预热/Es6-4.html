@@ -103,112 +103,146 @@
 
 
 
+
+        /**************************************************/
         //hash(哈希)算法
         //手写Map方法
-        function myMap() {
-            this.__entries__ = [];
-        }
-        myMap.prototype.len = 8;//8个桶
-        myMap.prototype.bucket = [];//每个桶
-        myMap.prototype.init = function () {
-            for (let i = 0; i < this.len; i++) {
-                this.bucket[i] = { next: null }
-            }
-        }
-        //先哈希算一遍
-        myMap.prototype.makeHash = function (key) {
-            let hash = 0;
-            //处理字符串，如果是字符串就取后三位获得哈希
-            if ((typeof key) == 'string') {
-                //取后三位字符串处理
-                let len = (key.length > 3) ? key.length : 3;
-                for (let i = len - 3; i < len; i++) {
-                    hash += (key[i] !== undefined) ? key[i].charCodeAt() : 0;
-                }
-            } else {
-                hash = +key
-            }
-            return hash;
-        }
-
-        myMap.prototype.set = function (key, value) {
-            //先去哈希一遍
-            let hash = this.makeHash(key);
-            //剩下的值模8
-            let list = this.bucket[hash % this.len];
-            let nextNode = list;
-            //看nextNodes是不是为空
-            while (nextNode.next) {
-                if (nextNode.key == key) {
-                    nextNode.value = value;
-                    return
-                } else {
-                    nextNode = nextNode.next
-                }
-            }
-            nextNode.next = { key, value, next: null }
-        }
-        myMap.prototype.get = function (key) {
-            //先去哈希一遍
-            let hash = this.makeHash(key);
-            //剩下的值模8
-            let list = this.bucket[hash % this.len];
-            let nextNode = list;
-            //看nextNodes是不是为空
-            while (nextNode.next) {
-                if (nextNode.key == key) {
-                    return nextNode.value = value;
-                } else {
-                    nextNode = nextNode.next
-                }
-            }
-            return
-        }
-        myMap.prototype.has = function (key) {
-            //先去哈希一遍
-            let hash = this.makeHash(key);
-            //剩下的值模8
-            let list = this.bucket[hash % this.len];
-            let nextNode = list;
-            //看nextNodes是不是为空
-            while (nextNode.next) {
-                if (nextNode.key == key) {
-                    return true;
-                } else {
-                    nextNode = nextNode.next
-                }
-            }
-            return false;
-        }
-        myMap.prototype.delete = function (key) {
-            //先去哈希一遍
-            let hash = this.makeHash(key);
-            //剩下的值模8
-            let list = this.bucket[hash % this.len];
-            let nextNode = list;
-            //看nextNodes是不是为空
-            while (nextNode.next) {
-                if (nextNode.key == key) {
-                    return true;
-                } else {
-                    nextNode = nextNode.next
-                }
-            }
-            return false;
-        }
-        myMap.prototype.clear = function () {
-
-        }
-        //邻接链表
-        let hash = myMap.prototype.makeHash
-        let sett = myMap.prototype.set
-
-
+        // function myMap() {
+        //     this.init();
+        // }
+        // myMap.prototype.len = 8;//8个桶
+        // myMap.prototype.bucket = [];//每个桶
+        // myMap.prototype.init = function () {
+        //     for (let i = 0; i < this.len; i++) {
+        //         this.bucket[i] = { next: null }
+        //     }
+        // }
+        // //先哈希算一遍
+        // myMap.prototype.makeHash = function (key) {
+        //     let hash = 0;
+        //     //处理字符串，如果是字符串就取后三位获得哈希
+        //     if ((typeof key) == 'string') {
+        //         //取后三位字符串处理
+        //         let len = (key.length > 3) ? key.length : 3;
+        //         for (let i = len - 3; i < len; i++) {
+        //             hash += (key[i] !== undefined) ? key[i].charCodeAt() : 0;
+        //         }
+        //     } else {
+        //         hash = +key
+        //     }
+        //     return hash;
+        // }
+        // myMap.prototype.set = function (key, value) {
+        //     //先去哈希一遍
+        //     let hash = this.makeHash(key);
+        //     //剩下的值模8
+        //     let list = this.bucket[hash % this.len];
+        //     let nextNode = list;
+        //     //看nextNodes是不是为空
+        //     while (nextNode.next) {
+        //         if (nextNode.key === key) {
+        //             nextNode.value = value;
+        //             return
+        //         } else {
+        //             nextNode = nextNode.next
+        //         }
+        //     }
+        //     nextNode.next = { key, value, next: null }
+        // }
+        // myMap.prototype.get = function (key) {
+        //     //先去哈希一遍
+        //     let hash = this.makeHash(key);
+        //     //剩下的值模8
+        //     let list = this.bucket[hash % this.len];
+        //     let nextNode = list;
+        //     //看nextNodes是不是为空
+        //     while (nextNode.next) {
+        //         if (nextNode.key === key) {
+        //             return nextNode.value;
+        //         } else {
+        //             nextNode = nextNode.next
+        //         }
+        //     }
+        //     return
+        // }
+        // myMap.prototype.has = function (key) {
+        //     //先去哈希一遍
+        //     let hash = this.makeHash(key);
+        //     //剩下的值模8
+        //     let list = this.bucket[hash % this.len];
+        //     let nextNode = list;
+        //     //看nextNodes是不是为空
+        //     while (nextNode.next) {
+        //         if (nextNode.key === key) {
+        //             return true;
+        //         } else {
+        //             nextNode = nextNode.next
+        //         }
+        //     }
+        //     return false;
+        // }
+        // myMap.prototype.delete = function (key) {
+        //     //先去哈希一遍
+        //     let hash = this.makeHash(key);
+        //     //剩下的值模8
+        //     let list = this.bucket[hash % this.len];
+        //     let nextNode = list;
+        //     //看nextNodes是不是为空
+        //     while (nextNode.next) {
+        //         if (nextNode.next.key === key) {
+        //             nextNode.next = nextNode.next.next;
+        //             return true;
+        //         } else {
+        //             nextNode = nextNode.next
+        //         }
+        //     }
+        //     return false;
+        // }
+        // myMap.prototype.clear = function () {
+        //     this.init();
+        // }
+        // //邻接链表
+        // let map = new myMap();
+        /**************************************************/
 
 
 
 
 
+
+        //ES6  WeakMap 弱引用   必须使用对象作为key值
+        // let Wmap = new WeakMap();
+
+        //内存回收机制，两种情况。
+        //1.定时清理内存
+        //2.内存达到一定量时清理
+
+
+
+
+        //ES6 Set
+        //特点: 有序列表，包含相互独立且不相等的值
+        // let set = new Set([1,1,1,1,2,3,4,'1']);
+        // console.log(set)//Set(5) {1, 2, 3, 4, "1"}
+        // set.add(1);
+        // console.log(set);//Set(5) {1, 2, 3, 4, "1"}
+        // set.add(5);
+        // console.log(set);//Set(6) {1, 2, 3, 4, "1",5}
+        // set.add({});
+        // console.log(set);//Set(7) {1, 2, 3, 4, "1", 5,Object}
+        // set.has(1);//true
+        // set.delete(2);//true
+        // let set1 = new Set(['小明','小红',20,{},'1',11])
+        // set1.forEach((item,i,set)=>console.log(item,i,set))//小明 小明 Set(6) {"小明", "小红", 20, {…}, "1", …}...
+
+        //根据set来去重
+        let arr = [1,23,5,5,5,{},'22',22,'22',1];
+        let uniqueSet = new Set(arr);
+        console.log(uniqueSet)//Set(6) {1, 23, 5, {}, "22", 22}
+        let a = [...uniqueSet];
+        console.log(a);//[1, 23, 5, {…}, "22", 22]
+
+        let ws = new WeakSet();
 
 
 

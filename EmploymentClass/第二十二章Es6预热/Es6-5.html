@@ -1,12 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Es6-5</title>
 </head>
+
 <body>
-    
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        // ES6 String and Array
+        // ES6 字符串 和 数组  的操作
+        // String
+        // String.prototype.charAt(num)  返回索引值为num的值
+        // var str = 'welcome to duyi';
+        // console.log(str.charAt(3), str[3], str.charAt(3)==str[3]);//c c true
+
+        // // String.prototype.charCodeAt(num)  返回索引值为num的unicode的编码值
+        // console.log(str.charAt(0), str.charCodeAt(0))//w 119
+
+        // var str1 = 'welcome,to,duyi';
+        // //String.prototype.split(a) //根据传入的a值说解析成数组
+        // console.log(str1.split(','))//["welcome", "to", "duyi"]
+        // console.log(str1.split('t'))//["welcome,", "o,duyi"]
+
+        // //String.prototype.join(a) //根据传入a值将数组拼接成字符串
+        // var arr = [1,2,3,4,5,6];
+        // console.log(arr.join(','));//1,2,3,4,5,6
+        // console.log(arr.join('-'));//1-2-3-4-5-6
+
+        // let str2 = 'hi 任明鑫 123';
+        // //String.prototype.toUpperCase()   .toLowerCase()
+        // console.log(str2.toUpperCase());//HI 任明鑫 123
+        // console.log(str2.toUpperCase().toLowerCase());//hi 任明鑫 123
+
+        // // String.prototype.slice(s,e)  返回索引值从s截取到e的字符串,[s,e),左闭右开 ,不改变原字符串
+        // console.log(str.slice());//welcome to duyi
+        // console.log(str.slice(4))//ome to duyi
+        // console.log(str.slice(0,1),str.slice(0,2),str.slice(1,3));//w we el
+
+        // String.prototype.indexOf(s,e=0) 返回当前s的索引值，e为从第几位开始匹配,没有的话返回-1
+        // console.log(str.indexOf('c'),str.indexOf('come'));//3 3
+        // console.log(str.indexOf('c',4))//-1
+        // //手写友善的indexOf方法
+        // String.prototype.isInclue = function(str){
+
+        //     if(this.indexOf(str) !== -1){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // }
+        // console.log(str.isInclue('ss'));//false
+        //ES6 includes方法
+        //include 跟 indexOf 基本一样,区别在于include返回true or false;
+        // var str1 = 'you were,are and will be in my heart';
+        // console.log(str1.includes('heart',1));//true
+        // console.log(str1.includes('heart',40))//false
+
+
+        //ES6   startsWith endsWith  是否以他开头从第几开始数  是否以他结束从几结束
+        // console.log(str1.startsWith('you',0),str1.endsWith('heart')); //true true
+        // console.log(str1.startsWith('were',4),str1.endsWith('were',8));//true true  
+        // let stuffList = [
+        //     'Google-Page',
+        //     'Alibaba-mayun',
+        //     'FaceBook-Zukerberg',
+        //     'Duyi-ding',
+        //     'Duyi-song',
+        //     'Duyi-cheng'
+        // ]
+        // //实战
+        // //筛选Duyi为前缀的项
+        // let DuyiList = stuffList.filter(item => item.startsWith('Duyi-'));
+        // console.log(DuyiList);//["Duyi-ding", "Duyi-song", "Duyi-cheng"]
+        // let web = [
+        //     'wwww.baidu.com',
+        //     'www.4399.com',
+        //     'www.qq.com',
+        //     'www.ludan.cn',
+        //     'www.exd.edu'
+        // ]
+        // //筛选为com结尾的网站
+        // let comEndList = web.filter(item=>item.endsWith('com'));
+        // console.log(comEndList)//["wwww.baidu.com", "www.4399.com", "www.qq.com"]
+
+
+
+        //ES6 repeat(重复)
+        // let str = '';
+        // for (let i = 0; i < 10; i++) {
+        //     str += '哈';
+        // }
+        // console.log(str);//哈哈哈哈哈哈哈哈哈哈
+        // let newstr = '哈'.repeat(10);
+        // console.log(newstr)//哈哈哈哈哈哈哈哈哈哈
+
+
+
+
+
+        //模板字符串 模板``
+        // let wang = '老王';
+        // let li = '老李';
+        // let love = 'love';
+        // console.log(`${wang} ${love} ${li}哈哈哈哈!!!`);//老王 love 老李哈哈哈哈!!!
+
+        //字符串的回车换行问题``
+        // let title = 'hello';
+        // let str = '<div>\n \
+        //             <span>'+title+'</span>\n \
+        //           </div>';
+        // console.log(str)
+        // // <div>
+        // //              <span>hello</span>
+        // //              </div>
+        // let newstr = `
+        //     <div>
+        //         <span>${title}</span>
+        //     </div>
+        // `;
+        // console.log(newstr)
+        // <div>
+        //     <span>hello</span>
+        // </div>
+
+        //${}   原始值 引用值
+        // {}=>[object Object] [1,2,3]=>1,2,3  都做了toString操作
+        // let a =1;
+        // let b = 2;
+        // let str = `${a}*${b}=${a*b}`;    
+        // console.log(str);//1*2=2
+
+        // function returnStr(a,b){
+        //     return `${a}*${b}=${a*b}`;
+        // }
+        // console.log(returnStr(2,3));//2*3=6
+
+        //模板字符串的优点
+        //更标准的字符串，更好的处理了字符串拼接问题
+        //语义化更好
+        //防止注入xss
+        // alert('hello');
+        // alert`hi`;
+        // function print(arg1,arg2){
+        //     console.log(arguments);
+        // }
+        // //按照模板分开['12','4','6']
+        // //把模板中的内容当成若干参数      有几个${} 就把里面的值做成参数
+        // print`12${3}4${5}6`;//["12", "4", "6"],3,5
+
+        // function newprint(listArr,...arg){
+        //     console.log(listArr);
+        //     console.log(arg);
+        // }
+        // newprint`12${3}4${5}6`;//["12", "4", "6", raw: Array(3)]
+        //                        //[3, 5]
+        // let a = 10;
+        // let b = 20;
+        // newprint`${a}x${b}=${a*b}`;//["", "x", "=", "", raw: Array(4)]
+        //                            //[10, 20, 200]
+
+        //防止注入xss
+        // let name = '张三';
+        // let xss = '<scipt>console.log("哈哈哈你中招了")<\/script>'
+        // document.write(`<p>${name}</p>`);
+        // document.write(`<p>${xss}</p>`);
+        // function safeHTML(arr,name){
+        //     return `${arr[0]}${name.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}`;
+        // }
+        // document.write(safeHTML`<p>${xss}</p>`);
+
+
+
+
+
+
+
+        //ES6 数组
+        //初始化数组
+        //字面量
+        // let arr = [];
+        // //通过构造函数
+        // let arr1 = new Array(9);//参数是数字而且只有一个参数的时候，创建一个长度为n的数组
+        // let arr2 = new Array('7');//非数字n 创建一个数组[n]
+        // let arr3 = new Array('1', 2, 3);//多个参数，返回由多个参数构成的数组
+        // let arr4 = new Array(4, 5, 6);//多个参数，返回由多个参数构成的数组
+        // console.log(arr1);//[empty × 9]
+        // console.log(arr2);//["7"]
+        // console.log(arr3);//["1", 2, 3]
+        // console.log(arr4);//[4, 5, 6]
+
+        //Array.of  加强的Array构造函数 统一返回由参数构成的数组
+        // let arr5 = Array.of(9);
+        // let arr6 = Array.of('7');
+        // let arr7 = Array.of('1',2,3);
+        // console.log(arr5);//[9]
+        // console.log(arr6);//["7"]
+        // console.log(arr7);// ["1", 2, 3]
+
+
+
+
+
+
+        //Array.from 将类数组转化为数组 argument NodeList
+        // let likeArr1 = document.getElementsByTagName('div');
+        // // // console.log(likeArr1);//类数组
+        // function fn(){
+        //     // console.log(arguments);
+        //     return arguments;
+        // }
+        // var Oarr = fn(3,4,5,6,7,8,9,10);//类数组
+
+        // //为什么要把类数组转化成数组？通过操作数组的方法操作类数组
+        // //Array.prototype.filter.call(likeArr1);
+        // //怎么转换
+        // let realArr = Array.from(Oarr);
+        // let realArr1 = Array.from(likeArr1);
+        // console.log(typeof(realArr),typeof(realArr1))//object object
+        // console.log(realArr);//[3, 4, 5, 6, 7, 8, 9, 10]
+        // console.log(realArr1)//[div, div, div, div, div, div, div, div, div, div]
+        
+   
+
+
+
+        //ES6 find()  findIndex()   indeOf加强版
+        // let arr = [3,4,5,6,7,NaN,'1'];
+        // //NaN 条件 找不到
+        // // console.log(arr.indexOf(NaN));//-1
+        // //find(fn)  模糊查找  有的话就返回查找的值  没有的话就返回undefined
+        // //findIndex(fn)  精确查找  有的话返回索引值 没有的话返回-1
+        // console.log(arr.find(x=>Object.is(x,NaN)));//NaN
+        // console.log(arr.find(x=>x%12==0))//4
+        // console.log(arr.findIndex(x=>x>2))//1
+
+
+
+
+
+        //ES6 fill(value,start=0,end=length) 填充什么值 从索引几开始填充 填充多少个 [s,e)左闭右开 
+        //有什么用？  初始化填充操作
+        let arr = [3,4,5,6];
+        console.log(arr.fill('*'))//["*", "*", "*", "*"]
+        console.log(arr.fill('-',1));//["*", "-", "-", "-"]
+        console.log(arr.fill('&',1,3))//["*", "&", "&", "-"]
+        let emptyArr = new Array(10);
+        console.log(emptyArr)//[empty × 10]
+        console.log(emptyArr.fill(3))//[3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+
+        //快速制造初始化一个二维数组
+        let arr1 = new Array(10);
+        let arr2 = new Array(10);
+        arr1.fill(0);
+        arr2.fill(arr1);
+        console.log(arr2)//(10) [Array(10), Array(10), Array(10), Array(10), Array(10), Array(10), Array(10), Array(10), Array(10), Array(10)]
+    </script>
 </body>
+
 </html>

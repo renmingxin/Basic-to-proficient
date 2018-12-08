@@ -95,16 +95,16 @@
 
         
         //2018-10-23
-        (function(){
-            try{
-                throw new Error();
-            }catch(x){
-                var x = 1,y = 2;
-                console.log(x);
-            }
-            console.log(x);
-            console.log(y)
-        })();
+        // (function(){
+        //     try{
+        //         throw new Error();
+        //     }catch(x){
+        //         var x = 1,y = 2;
+        //         console.log(x);
+        //     }
+        //     console.log(x);
+        //     console.log(y)
+        // })();
 
         // function Foo() {
         //     var i = 0;
@@ -124,15 +124,29 @@
 
 
         //2018-10-24
-        (function () {
-            var a = b = 3;
-        }());
-        console.log('a defined?' + (typeof a !== 'undefined'));
-        console.log('b defined?' + (typeof b !== 'undefined'));
+        // (function () {
+        //     var a = b = 3;
+        // }());
+        // console.log('a defined?' + (typeof a !== 'undefined'));
+        // console.log('b defined?' + (typeof b !== 'undefined'));
 
 
 
         // ajax的优点是什么缺点是什么？
+
+
+        //什么是类数组？
+        var a = {};
+        var i = 0;
+        for (i = 0; i < 10; i++) {
+            a[i] = i * i;
+        }
+        a.length = i;
+        var total = 0;
+        for (var j = 0; j < a.length; j++) {
+            total += a[j];
+        }
+        console.log(a);
     </script>
 </body>
 

@@ -173,34 +173,131 @@
             数组中 迭代器中的指针，每次指向下一个索引
             Map Set会把临接链表 转化一个单项链表 指针每次指向一个节点，指针下移
         */
-        let arr = [2,3,4];
-        let map = new Map([['name','王小宝'],['age',18],['sex','男']])
-        let set = new Set([1,2,3]);
-        for(let item of arr){//arr[Symbol.iterator]() => arr.values()
-            console.log(item)
-            //2
-            //3
-            //4
-        }
-        for(let item of map){//map[Symbol.iterator]() => map.entries()
-            console.log(item)
-            //["name", "王小宝"]
-            // ["age", 18]
-            // ["sex", "男"]
-        }
-        for(let item of set){//set[Symbol.iterator]() => set.keys()
-            console.log(item)
-            //1
-            //2
-            //3
-        }
+        // let arr = [2,3,4];
+        // let map = new Map([['name','王小宝'],['age',18],['sex','男']])
+        // let set = new Set([1,2,3]);
+        // for(let item of arr){//arr[Symbol.iterator]() => arr.values()
+        //     console.log(item)
+        //     //2
+        //     //3
+        //     //4
+        // }
+        // for(let item of map){//map[Symbol.iterator]() => map.entries()
+        //     console.log(item)
+        //     //["name", "王小宝"]
+        //     // ["age", 18]
+        //     // ["sex", "男"]
+        // }
+        // for(let item of set){//set[Symbol.iterator]() => set.keys()
+        //     console.log(item)
+        //     //1
+        //     //2
+        //     //3
+        // }
         //对象是不是可迭代的
         // let obj = {};
         // obj[Symbol.iterator]().next() //报错  不能迭代
+    
+
+
+
+
+    
+        //生成器 Generator
+        //用于生成迭代器
+        //生成器是函数 *   yield
+        //  function* createIterator(){
+        //     console.log("第一次")
+        //     yield 1;
+        //     console.log("第二次")
+        //     yield 2;
+        //     console.log("第三次")
+        //     yield 3;
+        //  }
+        //  var i = createIterator();
+        //  i.next();
+
+
+
+        //把大象装冰箱
+        //open loadElephant close
+        // open(()=>{
+        //     load(()=>{
+        //         close()
+        //     })
+        // })
         
-         //生成器 Generator
-         //用于生成迭代器
-         //s
+        // function open(){
+        //     setTimeout(() => {
+        //         console.log("打开冰箱门")
+        //     }, 1000);
+        // }
+
+        // function load(){
+        //     setTimeout(() => {
+        //         console.log("把大象装进去")
+        //     }, 1000);
+        // }
+
+        // function close(){
+        //     setTimeout(() => {
+        //         console.log("关闭冰箱门")
+        //     }, 1000);
+        // }
+        // function* loadElephant(){
+        //     yield open();
+        //     yield load();
+        //     yield close();
+        // }
+        // let process = loadElephant();
+        // process.next();//打开冰箱门
+        // process.next();//把大象装进去
+        // process.next();//关闭冰箱门
+
+
+
+
+
+        //吃橘子
+        //吸收 扒皮 吃
+        // function washHands(){
+        //     console.log('洗手中');
+        //     setTimeout(() => {
+        //         process.next('一双干净的手');
+        //     }, 2000);
+        // }
+        // function peeling(){
+        //     console.log('扒橘子中');
+        //     setTimeout(() => {
+        //         process.next('一个扒完皮的橘子');
+        //     }, 2000);
+        // }
+        // function eat(){
+        //     console.log('吃橘子中');
+        //     setTimeout(() => {
+        //         process.next('好吃');
+        //     }, 2000);
+        // }
+        // function* eatOrange(){
+        //     let result = `${yield washHands()}  ${yield peeling()}  ${yield eat()}`;
+        // }
+        // let process = eatOrange();
+        // process.next();
+
+
+
+
+
+        //委托迭代器 yield *
+        //遍历数组和字符串
+        function* show(arr,string){
+            yield *arr;
+            yield *string;
+        }
+        let i = show([1,2,3],'IUY');
+        for (const item of i) {
+            console.log(item)
+        }
     </script>
 </body>
 </html>

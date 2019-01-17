@@ -136,12 +136,12 @@
         // console.log(arr);// [2, 3, 4, 5, 6]
 
 
-        //每个函数当中最多有且只能有一个不定参数...,且不可有默认值，必须是最后一个参数
+        // 每个函数当中最多有且只能有一个不定参数...,且不可有默认值，必须是最后一个参数
         // function fn(a,...arg){
         // }
  
 
-        //拔掉括号
+        // 拔掉括号
         // var a = [1,2,3,4,5,6,6,6,11];
         // console.log(...a)//1 2 3 4 5 6 6 6 11
 
@@ -173,7 +173,7 @@
         //在箭头函数中，返回对象
         // let returnObj = (name) =>({name:name})
 
-        //立即执行箭头函数
+        //↓↓↓↓↓↓↓↓↓立即执行箭头函数↓↓↓↓↓↓↓↓↓↓↓
         // let fn = ((name)=>console.log(name))('老王');//老王
         
 
@@ -225,29 +225,29 @@
         //箭头函数中没有this，箭头函数具有绑定this的能力，箭头函数中绑定的this是绑定离自己最近的非箭头函数作用域中的this
         //箭头函数的非箭头函数产生的父级作用域，this
 
-        let obj3 = {
-            name:'obj3',
-            getName: function(){
-                let show = () => console.log(this.name);
-                show();
-            }
-        }
-        // scope2(show)  ->  scope1(getName)  ->  window
-        obj3.getName();//obj3
+        // let obj3 = {
+        //     name:'obj3',
+        //     getName: function(){
+        //         let show = () => console.log(this.name);
+        //         show();
+        //     }
+        // }
+        // // scope2(show)  ->  scope1(getName)  ->  window
+        // obj3.getName();//obj3
 
-        var name = 'mywindow';
-        function scope(){
-            setInterval(()=>{
-                console.log(this);
-                console.log(this.name);
-            },1000)
-        }
-        // scope();
-        var obj = {
-            name:'now you see me'
-        }
-        scope.apply({name:'now you see me'})
-        scope.call(obj);
+        // var name = 'mywindow';
+        // function scope(){
+        //     setInterval(()=>{
+        //         console.log(this);
+        //         console.log(this.name);
+        //     },1000)
+        // }
+        // // scope();
+        // var obj = {
+        //     name:'now you see me'
+        // }
+        // scope.apply({name:'now you see me'})
+        // scope.call(obj);
   </script>
 </body>
 </html>

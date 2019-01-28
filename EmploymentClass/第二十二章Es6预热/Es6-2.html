@@ -225,29 +225,29 @@
         //箭头函数中没有this，箭头函数具有绑定this的能力，箭头函数中绑定的this是绑定离自己最近的非箭头函数作用域中的this
         //箭头函数的非箭头函数产生的父级作用域，this
 
-        // let obj3 = {
-        //     name:'obj3',
-        //     getName: function(){
-        //         let show = () => console.log(this.name);
-        //         show();
-        //     }
-        // }
-        // // scope2(show)  ->  scope1(getName)  ->  window
-        // obj3.getName();//obj3
+        let obj3 = {
+            name:'obj3',
+            getName: function(){
+                let show = () => console.log(this.name);
+                show();
+            }
+        }
+        // scope2(show)  ->  scope1(getName)  ->  window
+        obj3.getName();//obj3
 
-        // var name = 'mywindow';
-        // function scope(){
-        //     setInterval(()=>{
-        //         console.log(this);
-        //         console.log(this.name);
-        //     },1000)
-        // }
-        // // scope();
-        // var obj = {
-        //     name:'now you see me'
-        // }
-        // scope.apply({name:'now you see me'})
-        // scope.call(obj);
+        var name = 'mywindow';
+        function scope(){
+            setInterval(()=>{
+                console.log(this);
+                console.log(this.name);
+            },1000)
+        }
+        // scope();
+        var obj = {
+            name:'now you see me'
+        }
+        scope.apply({name:'now you see me'})
+        scope.call(obj);
   </script>
 </body>
 </html>

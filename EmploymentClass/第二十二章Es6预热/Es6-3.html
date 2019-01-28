@@ -81,35 +81,35 @@
 
         //6.ES6混合mix-in copy属性  Object.assign(v1,v2,v3,v4)把v2以后的属性都赋值给v1中
         //friend对象上面的属性copy到person对象上面
-        // function mixin(receive,obj){
-        //     for(let prop in obj){
-        //         receive[prop] = obj[prop]
-        //     }
-        //     return receive;//属性会被覆盖
-        // }
-        // let person = {
-        //     name:'老王',
-        //     age:20,
-        //     height:200
-        // };
-        // let friend = {
-        //     weight:100,
-        //     height:180
-        // }
-        // mixin(person,friend);//属性会被覆盖
-        // console.log(person) //{name: "老王", age: 20, height: 180, weight: 100}
+        function mixin(receive,obj){
+            for(let prop in obj){
+                receive[prop] = obj[prop]
+            }
+            return receive;//属性会被覆盖
+        }
+        let person = {
+            name:'老王',
+            age:20,
+            height:200
+        };
+        let friend = {
+            weight:100,
+            height:180
+        }
+        mixin(person,friend);//属性会被覆盖
+        console.log(person) //{name: "老王", age: 20, height: 180, weight: 100}
         // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Object.assign()↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        // let person = {
-        //     name: '老王',
-        //     age: 20,
-        //     height: 200
-        // };
-        // let friend = {
-        //     weight: 100,
-        //     height: 180
-        // }   
-        // Object.assign(person,friend);
-        // console.log(person)//{name: "老王", age: 20, height: 180, weight: 100}
+        let person = {
+            name: '老王',
+            age: 20,
+            height: 200
+        };
+        let friend = {
+            weight: 100,
+            height: 180
+        }   
+        Object.assign(person,friend);
+        console.log(person)//{name: "老王", age: 20, height: 180, weight: 100}
 
 
 

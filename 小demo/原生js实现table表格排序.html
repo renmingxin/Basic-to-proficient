@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原生js实现table表格排序</title>
+</head>
+
+<body>
+    <div>
+        <table border="1" cellspacing="0" cellpadding="0" id="tblSort">
+            <thead style="color: red; bgcolor: blank">
+                <tr>
+                    <th onclick=" sortTable('tblSort',0);" style="cursor: pointer"> LastName </th>
+                    <th onclick=" sortTable('tblSort',1,'int');" style="cursor: pointer"> Number </th>
+                    <th onclick=" sortTable('tblSort',2,'date');" style="cursor: pointer"> Date </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> A </td>
+                    <td> 1 </td>
+                    <td> 5/9/2008 </td>
+                </tr>
+                <tr>
+                    <td> B </td>
+                    <td> 3 </td>
+                    <td> 6/9/2008 </td>
+                </tr>
+                <tr>
+                    <td> D </td>
+                    <td> 6 </td>
+                    <td> 5/4/2008 </td>
+                </tr>
+                <tr>
+                    <td> E </td>
+                    <td> -5 </td>
+                    <td> 5/4/2007 </td>
+                </tr>
+                <tr>
+                    <td> H </td>
+                    <td> 34 </td>
+                    <td> 5/8/2008 </td>
+                </tr>
+                <tr>
+                    <td> C </td>
+                    <td> 12 </td>
+                    <td> 1/4/2018 </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        /**
+         * 比较函数生成器
+         * 
+         * @param iCol
+         *            数据行数
+         * @param sDataType
+         *            该行的数据类型
+         * @return
+         */
+        function generateCompareTRs(iCol, sDataType) {
+            return function compareTRs(oTR1, oTR2) {
+                vValue1 = convert(oTR1.cells[iCol].firstChild.nodeValue, sDataType);
+                vValue2 = convert(oTR2.cells[iCol].firstChild.nodeValue, sDataType);
+                if (vValue1 < vValue2) {
+                    return -1; 
+                } else if (vValue1 > vValue2) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            };
+        }
+        /**
+         * 处理排序的字段类型
+         * 
+         * @param sValue
+         *            字段值 默认为字符类型即比较ASCII码
+         * @param sDataType
+         *            字段类型 对于date只支持格式为mm/dd/yyyy或mmmm dd,yyyy(January 12,2004)
+         * @return
+         */
+        function convert(sValue, sDataType) {
+            switch (sDataType) {
+                case "int"://解析成int类型
+                    return parseInt(sValue);
+                case "float"://解析成float类型
+                    return parseFloat(sValue);
+                case "date"://解析成日期类型
+                    return new Date(Date.parse(sValue));
+                default://解析成字符串类型
+                    return sValue.toString();
+            }
+        }
+        /**
+         * 通过表头对表列进行排序
+         * 
+         * @param sTableID
+         *            要处理的表ID<table id=''>
+         * @param iCol
+         *            字段列id eg: 0 1 2 3 ...
+         * @param sDataType
+         *            该字段数据类型 int,float,date 缺省情况下当字符串处理
+         */
+        function sortTable(sTableID, iCol, sDataType) {
+            var oTable = document.getElementById(sTableID);
+            var oTBody = oTable.tBodies[0];//table里面的tbody
+            var colDataRows = oTBody.rows;
+            var aTRs = new Array;//table 的 tr数组
+            for (var i = 0; i < colDataRows.length; i++) {
+                aTRs[i] = colDataRows[i];
+            }
+            if (oTable.sortCol == iCol) {//已经排序过一次  再点击一次 直接翻转
+                aTRs.reverse();
+            } else {
+                aTRs.sort(generateCompareTRs(iCol, sDataType));//排序
+            }
+            var oFragment = document.createDocumentFragment();
+            for (var j = 0; j < aTRs.length; j++) {
+                oFragment.appendChild(aTRs[j]);
+            }
+            oTBody.appendChild(oFragment);
+            oTable.sortCol = iCol;
+            
+        }
+    </script>
+</body>
+
+</html>

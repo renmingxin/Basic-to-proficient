@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>base64解码</title>
+</head>
+
+<body>
+    <script>
+        function Base64() {
+            // private property
+            _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+            // public method for encoding
+            this.encode = function (input) {
+                var output = "";
+                var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+                var i = 0;
+                input = _utf8_encode(input);
+                while (i < input.length) {
+                    chr1 = input.charCodeAt(i++);
+                    chr2 = input.charCodeAt(i++);
+                    chr3 = input.charCodeAt(i++);
+                    enc1 = chr1 >> 2;
+                    enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+                    enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+                    enc4 = chr3 & 63;
+                    if (isNaN(chr2)) {
+                        enc3 = enc4 = 64;
+                    } else if (isNaN(chr3)) {
+                        enc4 = 64;
+                    }
+                    output = output +
+                        _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+                        _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+                }
+                return output;
+            }
+
+            // public method for decoding
+            this.decode = function (input) {
+                var output = "";
+                var chr1, chr2, chr3;
+                var enc1, enc2, enc3, enc4;
+                var i = 0;
+                input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+                while (i < input.length) {
+                    enc1 = _keyStr.indexOf(input.charAt(i++));
+                    enc2 = _keyStr.indexOf(input.charAt(i++));
+                    enc3 = _keyStr.indexOf(input.charAt(i++));
+                    enc4 = _keyStr.indexOf(input.charAt(i++));
+                    chr1 = (enc1 << 2) | (enc2 >> 4);
+                    chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                    chr3 = ((enc3 & 3) << 6) | enc4;
+                    output = output + String.fromCharCode(chr1);
+                    if (enc3 != 64) {
+                        output = output + String.fromCharCode(chr2);
+                    }
+                    if (enc4 != 64) {
+                        output = output + String.fromCharCode(chr3);
+                    }
+                }
+                output = _utf8_decode(output);
+                return output;
+            }
+
+            // private method for UTF-8 encoding
+            _utf8_encode = function (string) {
+                string = string.replace(/\r\n/g, "\n");
+                var utftext = "";
+                for (var n = 0; n < string.length; n++) {
+                    var c = string.charCodeAt(n);
+                    if (c < 128) {
+                        utftext += String.fromCharCode(c);
+                    } else if ((c > 127) && (c < 2048)) {
+                        utftext += String.fromCharCode((c >> 6) | 192);
+                        utftext += String.fromCharCode((c & 63) | 128);
+                    } else {
+                        utftext += String.fromCharCode((c >> 12) | 224);
+                        utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                        utftext += String.fromCharCode((c & 63) | 128);
+                    }
+
+                }
+                return utftext;
+            }
+
+            // private method for UTF-8 decoding
+            _utf8_decode = function (utftext) {
+                var string = "";
+                var i = 0;
+                var c = c1 = c2 = 0;
+                while (i < utftext.length) {
+                    c = utftext.charCodeAt(i);
+                    if (c < 128) {
+                        string += String.fromCharCode(c);
+                        i++;
+                    } else if ((c > 191) && (c < 224)) {
+                        c2 = utftext.charCodeAt(i + 1);
+                        string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                        i += 2;
+                    } else {
+                        c2 = utftext.charCodeAt(i + 1);
+                        c3 = utftext.charCodeAt(i + 2);
+                        string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                        i += 3;
+                    }
+                }
+                return string;
+            }
+        }
+        var b = new Base64();  
+        var str = b.encode("admin:admin");  
+        console.log("base64 encode:" + str);  
+　　　　　//解密
+        let a = 'JSUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLeacjeWKoeWZqOWfuuacrOmFjee9ri0tLXN0YXJ0LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQolJSBiaeW5s+WPsGlkLOW/heWhqw0KJSV7YmlfcGlkLCAzN30uDQoNCiUlIGJp5pyNaWQs5b+F5aGrDQolJXtiaV9zaWQsIDM3fS4NCg0KJSUg6K6+572u5Y2V5Liq5pyN5Yqh5Zmo5Zyo57q/5LiK6ZmQ5Lq65pWwLOm7mOiupDYwMDDlnKjlkIzml7blnKjnur8NCntsb2dpbl9tYXgsIDYwMDB9Lg0KDQolJSDmnI3liqHlvIDlkK/lkI7pu5jorqTkuLrpmZDliLbnirbmgIHvvIzorqlnbei/m+ihjOa1i+ivleWGjeS7pWdt5pS55Li66Z2e6ZmQ5Yi254q25oCBIDDkuLrpnZ7pmZDliLbnmbvlvZXvvIwx5Li66ZmQ5Yi255m75b2VDQp7bG9naW5fc3RhdHVlLCAwfS4NCg0KJSUg5byA5paw5pyN5Yqh5Zmo6buY6K6k5Li65Y+v5bu654q25oCBCSAw5Li65Y+v5bu677yMMeS4uuS4jeWPr+W7ug0Ke2NyZWF0ZV9zdGF0dWUsIDB9Lg0KDQolJWdt55qE5a+G56CBDQp7Z21fcGFzc3dvcmQsIFt7c2d6X2dtLCAiMWVhNWE3NzkyYWZjOWYwYTYwYmMxNzgxY2EyZjE5NTgifSwge2FkbWluLCAiYjI1NWFlM2Q0ZjdkMjQzMGM4MDM3MDBkY2EyMzYxNTAifSwge3NlcnZlciwgIjNiZjVjODQ2NWY4MjI1Y2E3OTFkZTZkODljNWZiY2FmIn1dfS4NCg0KJSUg5pyN5Yqh5Zmo57G75Z6LKDHmuLjmiI/mnI0sMuWKn+iDveS4reaOpywz6Lqr5Lu96K6k6K+B5pyNLDTmjqjpgIEv6K+t6Z+z5pyN5Yqh5ZmoLDA95Lit5o6nK+i6q+S7vSvor63pn7PmjqjpgIHnsbvlnospIOWGhee9kem7mOiupOWFqOmDqOmDveaYrw0KJSV7c2VydmVyX3R5cGUsIDF9Lg0KDQolJSDorqTor4HlkI3np7ANCntjZXJ0aWZ5X25hbWUsICJzZXJ2ZXIifS4NCiUlIOiupOivgeeggQ0Ke2NlcnRpZnlfY29kZSwgIkEyMyM0NjUifS4NCg0KJSXmnIDlpKfliJvlu7oNCntjcmVhdGVfbWF4LCA0MDAwMH0uDQolJS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t5pyN5Yqh5Zmo5Z+65pys6YWN572uLS0tZW5kLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KDQolJS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t6aG555uu5omp5bGV6YWN572uLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQolJS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t6Lqr5Lu95pyN5Yqh5ZmoLS0tLXN0YXJ0LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQolJSDouqvku73mnI3liqHlmajkuK3mjqdIVFRQ5Zyw5Z2ADQp7aWRlbnRpdHlfYWRkcmVzcywgImh0dHA6Ly8xOTIuMTY4LjUuMTY5Ojk5MCJ9Lg0KJSUg6Lqr5Lu95pyN5Yqh5ZmoR03lnLDlnYANCntpZGVudGl0eV9nbV9hZGRyZXNzLCAiaHR0cDovLzE5Mi4xNjguMi45Njo5MDAifS4NCiUlLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS3ouqvku73mnI3liqHlmagtLS0tLWVuZC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KJSUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLeaImOaWl+ebuOWFsy0tLS1zdGFydC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KJSUgd2Vi5pyN5Yqh5Zmo6aqM6K+B5Zyw5Z2ADQp7ZmlnaHRfd2ViX3ZlcmlmeSwgImh0dHA6Ly8xMjMuNTkuMTE3LjE5Nzo2MDExIn0uDQoNCiUlIOWNs+aXtnB2cOeZu+W9leacjeWKoeWZqOWcsOWdgO+8jOWPqumFjee9ruWcqOi3qOacjeS4reaOp+S4iuacieaViO+8iOS4reaOp1RDUOerr+WPo++8iQ0Ke3B2cF9hZGRyZXNzLCB7IjEyNy4wLjAuMSIsICI3NjIzIn19Lg0KJSUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLeaImOaWl+ebuOWFsy0tLS0tZW5kLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KJSUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLeacjeWKoeWZqOexu+WeizU66Leo5pyN5ri45oiP5pyN5Yqh5ZmoKOa4uOaIj+acjeWSjOS4reaOp+acjeWQiOS9kyktLS0tLS0tLS0tLS0tLS0tLQ0KJSXnmbvlvZXlnLDlnYANCntsb2dpbl9hZGRyZXNzLCB7IjE5Mi4xNjguMi45NiIsIDc2MDF9fS4lJeaImOaWl+acjeeahGlw5ZKM5YW25a+55bqU5ri45oiP5qih5Z2X55qE55m75b2V56uv5Y+jDQolJS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tZW5kLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KDQolJS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t56S85YyF56CBLS0tLXN0YXJ0LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQolJWdpZnTnpLzljIXnoIHnlJ/miJAs5LiL6L29ZnRw55uu5b2VDQp7Z2lmdF9wYXRoLCAiYzovZ2lmdF9sb2cvIn0uDQoNCiUlIOekvOWMheeggemihuWPluWcsOWdgA0Ke2dpZnRfdXJsLCAiaHR0cDovLzE5Mi4xNjguNS4xNjk6OTkwIn0uDQolJS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t56S85YyF56CBLS0tLS0tZW5kLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQolJS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t6K+t6Z+zLS0tLXN0YXJ0LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQolJSDor63pn7PogYrlpKlVcmwsaHR0cOS4i+i9veeUqCjmnIDlkI4v6ZyA6KaBLOWboOS4uuS7o+eggeS4reaYrysrKSAlJeato+W8j+acjeS9v+eUqGNkbjsg57G75Ly8Omh0dHA6Ly94eHh4Lnl1eWluLmNkbi55b3VraWEuY29tLw0Ke3ZvaWNlX2Rvd25sb2FkX3VybCwgImh0dHA6Ly8xMDEuMTk4LjEyNy4xNzE6ODA4OS8ifS4NCg0KJSUg6K+t6Z+z5LiK5Lyg5Zyw5Z2ADQp7dm9pY2VfdXBsb2FkX3VybCwgImh0dHA6Ly8xMDEuMTk4LjEyNy4xNzE6OTkwIn0uDQoNCiUg6K+t6Z+z5paH5Lu25a2Y5pS+6Lev5b6EDQp7dm9pY2VfcGF0aCwgIi92YXIvZnRwL3B1Yi9jaGF0X2Z0cCJ9Lg0KJSUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLeivremfsy0tLS0tZW5kLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQolJS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t5raI5oGv5o6o6YCBLS0tLXN0YXJ0LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQolJeaOqOmAgeacjeWKoeWZqOWcsOWdgOWcsOWdgA0Ke3B1c2hfdXJsLCAiaHR0cDovLzEyNy4wLjAuMTo5MDEwIn0uDQoNCiUl5o6o6YCB5pyN5Yqh5Zmo5rOo5YaM55SoaXAo5oiW5Z+f5ZCNKSznq6/lj6Pkv6Hmga8oYW5kcm9pZOeUqCkNCntwdXNoX3JlZ2lzdF9pcCwgeyIxMjcuMC4wLjEiLCAiNDAwMCJ9fS4NCiUlLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS3mtojmga/mjqjpgIEtLS0tLWVuZC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ==';
+        str = b.decode(a);  
+        console.log("base64 decode:" + str);  
+    </script>
+</body>
+
+</html>

@@ -6,126 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .cssdiv {
-            background: red;
-            width: 200px;
-            height: 200px;
-        }
-
-        .cssdiv222 {
-            background: blue;
-            width: 100px;
-            height: 100px;
-        }
-
-        ul>li {
-            background: yellow;
-            width: 50px;
-            height: 50px;
-            margin-bottom: 10px;
-        }
-        .active {
-            background: red;
-        }
-        .aaa {
-            background: yellow
-        }
-    </style>
 </head>
 
 <body>
-    <div>
-        <div id="div1" class="cssdiv" data-age="22" onclick="aaa(event)" data-name="你">
-            <div id="div1" class="cssdiv222" data-age="18" onclick="bbb(event)" data-name="是我"></div>
-        </div>
-        <div>
-            <ul id="ul">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-                <li>6</li>
-                <li>7</li>
-                <li>8</li>
-                <li>9</li>
-                <li>10</li>
-            </ul>
-        </div>
-    </div>
+    <input type="file">
     <script>
-        // function aaa(event) {
-        //     console.log(event.target.id);
-        //     console.log(event.target.className);
-        //     console.log(event.target.dataset)
-        //     console.log(event)
-        // };
-        // function bbb(event) {
-        //     event.stopPropagation()
-        //     console.log(event.target.id);
-        //     console.log(event.target.className);
-        //     console.log(event.target.dataset)
-        //     console.log(event)
+        // function Person(name,age) {
+        //     this.name = name;
+        //     this.age=age;
         // }
-        // var oul = document.getElementById('ul');
-        // var oli = oul.getElementsByTagName('li');
-        // console.log(oli.length)
-        // var blue = 'bule';
-        // var red = 'red111';
-        // var key =true;
-        // for (let i = 0; i < oli.length; i++) {
-        //     oli[i].addEventListener('click', function () {
-        //         if(this.style.backgroundColor == 'red'){
-        //             this.style.backgroundColor = 'yellow';
-        //         }else{
-        //             this.style.backgroundColor = 'red'
-        //         }
-        //     }, true)
+        // Person.prototype.say = function(){
+        //     return "我的名字叫" + this.name+"今年"+this.age+"岁了";
         // }
+        // var obj=new Person("laotie",88);//通过构造函数创建对象，必须使用new 运算符
+        // console.log(obj.say());//我的名字叫laotie今年88岁了
+        // console.log(obj)
 
-        // var arr = ['老王','老李','老张'];
-        // var arr1 = [20,30,40];
-        // function fn(a,b){
-        //     var obj = {};
-        //     for(let i =0;i<arr.length;i++){
-        //         obj[arr[i]] =arr1[i];
+        // class Person1{//定义了一个名字为Person的类
+        //     constructor(name,age){//constructor是一个构造方法，用来接收参数
+        //         this.name = name;//this代表的是实例对象
+        //         this.age=age;
         //     }
-        //     console.log(obj);
-        // }
-        // fn(arr,arr1);
-        // function foo(num){
-        //     console.log("foo:"+num);
-
-        //     data.count++;
-        //     console.log(`执行了${data.count}次`)
-        // }
-
-        // var data = {
-        //     count:0
-        // }
-
-        // var i;
-        // for(i=0;i<10;i++){
-        //     if(i>5){
-        //         foo(i);
+        //     say(){//这是一个类的方法，注意千万不要加上function
+        //         return "我的名字叫" + this.name+"今年"+this.age+"岁了";
         //     }
         // }
+        // var obj1 = new Person1("laotie",88);
+        // console.log(obj1);//我的名字叫laotie今年88岁了
 
 
-        // function aaa(x){
-        //     this.x = x;
+        // class Box{
+        //     constructor(name,sex){
+        //         this.name = name;
+        //         this.sex = sex;
+        //     }
+        //     say(){
+        //         return `${this.name}`
+        //     }
         // }
-        // function test(){
-        //     this.x = 1;
-        //     alert(this.x);
+        // let obj = new Box('小李','woman');
+        // console.log(obj.say())
+
+
+
+        // var sayhello = function(name, callback){
+        //     setTimeout(function(){
+        //         console.log("hello");
+        //         console.log(name);
+        //         return callback(null);
+        //     },1000);
         // }
-        // aaa(5);
-        // console.log(x);
+        // sayhello("xiaomi", function(err){
+        //     sayhello("apple", function(err){
+        //         sayhello("huawei", function(err){
+        //             console.log("end");
+        //         });
+        //     });
+        // });
+        // console.log("mobile phone");
 
-        // test();
 
-        
+
+
+
+        // var sayhello = function(name){
+        //     return new Promise(function(resolve, reject){
+        //         setTimeout(function(){
+        //             console.log("hello");
+        //             console.log(name);
+        //             resolve();
+        //         },1000);
+        //     });
+        // }
+
+        // sayhello("xiaomi").then(function(){
+        //     console.log('frist');
+        // }).then(function(){
+        //     return sayhello("huawei");
+        //     console.log('second111');
+        // }).then(function(){
+        //     console.log('second222');
+        // }).then(function(){
+        //     return sayhello("apple");
+        // }).then(function(){
+        //     console.log('end');
+        // }).catch(function(err){
+        //     console.log(err);
+        // })
+        // console.log("mobile phone");
 
     </script>
 </body>

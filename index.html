@@ -1,101 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .aaa {
+            height: 100%;
+            background-color: #4d85d1
+        }
+    </style>
 </head>
-
 <body>
-    <input type="file">
+    <div class="aaa">
+
+    </div>
     <script>
-        // function Person(name,age) {
-        //     this.name = name;
-        //     this.age=age;
-        // }
-        // Person.prototype.say = function(){
-        //     return "我的名字叫" + this.name+"今年"+this.age+"岁了";
-        // }
-        // var obj=new Person("laotie",88);//通过构造函数创建对象，必须使用new 运算符
-        // console.log(obj.say());//我的名字叫laotie今年88岁了
-        // console.log(obj)
-
-        // class Person1{//定义了一个名字为Person的类
-        //     constructor(name,age){//constructor是一个构造方法，用来接收参数
-        //         this.name = name;//this代表的是实例对象
-        //         this.age=age;
-        //     }
-        //     say(){//这是一个类的方法，注意千万不要加上function
-        //         return "我的名字叫" + this.name+"今年"+this.age+"岁了";
-        //     }
-        // }
-        // var obj1 = new Person1("laotie",88);
-        // console.log(obj1);//我的名字叫laotie今年88岁了
-
-
-        // class Box{
-        //     constructor(name,sex){
-        //         this.name = name;
-        //         this.sex = sex;
-        //     }
-        //     say(){
-        //         return `${this.name}`
-        //     }
-        // }
-        // let obj = new Box('小李','woman');
-        // console.log(obj.say())
-
-
-
-        // var sayhello = function(name, callback){
-        //     setTimeout(function(){
-        //         console.log("hello");
-        //         console.log(name);
-        //         return callback(null);
-        //     },1000);
-        // }
-        // sayhello("xiaomi", function(err){
-        //     sayhello("apple", function(err){
-        //         sayhello("huawei", function(err){
-        //             console.log("end");
-        //         });
-        //     });
-        // });
-        // console.log("mobile phone");
-
-
-
-
-
-        // var sayhello = function(name){
-        //     return new Promise(function(resolve, reject){
-        //         setTimeout(function(){
-        //             console.log("hello");
-        //             console.log(name);
-        //             resolve();
-        //         },1000);
-        //     });
-        // }
-
-        // sayhello("xiaomi").then(function(){
-        //     console.log('frist');
-        // }).then(function(){
-        //     return sayhello("huawei");
-        //     console.log('second111');
-        // }).then(function(){
-        //     console.log('second222');
-        // }).then(function(){
-        //     return sayhello("apple");
-        // }).then(function(){
-        //     console.log('end');
-        // }).catch(function(err){
-        //     console.log(err);
-        // })
-        // console.log("mobile phone");
-
+        
     </script>
 </body>
-
 </html>

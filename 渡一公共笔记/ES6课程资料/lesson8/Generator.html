@@ -9,19 +9,19 @@
 <body>
     <script>
         // iterator函数的目的 执行返回可以迭代的对象
-        // let obj = {
-        //     0: 'a',
-        //     1: 'b',
-        //     2: 'c',
-        //     length: 3,
-        //     [Symbol.iterator]: function *() {
-        //         let currIndex = 0;
-        //         while (currIndex != this.length) {
-        //             yield this[currIndex];
-        //             currIndex++;
-        //         }
-        //     }
-        // };
+        let obj = {
+            0: 'a',
+            1: 'b',
+            2: 'c',
+            length: 3,
+            [Symbol.iterator]: function *() {
+                let currIndex = 0;
+                while (currIndex != this.length) {
+                    yield this[currIndex];
+                    currIndex++;
+                }
+            }
+        };
 
         // console.log([...obj]);
         

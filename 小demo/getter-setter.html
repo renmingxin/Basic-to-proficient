@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        
-    </style>
 </head>
 <body>
-    <div class="aaa">
-
-    </div>
-    <input type="text" id="input1" oninput="bbb()">
     <script>
-        let aaa = document.getElementById('input1');
-        function bbb(){
-            console.log(aaa.value);
+        class Person{
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            }
+            get nname(){
+                return this.name;
+            }
+            set nname(name){
+                this.name = name;
+            }
         }
     </script>
 </body>

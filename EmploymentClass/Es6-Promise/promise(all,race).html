@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function test(msg){
+            return new Promise((res,rej)=>{
+                res(msg);
+            })
+        }
+        function test2(msg){
+            return new Promise((res,rej)=>{
+                setTimeout(() => {
+                    rej(msg)
+                }, 2000);
+            })
+        }
+        //Promise.all可以将多个Promise实例包装成一个新的Promise实例。
+        //同时,成功和失败的返回值是不同的,成功的时候返回的是一个结果数组,
+        //失败的时候则返回最先被reiect失!
+        Promise.all([test('111'),test('222'),test('333')])
+        .then((res)=>{
+            console.log(res)//[111,222,333]
+        },(respon)=>{
+            console.log(respon)
+        });
+        
+        Promise.all([test('111'),test('222'),test2('333')])
+        .then((res)=>{
+            console.log(res)
+        },(respon)=>{
+            console.log(respon)//333
+        });
+
+
+
+
+        //Promise.race 谁先完成 就先执行谁
+        //顾名思义Promise.race就是赛跑的意思,意思就是说,Promise. race([p1, p2, p31)里面哪个结果获得的快,就返回那个结果,
+        //不管结果本身是成功状态还是失败状态。
+        Promise.race([test('111'),test('222'),test2('333')])
+        .then((res)=>{
+            console.log(res)//111
+        },(respon)=>{
+            console.log(respon)
+        });
+
+
+    </script>
+</body>
+</html>

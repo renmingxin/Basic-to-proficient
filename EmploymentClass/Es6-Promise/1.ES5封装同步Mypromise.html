@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // let oP = new Promise((res,rej)=>{
+        //     res(0);
+        //     throw new Error(1);
+        // });
+        // oP.then((val)=>{
+        //     console.log(val,'ok');
+        // },(response)=>{
+        //     console.log(response)
+        // })
+
+        //↓↓↓↓↓↓↓↓↓↓↓↓MyPromise的封装↓↓↓↓↓↓↓↓↓↓↓↓
+        //同步执行
+        //pending
+        function MyPromise(executor){
+            var self = this;
+            self.status = 'pending';//待定
+            self.resolveValue = null;
+            self.rejectValue = null;
+            function resolve(res){
+                if(self.status === 'pending'){
+                    self.status = 'Fulfilled';//完成
+                    self.resolveValue = res;
+                }
+            }
+            function reject(rej){
+                if(self.status === 'pending'){
+                    self.status = 'Rejected';//拒绝
+                    self.rejectValue = rej;
+                }
+            }
+            //
+            try {
+                executor(resolve,reject);
+            } catch (error) {
+                reject(error)
+            }
+        };
+        MyPromise.prototype.then = function(onFulfilled,onRejected){
+            var self = this;
+            if(self.status === 'Fulfilled'){
+                onFulfilled(self.resolveValue);
+            }
+            if(self.status === 'Rejected'){
+                onRejected(self.rejectValue)
+            }
+        }
+        let p1 = new MyPromise((res,rej)=>{
+            res(0);
+        });
+        p1.then((val)=>{
+            console.log(val,'ok');
+        },(response)=>{
+            console.log(response,'no')
+        })
+    </script>
+</body>
+</html>

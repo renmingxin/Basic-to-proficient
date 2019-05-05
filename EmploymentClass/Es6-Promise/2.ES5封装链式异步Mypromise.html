@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function MyPromise(executor){
+            var self = this;
+            self.status = 'pending';//待定
+            self.resolveValue = null;
+            self.rejectValue = null;
+            self.ResolveCallBackList = [];//注册成功的函数
+            self.RejectCallBackList = [];//注册失败的函数
+            function resolve(res){
+                if(self.status === 'pending'){
+                    self.status = 'Fulfilled';//完成
+                    self.resolveValue = res;
+                    self.ResolveCallBackList.forEach(function(ele){
+                        ele();
+                    });
+                }
+            }
+            function reject(rej){
+                if(self.status === 'pending'){
+                    self.status = 'Rejected';//拒绝
+                    self.rejectValue = rej;
+                    self.RejectCallBackList.forEach(function(ele){
+                        ele();
+                    });
+                }
+            }
+            //
+            try {
+                executor(resolve,reject);
+            } catch (error) {
+                reject(error)
+            }
+        };
+        MyPromise.prototype.then = function(onFulfilled,onRejected){
+            var self = this;
+            //链式编写
+            var nextPromise = new MyPromise(function(res,rej){
+
+                if(self.status === 'Fulfilled'){
+                    var nextResolveValue =  onFulfilled(self.resolveValue);
+                    res(nextResolveValue);
+                }
+                if(self.status === 'Rejected'){
+                    var nextRejectValue = onRejected(self.rejectValue)
+                    rej(nextRejectValue);
+                }
+                if(self.status === 'pending'){
+                    self.ResolveCallBackList.push(function(){
+                        var nextResolveValue =  onFulfilled(self.resolveValue);
+                        res(nextResolveValue);
+                    });
+                    self.RejectCallBackList.push(function(){
+                        var nextRejectValue = onRejected(self.rejectValue)
+                        rej(nextRejectValue);
+                    })
+                }
+            })
+            
+            return nextPromise;
+        }
+
+        //异步链式操作
+        let p1 = new MyPromise((res,rej)=>{
+            //异步操作
+            setTimeout(() => {
+                res(0);
+            }, 500);
+        });
+        p1.then((val)=>{
+            console.log(val,'ok');
+            return 1111;
+        },(response)=>{
+            console.log(response,'no')
+            return 00000;
+        }).then((val)=>{
+            console.log(val,'ok2')
+        },(response)=>{
+            console.log(response,'no2')
+        })
+        
+    </script>
+</body>
+</html>

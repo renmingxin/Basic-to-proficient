@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test">
+
+    </div>
+    <script>
+        // Object.defineProperty
+        //ES5规范开始后续版本送代,也在致力于做一件事,就是把js底层已有的功能,提供给开发者使用。
+        //Object.defineProperty就是其中一个,此方法会可直接在一个对象上定义一个新的具有详细描述的属性,
+        //或者修改一个对象的现有属性,并返回这个对象。
+        //
+        /*
+        Object.defineProperty(对象,属性,描述符);
+        描述符对,对象的属性的进行详细描述:
+            数据描述符:
+                value: xxx属性值。默认
+                writable: true是否可写。默认false
+                configurable: true是否可配置。默认false
+                enumerable: true是否可枚举。默认false
+
+            存取描述符:
+                set: function(){}属性访问器进行写操作时调用该方法
+                get: function(){}属性访问器进行读操作时调用该方法
+        */
+        // Function.prototype = {
+        //     name:'aaa'
+        // }
+        // console.log(Function.prototype) //ƒ () { [native code] }
+    
+    
+        // var name = 'rmx';
+        
+        // var obj = {
+        //     name:'rmx',
+        //     age:20,
+        //     __proto__:{
+        //         sex:'male',
+        //         __proto__:{
+        //             height:180
+        //         }
+        //     }
+        // }
+        // for (const key in obj) {
+        //     console.log(key,obj[key])
+        // }
+
+
+        // var obj1 = {};
+        // Object.defineProperty(obj1,'name',{
+        //     value:'rmx',
+        //     writable:false, //不可写
+        //     configurable:false,//不可配置
+        //     enumerable:false//不可枚举
+        // })
+        // obj1.name = 'aaaa';
+        // console.log(obj1.name) //rmx
+        // delete obj1.name;//false
+        // console.log(obj1.name);//rmx
+        // for (const key in obj1) {
+        //     console.log(key)//undefined
+        // }
+
+
+
+        //get和set 函数 不能和value和writable属性同时存在
+        // var obj2 = {
+        //     name:'rmx' 
+        // };
+        // var tempValue = '';
+        // Object.defineProperty(obj2,'name',{
+        //     value:'laowang',//直接覆盖掉
+        //     writable:false,
+        //     configurable:false,
+        //     enumerable:false,
+        //     // get:function(){
+        //     //     console.log('get执行了')
+        //     //     return tempValue
+        //     // },
+        //     // set:function(newValue){
+        //     //     tempValue = newValue;
+        //     // }
+        // })
+        // console.log(obj2.name)//laowang
+        
+
+        
+
+        var obj3 = {
+            tempValue:'rmx',
+            get name(){
+                return this.tempValue;
+            },
+            set name(newValue){
+                console.log('我执行了set操作')
+                this.tempValue = newValue
+                document.getElementById('test').innerHTML = this.tempValue;
+            }
+        }
+        console.log(obj3.name)//rmx
+        obj3.name = 'aaa';
+        console.log(obj3.name)//aaa
+        let a = obj3.name;
+        
+    </script>
+</body>
+</html>

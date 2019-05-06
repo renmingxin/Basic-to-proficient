@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6-proxy&Reflect</title>
+</head>
+<body>
+    <script>
+        //兼容性不是很好 无法通过babel把ES6的proxy&Reflect转化为ES5
+        /*
+        简介:
+            直入代理模式的思想,以简洁易懂的方式控制对外部对象的访问。
+        总结:
+            利用内置的set, get方法控制属性的读写功能用处较大
+            其余has deleProperty..方法不太在工作开发中使用
+            有兴趣可以去了解一下。
+            兼容不好
+        */
+        let oData = {
+            val:'rmx',
+            _val:'private'
+        };
+        // let oData = [111]
+        let oProxyData = new Proxy(oData,{
+            get(target,key,receiver){
+                //target:当前对象oData
+                //key:属性值val
+                //receiver:Proxy对象
+                console.log('get执行了')
+                console.log(target,key,receiver);
+                console.log(Reflect)
+                return Reflect.get(target,key)
+            },
+            set(target,key,value,receiver){
+                //target:当前对象oData
+                //key:属性值val
+                //value:赋值的值aaaa
+                //receiver:Proxy对象
+                console.log('set执行了');
+                console.log(target,key,value,receiver);
+                Reflect.set(target,key,value)
+                upData();
+            },
+            //监听in操作符
+            has(target,key){
+                //如果是私有属性不想被外部访问的话
+                return key.indexOf('_') != -1 ? false:key in oData;
+            },
+            //监听删除属性
+            deleteProperty(){
+
+            }
+        });
+        function upData(){
+            console.log('更新了')
+        }
+        //读写控制
+        console.log(oProxyData.val)//rmx
+        oProxyData.val = 'aaaa';
+        console.log(oProxyData.val);//aaaa
+        console.log('val' in oProxyData)//true
+        console.log('_val' in oProxyData)//false
+
+
+        
+    </script>
+</body>
+</html>

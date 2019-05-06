@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">value:
+    <input type="text" id="demo"/>
+    <div>
+        <span>value:</span>
+        <span id="show"></span>
+    </div>
+    <label for="">valueObj.name:
+    <input type="text" id="demo1"/>
+    <div>
+        <span>valueObj.name:</span>
+        <span id="show1"></span>
+    </div>
+    <script>
+        /*
+        vue双向数据绑定核心功能由Observer, Compile, Watcher三部分实现其中Observer部分功能实现有Object.defineProperty实现。
+        Observer:监测数据变化进行相应回调(数据劫持) ;
+        */
+        var oDiv = document.getElementById('show');
+        var oDiv1 = document.getElementById('show1');
+        var oInput = document.getElementById('demo');
+        var oInput1 = document.getElementById('demo1');
+        var oData = {
+            value:'data',
+            valueObj:{
+                value:''
+            }
+        };
+        oInput.oninput = function(){
+            oData.value = this.value;
+        }
+        oInput1.oninput = function(){
+            oData.valueObj.value = this.value;
+        }
+        function upDate(){
+            oDiv.innerText = oData.value;
+            oDiv1.innerText = oData.valueObj.value;
+        }
+        //监控对象的某个属性是否发生改变
+        function Observer(data){
+            if(!data || typeof data != 'object'){
+                return data;
+            }
+            Object.keys(data).forEach((key)=>{
+                defineRective(data,key,data[key]);
+            })
+        }
+        //真正的去监控的函数
+        //data:监控的对象  key:属性   val:属性值
+        function defineRective(data,key,val){
+            //AO
+            Observer(val); //递归监听，如果监听值为对象里面的值
+            Object.defineProperty(data,key,{
+                get(){
+                    return val;
+                },
+                set(newValue){
+                    if(newValue == val) return;//如果修改的值跟上次的值一样就不做处理 避免性能的浪费
+                    val = newValue;
+                    upDate();
+                }
+            })
+        }
+        Observer(oData);
+
+
+
+
+        //重点  vue 里面不止可以对object对象进行监听还可以对array数组进行监听
+        //vue
+        let arr = [];
+        let {push} = Array.prototype;
+        function upDataArr(){
+            console.log('更新数组');
+        }
+        // [
+        //     'push',
+        //     'pop'
+        // ]
+        //push pop unshift shift slice....
+        Object.defineProperty(Array.prototype,'push',{
+            value:(function(){
+                return (...arg)=>{
+                    push.apply(arr,arg)
+                    upDataArr();
+                }
+            })()
+        })
+        arr.push(1,2)
+    </script>
+</body>
+</html>

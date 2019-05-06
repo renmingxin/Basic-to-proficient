@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [2,3,4,5];
+        console.log([...arr])
+        for (const iterator of arr) {
+            console.log(iterator)
+        }
+
+        let obj = {
+            0:'a',
+            1:'b',
+            2:'c',
+            length:3,
+            [Symbol.iterator]:function(){
+                let curIndex = 0;
+                let next = () =>{
+                    return {
+                        value:this[curIndex],
+                        done:this.length == ++curIndex
+                    }
+                }
+                return {
+                    next
+                }
+            }
+        }
+        console.log([...obj])
+        for (const iterator of obj) {
+            console.log(iterator)
+        }
+    </script>
+</body>
+</html>

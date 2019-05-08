@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>...运算符</title>
+</head>
+<body>
+    <script>
+
+
+        //读 展开作用 ...[1,2,3,4,5] === 1,2,3,4,5
+        // console.log(1,2,3,4,5)
+        // let arr = [1,2,3,4,5];
+        // console.log(...arr);
+
+
+
+
+
+        // function sum(){
+        //     let sumNumber = 0;
+        //     for (let i = 0; i < arguments.length; i++) {
+        //         sumNumber +=arguments[i];
+        //     }
+        //     return sumNumber;
+        // }
+        // let a = sum(2,34,5);
+        // let a1 = sum(2,34,6);
+        // console.log(a,a1)//41 42
+
+
+
+
+
+        // //写操作write
+        // //...收集 ->[]  收集成数组 然后进行下一步操作
+        // function sum1(...arg){
+        //     console.log(arg)//(4) [1, 2, 3, 4]
+        //     let sumNumber = 0;
+        //     arg.forEach((ele)=>{
+        //         sumNumber += ele;
+        //     })
+        //     return sumNumber;
+        // }
+        // let b = sum1(1,2,3,4);
+        // console.log(b);//10
+
+
+
+
+
+        // function test(a,b,...arg){
+        //     console.log(a,b,arg);
+        // }
+        // let c = test(3,4,9,56,56,56);
+        // console.log(c);//3 4 (4) [9, 56, 56, 56]
+
+
+
+
+        
+
+
+        // //read 读操作  把一个数组 拆成 参数个数 一个一个装进去
+        // //算出平均值
+        // function computedScore(...arg){
+        //     let sum = 0;
+        //     arg.forEach(ele=>{
+        //         sum += ele;
+        //     })
+        //     return sum /arg.length;
+        // }
+
+        // //去掉数组中的最高分和最低分 然后求平均值
+        // function avearge(...arg){
+        //     arg.sort((a,b)=>{
+        //         return a - b;
+        //     })
+        //     console.log(arg);
+        //     arg.pop();//去掉数组中的末尾一项
+        //     arg.shift();//去掉数组中的头部一项
+        //     console.log(arg);
+        //     //return computedScore.apply(this,arg);//老写法
+        //     //read 读操作  把一个数组 拆成 参数个数 一个一个装进去
+        //     //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        //     return computedScore(...arg);
+        // }
+        // let d = avearge(60,70,98,54,99,75,82);
+        // console.log(d);//77
+
+
+
+        
+        //...拼接数组
+        let arr1 = [1,2,3,4,5];
+        let arr2 = [6,7,8,9,10];
+        let newArr = [...arr1,...arr2];
+        let newArr2 = [].concat(arr1,arr2);
+        console.log(newArr)//(10) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        console.log(newArr2);//(10) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+    </script>
+</body>
+</html>

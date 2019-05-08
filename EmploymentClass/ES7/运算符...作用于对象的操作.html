@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let son = {
+            name:'rmx',
+            age:20
+        }
+        let home = {
+            mama:{
+                name:'yxj',
+                age:50,
+            },
+            baba:{
+                name:'rdh',
+                age:55
+            },
+            personNum:3,
+        }
+
+
+        //可以拼接对象  
+        //弊端:浅克隆  会影响源对象
+        let newHome = {
+            ...son,
+            ...home
+        }
+        console.log(newHome);
+        /*
+        {
+            name: "rmx",
+            age: 20, 
+            mama: {name: "yxj", age: 50},
+            baba: {name: "rdh", age: 55},
+            personNum: 3
+        }
+        */
+    </script>
+</body>
+</html>

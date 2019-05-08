@@ -98,7 +98,23 @@
         // console.log(B);//20
         // console.log(A);//A is not defined
 
+
+
+
         
+        function sum(x){
+            return function(y){
+                return function(z){
+                    console.log(x,y,z);
+                    return x+y+z;
+                }
+            }
+        }
+        var sum1 = sum(1);
+        var sum2 = sum1(2);
+        let newSum = x => y => z => x + y + z;
+        console.log(sum2(3));
+        console.log(sum(1)(2)(3));
     </script>
 </body>
 </html>

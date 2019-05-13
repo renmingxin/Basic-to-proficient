@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Generator</title>
+</head>
+<body>
+    <script>
+        let obj = {
+            0:'a',
+            1:'b',
+            2:'c',
+            length:3,
+            [Symbol.iterator]:function(){
+                let curIndex = 0;
+                let next = () =>{
+                    return {
+                        value:this[curIndex],
+                        done:this.length == ++curIndex
+                    }
+                }
+                return {
+                    next
+                }
+            }
+        }
+        for (const iterator of obj) {
+            console.log(iterator);
+        }
+
+        //Generator简介:
+        /**
+        生成器，本身是函数，执行后返回迭代对象，函数内部要配合yield使用
+        Generator函数会分段执行，遇到yield即暂停
+        */
+
+
+    </script>
+</body>
+</html>

@@ -92,22 +92,47 @@
 
         
 
-        var obj3 = {
-            tempValue:'rmx',
-            get name(){
-                return this.tempValue;
-            },
-            set name(newValue){
-                console.log('我执行了set操作')
-                this.tempValue = newValue
-                document.getElementById('test').innerHTML = this.tempValue;
+        // var obj3 = {
+        //     tempValue:'rmx',
+        //     get name(){  //name是obj3.name 中的属性 默认值为obj3.name == 'rmx'
+        //         return this.tempValue;
+        //     },
+        //     set name(newValue){  //如果你修改obj3.name 的值将会执行set函数的操作
+        //         console.log('我执行了set操作')
+        //         this.tempValue = newValue
+        //         document.getElementById('test').innerHTML = this.tempValue;
+        //     }
+        // }
+        // console.log(obj3.name)//rmx
+        // obj3.name = 'aaa';
+        // console.log(obj3.name)//aaa
+        // let a = obj3.name;
+        
+
+
+
+
+        var people = {
+            name:'rmx',
+            age:22,
+            sex:'male'
+        }
+        function observe(obj) {
+            for(let key in obj){
+                let val = obj[key];
+                Object.defineProperty(obj,key,{
+                    get(){
+                        console.log('get操作')
+                        return val;
+                    },
+                    set(newValue){
+                        console.log(obj, "的", key, "属性已经改变 :", obj[key], "--->", newValue);
+                    }
+                })
             }
         }
-        console.log(obj3.name)//rmx
-        obj3.name = 'aaa';
-        console.log(obj3.name)//aaa
-        let a = obj3.name;
-        
+        observe(people);
+        people.name = 'bbb'; //people={...} 的" "name" "属性已经改变 :" "rmx" "--->" "bbb"
     </script>
 </body>
 </html>

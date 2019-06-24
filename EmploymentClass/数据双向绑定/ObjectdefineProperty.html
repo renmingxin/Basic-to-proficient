@@ -90,6 +90,7 @@
         // console.log(obj2.name)//laowang
         
 
+
         
 
         // var obj3 = {
@@ -112,27 +113,31 @@
 
 
 
-        var people = {
-            name:'rmx',
-            age:22,
-            sex:'male'
-        }
-        function observe(obj) {
-            for(let key in obj){
-                let val = obj[key];
-                Object.defineProperty(obj,key,{
-                    get(){
-                        console.log('get操作')
-                        return val;
-                    },
-                    set(newValue){
-                        console.log(obj, "的", key, "属性已经改变 :", obj[key], "--->", newValue);
-                    }
-                })
-            }
-        }
-        observe(people);
-        people.name = 'bbb'; //people={...} 的" "name" "属性已经改变 :" "rmx" "--->" "bbb"
+        // var people = {
+        //     name:'rmx',
+        //     age:22,
+        //     sex:'male'
+        // }
+        // function observe(obj) {
+        //     for(let key in obj){
+        //         let val = obj[key];
+        //         Object.defineProperty(obj,key,{
+        //             get(){
+        //                 console.log('get操作')
+        //                 return val;
+        //             },
+        //             set(newValue){
+        //                 console.log(obj, "的", key, "属性已经改变 :", obj[key], "--->", newValue);
+        //             }
+        //         })
+        //     }
+        // }
+        // observe(people);
+        // people.name = 'bbb'; //people={...} 的" "name" "属性已经改变 :" "rmx" "--->" "bbb"
+
+
+
+
     </script>
 </body>
 </html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+           
+        </ul>
+        <table>
+            <tr>
+                <td>歌名</td>
+                <td>专辑</td>
+                <td>歌手</td>
+            </tr>
+            <tr
+            v-for="(item,index) in arr"
+            :key="index">
+                <td>{{item.name}}</td>
+                <td>
+                    {{item.al.name}}
+                </td>
+                <td>
+                    <span ></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                arr:[],
+            },
+            mounted() {
+                let testData = [
+                    { 
+                        "name": "东西",
+                        "id": 1330933366, 
+                        "ar": [{ "id": 30107224, "name": "林俊呈" }], 
+                        "al": { 
+                            "id": 73445668, 
+                            "name": "东西", 
+                            "picUrl": "http://p2.music.126.net/lImkmFfPTf6sfmNeXc3MqQ==/109951163559198470.jpg", 
+                            "picStr": "109951163559198470", "pic": 109951163559198460 } 
+                        },
+                        { 
+                        "name": "东西 (女生版)",
+                        "id": 1330933366, 
+                        "ar": [{ "id": 12308198, "name": "熙er" }], 
+                        "al": { 
+                        "id": 74632358, "name": "东西（女生版）", "picUrl": "http://p2.music.126.net/kikmaVaYRXLfhzYzibgqIw==/109951163707515821.jpg", 
+                        "picStr": "109951163707515821", 
+                        "pic": 109951163707515820 } 
+                     }, { "name": "东西（Cover：林俊呈）", "id": 1316460171, "ar": [{ "id": 30207301, "name": "蓝心羽" }], "al": { "id": 73814950, "name": "喜欢你呀", "picUrl": "http://p2.music.126.net/uyxr9DaQeMt2XHMcybl6fQ==/109951163600791104.jpg", "picStr": "109951163600791104", "pic": 109951163600791100 } }, { "name": "东西", "id": 1321385420, "ar": [{ "id": 12358435, "name": "很美味" }], "al": { "id": 74150789, "name": "东西", "picUrl": "http://p2.music.126.net/PhQLBkijv8iwo1F_t7GY_Q==/109951163638985548.jpg", "picStr": "109951163638985548", "pic": 109951163638985550 } }, { "name": "东西（Cover：林俊呈）", "id": 1327873540, "ar": [{ "id": 12270224, "name": "柿崽" }, { "id": 30480316, "name": "果子狸iukulele" }], "al": { "id": 75001674, "name": "说爱你", "picUrl": "http://p2.music.126.net/9J-Gg8Jap1Vv7rvJNjkXwg==/109951163755543735.jpg", "picStr": "109951163755543735", "pic": 109951163755543730 } }, { "name": "东西（Cover：林俊呈）", "id": 1314927356, "ar": [{ "id": 13000013, "name": "鱼骨妹" }], "al": { "id": 73709266, "name": "东西", "picUrl": "http://p2.music.126.net/R0x0Cok8WecX9fD-iEmb5w==/109951163583475486.jpg", "picStr": "109951163583475486", "pic": 109951163583475490 } }, { "name": "东西（女版）（Cover：林俊呈）", "id": 1315453387, "ar": [{ "id": 12119502, "name": "Clever勺子" }], "al": { "id": 73746188, "name": "东西", "picUrl": "http://p2.music.126.net/bW1A3ILYOmj9CN2ZWx7AOw==/109951163586904234.jpg", "picStr": "109951163586904234", "pic": 109951163586904240 } }, { "name": "东西 （浙音4811版）（Cover：林俊呈）", "id": 1319607592, "ar": [{ "id": 30380203, "name": "浙音4811" }], "al": { "id": 74000164, "name": "《4811翻唱》", "picUrl": "http://p2.music.126.net/NTzRnwCA2SFOwwQoVHsWLQ==/109951163618328022.jpg", "picStr": "109951163618328022", "pic": 109951163618328020 } }, { "name": "东西（Cover：林俊呈）", "id": 1315368695, "ar": [{ "id": 29230472, "name": "王舒" }], "al": { "id": 73728537, "name": "东西", "picUrl": "http://p2.music.126.net/F7cb2JDHNkgud6170pkKTQ==/109951163586596755.jpg", "picStr": "109951163586596755", "pic": 109951163586596750 } }, { "name": "东西（Cover：林俊呈）", "id": 1315530605, "ar": [{ "id": 12277185, "name": "锦零" }], "al": { "id": 73746267, "name": "东西", "picUrl": "http://p2.music.126.net/3StAfmu03ZEYLAx3hOxcLg==/109951163587422048.jpg", "picStr": "109951163587422048", "pic": 109951163587422050 } }, { "name": "东西（温柔男声版）（Cover：林俊呈）", "id": 1323610140, "ar": [{ "id": 12282733, "name": "黑崎子" }], "al": { "id": 74253219, "name": "东西", "picUrl": "http://p2.music.126.net/-BsohchvkgGmoKMM23DA-w==/109951163652415509.jpg", "picStr": "109951163652415509", "pic": 109951163652415500 } }, { "name": "东西~（Cover：林俊呈）", "id": 1317554448, "ar": [{ "id": 12227509, "name": "程嘉敏" }], "al": { "id": 73872994, "name": "东西", "picUrl": "http://p2.music.126.net/ratj4qbMh39Y2YAqBFXuqg==/109951163599927379.jpg", "picStr": "109951163599927379", "pic": 109951163599927380 } }, { "name": "东西 (女生版)", "id": 1325203075, "ar": [{ "id": 30616365, "name": "阿敏" }], "al": { "id": 74284500, "name": "东西（女生版）", "picUrl": "http://p2.music.126.net/kWdQhcr-3O9fEGUVGcqmDA==/109951163667706531.jpg", "picStr": "109951163667706531", "pic": 109951163667706530 } }, { "name": "东西（Cover：林俊呈）", "id": 1320938750, "ar": [{ "id": 975714, "name": "叶洛洛" }, { "id": 13791380, "name": "妖蝠" }], "al": { "id": 74072482, "name": "东西", "picUrl": "http://p2.music.126.net/x2lrB2IjOZl40BXJ5tH4Uw==/109951163628933101.jpg", "picStr": "109951163628933101", "pic": 109951163628933100 } }, { "name": "东西（二人转版本）（Cover：林俊呈）", "id": 1333857900, "ar": [{ "id": 30711491, "name": "你还在费解吗？" }], "al": { "id": 74882140, "name": "东西", "picUrl": "http://p2.music.126.net/6laUKpw9pZs-9hygXXRAqA==/109951163729807425.jpg", "picStr": "109951163729807425", "pic": 109951163729807420 } }, { "name": "东西（Cover：林俊呈）", "id": 1335548829, "ar": [{ "id": 12060031, "name": "洛少爷" }], "al": { "id": 74924969, "name": "东西", "picUrl": "http://p2.music.126.net/3RuYnWgNR4eADbGrQx8p_g==/109951163747817495.jpg", "picStr": "109951163747817495", "pic": 109951163747817490 } }, { "name": "东西（超撩男版）（Cover：林俊呈）", "id": 1324237039, "ar": [{ "id": 30643278, "name": "声沙" }], "al": { "id": 74305160, "name": "东西", "picUrl": "http://p2.music.126.net/7UXPzWqlFnBS7VhV6CaASg==/109951163657121046.jpg", "picStr": "109951163657121046", "pic": 109951163657121040 } }, { "name": "东西（女声吉他弹唱）（Cover 林俊呈）", "id": 1315527266, "ar": [{ "id": 12038016, "name": "李瑨瑶" }], "al": { "id": 38520900, "name": "你瑶的吉他弹唱（抖音）", "picUrl": "http://p2.music.126.net/TnKpmcPwKVjzzEiFX6f58A==/109951163277582604.jpg", "picStr": "109951163277582604", "pic": 109951163277582610 } }, { "name": "东西（Cover：林俊呈）（Cover：林俊呈）", "id": 1326304702, "ar": [{ "id": 12126098, "name": "Vk" }], "al": { "id": 74443788, "name": "东西", "picUrl": "http://p2.music.126.net/90KD3jkLoXm0-_7p_MYWPA==/109951163672508514.jpg", "picStr": "109951163672508514", "pic": 109951163672508510 } }, { "name": "东西（Cover：林俊呈）", "id": 1326307098, "ar": [{ "id": 12093155, "name": "罗之豪" }], "al": { "id": 74448714, "name": "东西", "picUrl": "http://p2.music.126.net/LO0FR6iqOv7R1vDPc2SBTQ==/109951163672439942.jpg", "picStr": "109951163672439942", "pic": 109951163672439940 } }, { "name": "东西（Cover：林俊呈）", "id": 1329753158, "ar": [{ "id": 1132127, "name": "萧忆情Alex" }], "al": { "id": 74642038, "name": "东西", "picUrl": "http://p2.music.126.net/--4BDSkWiIRo_5eQtiw8ww==/109951163695633803.jpg", "picStr": "109951163695633803", "pic": 109951163695633810 } }, { "name": "东西（张靓颖live版本翻唱）（Cover：林俊呈）", "id": 1357712615, "ar": [{ "id": 30378281, "name": "祺媛吖" }], "al": { "id": 73929114, "name": "小调调~", "picUrl": "http://p2.music.126.net/t5u3RHRiQUNF2bqZvrhaww==/109951163987799636.jpg", "picStr": "109951163987799636", "pic": 109951163987799630 } }, { "name": "东西（女版双声道）（Cover：林俊呈）", "id": 1341948441, "ar": [{ "id": 28070574, "name": "小熙E.R" }, { "id": 12119502, "name": "Clever勺子" }, { "id": 12226537, "name": "程嘉敏" }, { "id": 12277033, "name": "锦零" }], "al": { "id": 72286203, "name": "『男女合唱双声道环绕集』", "picUrl": "http://p2.music.126.net/YNM1VCb2ZwT2xJu3X_eQwQ==/109951163845937108.jpg", "picStr": "109951163845937108", "pic": 109951163845937100 } }, { "name": "东西（Cover：林俊呈）", "id": 1331834740, "ar": [{ "id": 12157198, "name": "麓七" }], "al": { "id": 74788884, "name": "东西", "picUrl": "http://p2.music.126.net/dXKQsRffbBf9CeQi2YekFw==/109951163711236981.jpg", "picStr": "109951163711236981", "pic": 109951163711236980 } }, { "name": "东西（Cover：林俊呈）", "id": 1341955341, "ar": [{ "id": 1037013, "name": "少恭" }, { "id": 12639269, "name": "糖醋排骨" }], "al": { "id": 75296199, "name": "东西", "picUrl": "http://p2.music.126.net/TpztelBWA7r3nE509xx_Pg==/109951163816131234.jpg", "picStr": "109951163816131234", "pic": 109951163816131230 } }, { "name": "东西（Cover：林俊呈）", "id": 1318501101, "ar": [{ "id": 28303797, "name": "金灵杰" }], "al": { "id": 73927462, "name": "东西", "picUrl": "http://p2.music.126.net/DdpQYGsD5JgfIBixB7KmPg==/109951163608629761.jpg", "picStr": "109951163608629761", "pic": 109951163608629760 } }, { "name": "东西（女生版）（Cover：林俊呈）", "id": 1322595757, "ar": [{ "id": 13103035, "name": "灿烂C.L" }], "al": { "id": 74171615, "name": "东西", "picUrl": "http://p2.music.126.net/N_mSAd3XjOl2pdRQGW6uLg==/109951163643633349.jpg", "picStr": "109951163643633349", "pic": 109951163643633340 } }, { "name": "东西（Cover：林俊呈）", "id": 1321594530, "ar": [{ "id": 12308136, "name": "纳豆" }], "al": { "id": 74127605, "name": "东西", "picUrl": "http://p2.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg", "picStr": "109951163635241613", "pic": 109951163635241620 } }, { "name": "东西（Cover：林俊呈）", "id": 1329839856, "ar": [{ "id": 30700959, "name": "superluckyqi" }], "al": { "id": 74396022, "name": "SuperLuckyQi的中文翻唱", "picUrl": "http://p2.music.126.net/JpxBGUy_KwrV3-Xbet8wJw==/109951163682947770.jpg", "picStr": "109951163682947770", "pic": 109951163682947780 } }, { "name": "东西（Cover：林俊呈）", "id": 1320453496, "ar": [{ "id": 1194119, "name": "K.D" }], "al": { "id": 74071103, "name": "东西", "picUrl": "http://p2.music.126.net/VLUkCUXxQiGLQLnsmcIw1A==/109951163624979887.jpg", "picStr": "109951163624979887", "pic": 109951163624979890 } }
+                    ];
+                    let a = JSON.parse(JSON.stringify(testData));
+                    console.log(JSON.parse(JSON.stringify(testData)));
+                    this.fomatData(a);
+                    // this.arr = JSON.parse(JSON.stringify(testData));
+            },
+            methods: {
+                fomatData(data) {
+                    let arr = [];
+                    let targetArr = [];
+                    let arr1 = [];
+                    // let set = new Set();
+                    for (const iterator of data) {
+                        if(arr.indexOf(iterator.id) !== -1){
+                            console.log(iterator.id)
+                            targetArr.push({
+                                id:iterator.id,
+                                name:arr1.push(iterator.name)
+                            })
+                        }
+                        arr.push(iterator.id)
+                    }
+                    console.log(arr,targetArr,arr1);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

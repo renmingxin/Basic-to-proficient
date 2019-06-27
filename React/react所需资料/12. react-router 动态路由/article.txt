@@ -1,0 +1,23 @@
+<div className="article">
+      <div>
+        文章ID：
+        <span></span>
+      </div>
+      <div>
+        文章作者：
+        <span></span>
+      </div>
+      <div>
+        文章标题：
+        <span></span>
+      </div>
+    </div>
+
+--------------------------------------------
+.article {
+  padding: 10px 20px;
+}
+
+.article div:not(:last-child) {
+  margin-bottom: 10px;
+}

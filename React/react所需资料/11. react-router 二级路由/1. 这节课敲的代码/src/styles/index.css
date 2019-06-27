@@ -1,0 +1,14 @@
+@import './reset.css';
+
+body {
+  background-color: #f4f5f5;
+}
+
+a {
+  color: #71777c;
+}
+
+
+a.active {
+  color: #007fff;
+}

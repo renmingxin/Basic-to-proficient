@@ -1,0 +1,20 @@
+let element =(
+  <div className="wrapper">
+    <div className="search-title-box">
+      <h5 className="search-title">搜索热点</h5>
+      <span className="refresh">换一换</span>
+    </div>
+    <ul className="top-list-container">
+      <li className="top-list">
+        <div className="top-title">
+          <span className="hot-index">1</span>
+          <a className="topic-title">老年人才用9键</a>
+          <span className="topic-new">新</span>
+        </div>
+        <div className="hot-degree">
+          <span>46万</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+)

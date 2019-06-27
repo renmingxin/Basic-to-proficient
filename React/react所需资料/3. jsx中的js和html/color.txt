@@ -1,0 +1,13 @@
+switch (index) {
+            case 0:
+              indexStyle.backgroundColor = '#f54545';
+              break;
+            case 1:
+              indexStyle.backgroundColor = '#ff8547';
+              break;
+            case 2:
+              indexStyle.backgroundColor = '#ffac38';
+              break;
+            default:
+              break;
+          }

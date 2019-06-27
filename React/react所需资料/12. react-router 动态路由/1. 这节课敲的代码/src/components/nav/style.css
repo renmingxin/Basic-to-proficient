@@ -1,0 +1,9 @@
+.nav {
+  line-height: 60px;
+  padding: 0 50px;
+  background-color: #fff;
+}
+
+.nav a{
+  margin: 0 20px;
+}

@@ -1,0 +1,25 @@
+index.js：
+import Home from './pages/home/Home';
+import Activities from './pages/activities/Activities';
+import Topics from './pages/topics/Topics';
+import Login from './pages/login/Login';
+
+------------------------------------------------------------------------------
+ActivitiesNav.js：
+<NavLink to="/activities/recommended">推荐</NavLink>
+        <NavLink to="/activities/all">综合</NavLink>
+        <NavLink to="/activities/articles">文章</NavLink>
+        <NavLink to="/activities/pins">沸点</NavLink>
+
+------------------------------------------------------------------------------
+Activities.js：
+import Recommended from './recommended/Recommended';
+import All from './all/All';
+import Articles from './articles/Articles';
+import Pins from './pins/Pins';
+
+------------------------------------------------------------------------------
+<Route path="/activities/recommended" component={ Recommended }></Route>
+          <Route path="/activities/all" component={ All }></Route>
+          <Route path="/activities/articles" component={ Articles }></Route>
+          <Route path="/activities/pins" component={ Pins }></Route>

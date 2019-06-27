@@ -1,0 +1,8 @@
+.activities {
+  padding: 10px 20px;
+}
+
+.activities .content {
+  margin-top: 20px;
+  margin-left: 10px;
+}

@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\node\\NodeLesson3\\index.js"
+            "program": "${workspaceFolder}\\node\\仿写client与server通信\\server.js"
         }
     ]
 }

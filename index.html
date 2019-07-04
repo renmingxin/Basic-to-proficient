@@ -5,21 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        @keyframes mykf
-        {
-            from {background: red;}
-            to {background: yellow;}
-        }
-        div
-        {
-            animation:mykf 5s infinite;
-            width: 100px;
-            height: 100px;
-        }
-    </style>
 </head>
 <body>
-    <div></div>    
+    <div id="box">追梦子</div>
+    <script>
+        // window.onload = function(){
+        //     var box = document.getElementById("box");
+        //     box.onclick = function(){
+        //         console.log("我是box1");
+        //     }
+        //     box.onclick = function(){
+        //         box.style.fontSize = "18px";
+        //         console.log("我是box2");
+        //     }
+        // }
+
+
+        window.onload = function(){
+            var box = document.getElementById("box");
+            box.addEventListener("click",function(){
+                console.log("我是box1");
+            })
+            box.addEventListener("click",function(){
+                console.log("我是box2");
+            })
+        }
+    </script>
 </body>
 </html>

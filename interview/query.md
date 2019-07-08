@@ -19,6 +19,13 @@ function Person () {}
 3.绑定this值   将构造函数的作用域赋值给新对象 （也就是this指向新对象）  
 4.返回新对象 Person.call(obj)
 herf:./js/4.手动封装一个new运算符.html
+>5.JS变量提升
+答：
+1.创建AO对象（Activation Object）：（执行期上下文）;
+2.找形参和变量声明，将变量和形参名作为A0属性名，值为undefined,比如有var a,var b,AO里面的key值就是a和b
+3.将实参值和形参统一
+4.在函数体里面找函数声明，值赋予函数体,表达式不能提升比如var a = function (){},函数可以提升,比如：function a(){};
+herf:"@/成哥js课dome/预编译.html"
 #Vue部分
 
 

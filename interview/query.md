@@ -26,6 +26,58 @@ herf:./js/4.手动封装一个new运算符.html
 3.将实参值和形参统一
 4.在函数体里面找函数声明，值赋予函数体,表达式不能提升比如var a = function (){},函数可以提升,比如：function a(){};
 herf:"@/成哥js课dome/预编译.html"
+>6.说一说原型链
+答：
+1.每一个函数都有prototype属性
+2.每个对象都有 __proto__
+3.Object 是所有对象的爸爸，所有对象都可以通过 __proto__ 找到它
+4.Function 是所有函数的爸爸，所有函数都可以通过 __proto__ 找到它
+5.Function.prototype 和 Object.prototype 是两个特殊的对象，他们由引擎来创建
+6.除了以上两个特殊对象，其他对象都是通过构造器 new 出来的
+7.函数的 prototype 是一个对象，也就是原型
+8.对象的 __proto__ 指向原型， __proto__ 将对象和原型连接起来组成了原型链
+>7.怎么判断对象类型？
+答：
+1.基本数据类型用typeof判断
+2.可以通过 Object.prototype.toString.call(xx)。这样我们就可以获得类似 [object Type] 的字符串。(重点：Object是js中所有其他数据类型的父类。意思是所有的数据类型都继承了Object,,但是无论是string还是array都是会重写这个tostring方法,而且Object.prototype.toString.你要理解这代码的意思。prototype从英文就说了是“原型”的意思。就是说你这个Object.prototype.toString调用的是object的原型（也就是父类）的tostring方法);
+3.instanceof 可以正确的判断对象的类型，因为内部机制是通过判断对象的原型链中是不是能找到类型的 prototype
+herf:./js/7.怎么判断对象类型.html
+>8.javaScript有多少种类型？
+答：
+1.基本数据类型：String、Number、Boolean、Symbol、undefined、null（六种）
+2.引用数据类型：Function Object Array(未知可能有很多种比如Date、RegExp)
+>9.箭头函数的特点？
+答：
+1.箭头函数其实是没有 this 的，这个函数中的this只取决于离他最近的的第一个不是箭头函数的函数的 this。
+>10.this的指向？
+herf:https://www.cnblogs.com/pssp/p/5216085.html
+>11.async、await 优缺点
+答：async 和 await 相比直接使用 Promise 来说，优势在于处理 then 的调用链，能够更清晰准确的写出代码。缺点在于滥用 await 可能会导致性能问题，因为 await 会阻塞代码，也许之后的异步代码并不依赖于前者，但仍然需要等待前者完成，导致代码失去了并发性。
+href：./js/11.async、await 优缺点.html
+>12.generator 原理
+答：从以上代码可以发现，加上 * 的函数执行后拥有了 next 函数，也就是说函数执行后返回了一个对象。每次调用 next 函数可以继续执行被暂停的代码。
+href：./js/12.generator原理.html
+>13.手动封装一个promise
+href：'@/EmploymentClass/Es6-Promise'
+>14.== 与 === 有什么区别？
+答：==会经历类型转换去匹配==对面比如 '123' == 123 true，而===是值与类型都进行匹配都正确才返回true。
+>15.javascript(浏览器)垃圾回收，以及怎么优化？
+答：
+回收机制：1.标记清除、2.引用计数。
+优化：
+1.不再使用的值和对象可以赋值为null。 obj = null
+2.对象object优化 可以进行逐个删除 delete obj[key]
+3.数组array优化 讲length赋值为0  arr.length = 0
+4.方法function优化
+href:https://www.cnblogs.com/zhwl/p/4664604.html
+>16.谈一谈js闭包？
+答：函数 A 返回了一个函数 B，并且函数 B 中使用了函数 A 的变量，函数 B 就被称为闭包。
+href：'@/成哥js课demo/闭包.html'
+>17.基本数据类型和引⽤类型在存储上的差别?
+答：前者存储在栈上，后者存储在堆上，基本数据类型的变量存放的是基本类型数据的实际值；而引用数据类型的变量保存对它的引用，即指针。
+>18.浏览器 Eventloop 和 Node 中的有什么区别?
+href：'./js/浏览器 Eventloop 和 Node 中的有什么区别.html'
+>19.
 #Vue部分
 
 
@@ -35,4 +87,8 @@ herf:"@/成哥js课dome/预编译.html"
 
 
 
-#UI部分
+#Html、Css部分
+
+
+
+#网络知识

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //为什么不用toStirng而要用Object.prototype.toString?
+        /**
+        答：(重点：Object是js中所有其他数据类型的父类。意思是所有的数据类型都继承了Object,
+            但是无论是string还是array都是会重写这个tostring方法,而且Object.prototype.toString.你要理解这代码的意思。
+            prototype从英文就说了是“原型”的意思。就是说你这个Object.prototype.toString调用的是object的原型
+            （也就是父类）的tostring方法);
+        */
+        let a ={},b=[],c = Symbol('aa'),d = 'asdad',e = 1111,f = true, g=undefined, h = null, i = NaN,j=function(){},k=new Date(),l=/asd/g;
+        console.log('*******************Object.prototype.toString.call(xxx)**********************')
+        console.log(Object.prototype.toString.call(a));//[object Object]
+        console.log(Object.prototype.toString.call(b));//[object Array]
+        console.log(Object.prototype.toString.call(c));//[object Symbol]
+        console.log(Object.prototype.toString.call(d));//[object String]
+        console.log(Object.prototype.toString.call(e));//[object Number]
+        console.log(Object.prototype.toString.call(f));//[object Boolean]
+        console.log(Object.prototype.toString.call(g));//[object Undefined]
+        console.log(Object.prototype.toString.call(h));//[object Null]
+        console.log(Object.prototype.toString.call(i));//[object Number]
+        console.log(Object.prototype.toString.call(j));//[object Function]
+        console.log(Object.prototype.toString.call(k));//[object Date]
+        console.log(Object.prototype.toString.call(l));//[object RegExp]
+    </script>
+</body>
+</html>

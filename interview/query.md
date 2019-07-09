@@ -77,7 +77,16 @@ href：'@/成哥js课demo/闭包.html'
 答：前者存储在栈上，后者存储在堆上，基本数据类型的变量存放的是基本类型数据的实际值；而引用数据类型的变量保存对它的引用，即指针。
 >18.浏览器 Eventloop 和 Node 中的有什么区别?
 href：'./js/浏览器 Eventloop 和 Node 中的有什么区别.html'
->19.
+url:https://juejin.im/post/5ba34e54e51d450e5162789b#heading-22
+>19.深拷贝的方法？
+答：JSON.parse(JSON.stringify(object));《弊端：1.会忽略 undefined 2.会忽略 symbol 3.不能序列化函数 4.不能解决循环引用的对象 》
+href：'@/EmploymentClass/第九章网络技术提升(1)/09-01网络技术提升之面试题.html'
+>20.什么是事件代理？
+答：如果一个节点中的子节点是动态生成的，那么子节点需要注册事件的话应该注册在父节点上
+事件代理的方式相对于直接给目标注册事件来说，有以下优点：
+1.节省内存
+2.不需要给子节点注销事件
+href:'./js/20.什么是事件代理.html'
 #Vue部分
 
 
@@ -92,3 +101,23 @@ href：'./js/浏览器 Eventloop 和 Node 中的有什么区别.html'
 
 
 #网络知识
+
+
+#浏览器知识
+>1.cookie和localSrorage、session、indexDB 的区别?
+特性            cookie                                    localStorage             sessionStorage           indexDB
+数据生命周期     一般由服务器生成，可以设置过期时间           除非被清理，否则一直存在   页面关闭就清理             除非被清理，否则一直存在
+数据存储大小     4K                                        5M                       5M                       无限
+与服务端通信     每次都会携带在 header 中，对于请求性能影响   不参与                    不参与                    不参与
+>2.怎么判断页面是否加载完成？
+window.onload = function(){}
+答：Load 事件触发代表页面中的 DOM，CSS，JS，图片已经全部加载完毕。
+>3.如何解决跨域?
+因为浏览器出于安全考虑，有同源策略。也就是说，如果协议、域名或者端口有一个不同就是跨域，Ajax 请求会失败。
+答：1.JSONP  2.CORS    3.document.domain   4.postMessage
+href：./browser/3.如何解决跨域.js
+>4.讲一讲浏览器缓存？（比较复杂，重点）
+答：缓存对于前端性能优化来说是个很重要的点，良好的缓存策略可以降低资源的重复加载提高网页的整体加载速度。
+通常浏览器缓存策略分为两种：强缓存和协商缓存。
+href：百度
+>5.讲一讲重绘（Repaint）和回流（Reflow）？

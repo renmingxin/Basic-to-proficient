@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //如何实现一个插件
+        // 调用插件 apply 函数传入 compiler 对象
+        // 通过 compiler 对象监听事件
+        // 比如你想实现一个编译结束退出命令的插件
+        class BuildEndPlugin {
+            apply(compiler) {
+                const afterEmit = (compilation, cb) => {
+                    cb()
+                    setTimeout(function () {
+                        process.exit(0)
+                    }, 1000)
+                }
+
+                compiler.plugin('after-emit', afterEmit)
+            }
+        }
+        module.exports = BuildEndPlugin
+    </script>
+</body>
+
+</html>

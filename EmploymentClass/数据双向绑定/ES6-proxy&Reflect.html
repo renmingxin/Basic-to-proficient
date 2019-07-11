@@ -63,8 +63,20 @@
         console.log('val' in oProxyData)//true
         console.log('_val' in oProxyData)//false
 
-
-        
+        // get执行了
+        // Objectval: "aaaa"_val: "private"__proto__: Object "val" Proxy[[Handler]]: Object[[Target]]: Object[[IsRevoked]]: false
+        // Objectapply: ƒ apply()construct: ƒ construct()defineProperty: ƒ defineProperty()deleteProperty: ƒ deleteProperty()get: ƒ ()arguments: (...)caller: (...)length: 2name: "get"__proto__: ƒ ()[[Scopes]]: Scopes[0]getOwnPropertyDescriptor: ƒ getOwnPropertyDescriptor()arguments: (...)caller: (...)length: 2name: "getOwnPropertyDescriptor"__proto__: ƒ ()[[Scopes]]: Scopes[0]getPrototypeOf: ƒ getPrototypeOf()has: ƒ has()isExtensible: ƒ isExtensible()ownKeys: ƒ ownKeys()preventExtensions: ƒ preventExtensions()set: ƒ ()setPrototypeOf: ƒ setPrototypeOf()__proto__: Object
+        // rmx
+        // set执行了
+        // Object "val" "aaaa" Proxy
+        // 更新了
+        // get执行了
+        // Object "val" Proxy
+        // Object
+        // aaaa
+        // true
+        // false
+            
     </script>
 </body>
 </html>

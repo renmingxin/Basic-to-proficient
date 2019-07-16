@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //在初始化时，会调用以下代码，生命周期就是通过 callHook 调用的
+        Vue.prototype._init = function(options) {
+            initLifecycle(vm)//初始化生命周期
+            initEvents(vm)//初始化事件
+            initRender(vm)//初始化渲染树
+            callHook(vm, 'beforeCreate') // 拿不到 props data
+            initInjections(vm) 
+            initState(vm)
+            initProvide(vm)
+            callHook(vm, 'created')
+        }
+        //可以发现在以上代码中，beforeCreate 调用的时候，是获取不到 props 或者 data 中的数据的，
+        //因为这些数据的初始化都在 initState 中。
+
+        //接下来会执行挂在函数
+        export function mountComponent {
+            callHook(vm, 'beforeMount')
+            // ...
+            if (vm.$vnode == null) {
+                vm._isMounted = true
+                callHook(vm, 'mounted')
+            }
+        }
+        //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+        //beforeMount 就是在挂载前执行的，然后开始创建 VDOM 并替换成真实 DOM，最后执行 mounted 钩子。
+        //这里会有个判断逻辑，如果是外部 new Vue({}) 的话，不会存在 $vnode ，
+        //所以直接执行 mounted 钩子了。如果有子组件的话，会递归挂载子组件，
+        //只有当所有子组件全部挂载完毕，才会执行根组件的挂载钩子。
+
+
+        //接下来是数据更新时会调用的钩子函数
+        function flushSchedulerQueue() { //调度队列
+            for (index = 0; index < queue.length; index++) {
+                watcher = queue[index]
+                if (watcher.before) {
+                    watcher.before() // 调用 beforeUpdate
+                }
+                id = watcher.id
+                has[id] = null
+                watcher.run()
+                // in dev build, check and stop circular updates.
+                if (process.env.NODE_ENV !== 'production' && has[id] != null) {
+                    circular[id] = (circular[id] || 0) + 1
+                    if (circular[id] > MAX_UPDATE_COUNT) {
+                        warn(
+                        'You may have an infinite update loop ' +
+                            (watcher.user
+                            ? `in watcher with expression "${watcher.expression}"`
+                            : `in a component render function.`),
+                        watcher.vm
+                        )
+                        break
+                    }
+                }
+            }
+            callUpdatedHooks(updatedQueue)
+            }
+
+            function callUpdatedHooks(queue) {
+            let i = queue.length
+            while (i--) {
+                const watcher = queue[i]
+                const vm = watcher.vm
+                if (vm._watcher === watcher && vm._isMounted) {
+                callHook(vm, 'updated')
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

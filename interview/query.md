@@ -94,6 +94,10 @@ href:'./js/20.什么是事件代理.html'
 函数节流：使得一定时间内只触发一次函数。原理是通过判断是否到达一定时间来触发函数。
 区别： 函数节流不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而函数防抖只是在最后一次事件后才触发一次函数。 比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用节流技术来实现。
 href:'./js/21.防抖是什么？节流是什么?怎么处理？.html'
+>22.JS函数柯里化(Currying)？
+函数柯里化，就是将一个接受多个参数的函数转化为接受单一参数的函数的技术。
+herf：'./js/22.JS函数柯里化.html'
+
 
 
 #移动端
@@ -116,11 +120,12 @@ fastclick.js的原理是：FastClick的实现原理是在检测到touchend事件
 答:
 1.nextTick 可以让我们在下次 DOM 更新循环结束之后执行延迟回调，用于获得更新后的 DOM。
 2.在created()钩子函数执行的时候DOM 其实并未进行任何渲染，而此时进行DOM操作无异于徒劳，所以此处一定要将DOM操作的js代码放进Vue.nextTick()的回调函数中。与之对应的就是mounted()钩子函数，因为该钩子函数执行时所有的DOM挂载和渲染都已完成，此时在该钩子函数中进行任何DOM操作都不会有问题 。
->2.Vue的声明周期？
+href：'./vue/1.Vue的 nextTick 原理.html'
+>2.Vue的生命周期？
 答：
 1.创建前(beforeCreate)：实例初始化之后，this指向创建的实例，不能访问到data、computed、watch、methods上的方法和数据。
 2.创建后(create)：实例创建完成，可访问data、computed、watch、methods上的方法和数据、未挂载到DOM上、不能访问到$el属性、$ref属性内容为空数组。
-3.挂载前(beforeMount)：在挂载开始之前被调用，beforeMount之前，会找到对应的template，并编译成render函数。
+3.挂载前(beforeMount)：在挂载开始之前被调用，beforeMount之前，会找到对应的template，并编译成render函数，beforeMount 就是在挂载前执行的，然后开始创建 VDOM 并替换成真实 DOM，最后执行。
 4.挂载后(mounted)：实例挂载到DOM上，此时可以通过DOM API获取到DOM节点，$ref属性可以访问。
 5.更新前(beforeUpdate)：响应式数据更新时调用，发生在虚拟DOM打补丁之前。
 6.更新后(updated)：虚拟DOM重新渲染和打补丁之后调用，组件DOM已经更新，可执行依赖于DOM的操作
@@ -128,12 +133,14 @@ fastclick.js的原理是：FastClick的实现原理是在检测到touchend事件
 8.销毁后(destoryed)：实例销毁后调用，调用后，vue实例指示的所有东西会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。
 <-注意->：
 created阶段的ajax请求与mounted请求的区别：前者页面视图未出现，如果请求信息过多，页面会长时间处于白屏状态。
+
 <-单个组件的生命周期->：
 1.初始化组件时，仅执行了beforeCreate/Created/beforeMount/mounted四个钩子函数
 2.当改变data中定义的变量（响应式变量）时，会执行beforeUpdate/updated钩子函数
 3.当切换组件（当前组件未缓存）时，会执行beforeDestory/destroyed钩子函数
 4.初始化和销毁时的生命钩子函数均只会执行一次，beforeUpdate/updated可多次执行
 
+href：'./vue/2.Vue的生命周期.html'
 
 #Webpack部分
 >1.优化打包速度

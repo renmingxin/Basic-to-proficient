@@ -140,7 +140,57 @@ created阶段的ajax请求与mounted请求的区别：前者页面视图未出�
 3.当切换组件（当前组件未缓存）时，会执行beforeDestory/destroyed钩子函数
 4.初始化和销毁时的生命钩子函数均只会执行一次，beforeUpdate/updated可多次执行
 
-href：'./vue/2.Vue的生命周期.html'
+href：'./vue/2.vue的生命周期.html'
+>3.v-model的原理？
+答：官方文档中对v-model的描写仅仅是一个语法糖。
+1.先靠v-bind：绑定响应式数据
+2.触发v-on：input事件
+href：'./vue/3.v-model的原理.html'
+>4.watch和computed的区别和运用的场景
+答：
+1.前端是计算属性，依赖其他属性计算值。并且computer的值有缓存，只有当计算值变化才变化触发渲染。后者监听值的变化就会执行回调。
+2.computer就是简单的计算一下，适用于渲染页面。watch适合做一些复杂的业务逻辑。
+3.前者有依赖两个watcher，computer watcher 和渲染watcher。判断计算出的值变化后渲染watcher派发更新触发渲染。
+业务差异：
+1.computed是计算一个新的属性，并将该属性挂载到vm（Vue实例）上，而watch是监听已经存在且已挂载到vm上的数据，所以用watch同样可以监听computed计算属性的变化（其它还有data、props）
+2.computed本质是一个惰性求值的观察者，具有缓存性，只有当依赖变化后，第一次访问 computed 属性，才会计算新的值，而watch则是当数据发生变化便会调用执行函数
+3.从使用场景上说，computed适用一个数据被多个数据影响，而watch适用一个数据影响多个数据；
+>5.Vue的响应系统核心？
+答：
+1.observe:遍历data中的属性，使用 Object.defineProperty 的get/set方法对其进行数据劫持
+2.dep：每个属性拥有自己的消息订阅器dep，用于存放所有订阅了该属性的观察者对象
+3.watcher：观察者（对象），通过dep实现对响应属性的监听，监听到结果后，主动触发自己的回调进行响应
+>6.Vue父子之间的通信？
+答：
+1. 使用v-model实现父传子，子传父。因为v-model默认解析成:value和:input
+2. 父传子：
+    1.通过props
+    2.通过$children 访问子组件数组，注意该数组乱序
+    3.对于多级父传子，可以使用v-bind={$attrs},通过对象的方式筛选出父组件中传入子组件不需要的props
+    4.$listens包含了父作用域中的(不含 .native修饰器的) v-on 事件监听器
+2. 子传父
+    1.父组件传递函数给子组件，子组件通过$emit触发
+    2.修改父组件的props
+    3.通过$parent访问父组件
+    4..sync
+3. 兄弟(平行)组件
+    1.EventBus
+4. Vuex 解决一切
+>7.路由原理？
+答：
+前端路由实现起来其实很简单，本质就是监听 URL 的变化，然后匹配路由规则，显示相应的页面，并且无须刷新。目前单页面使用的路由就只有两种实现方式
+1.hash模式
+2.history模式
+
+hash模式：www.test.com/#/ 就是 Hash URL，当 # 后面的哈希值发生变化时，不会向服务器请求数据，可以通过 hashchange 事件来监听到 URL 的变化，从而进行跳转页面。
+
+History模式:是 HTML5 新推出的功能，比之 Hash URL 更加美观
+>8.自我封装一个vue-router？
+
+>9.Vue数据劫持？
+答：
+href:'@/EmploymentClass/数据双向绑定/数据劫持.html'
+
 
 #Webpack部分
 >1.优化打包速度

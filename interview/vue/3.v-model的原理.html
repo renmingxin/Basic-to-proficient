@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input v-model="aaa">
+    <!-- ↑↑↑↑↑↑↑↑↑↑↑上面的写法同等于（仅仅是语法糖）↓↓↓↓↓↓↓↓↓ -->
+    <input v-bind:value="aaa" v-on:input="aaa = $event.target.value">
+    <!-- ↑↑↑↑↑↑↑↑↑↑↑所以在组件中使用时，它相当于下面的简写↓↓↓↓↓↓↓↓↓ -->
+    <custom-input v-bind:value="aaa" v-on:input="aaa = arguments[0]"></custom-input>
+    <!-- 所以要让组件的v-model生效，它必须1.接受一个value属性  2.在又新的value时触发input事件 -->
+    <script>
+        
+
+    </script>
+</body>
+</html>

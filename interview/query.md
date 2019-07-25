@@ -203,7 +203,23 @@ href:'@/EmploymentClass/数据双向绑定/数据劫持.html'
 
 
 
-#Html、Css部分
+#Html部分
+>1.history模式和hash模式的区别？
+答：
+1. hash模式背后的原理是onhashchange事件。可以用window.location.hash进行设置和读取。监听                         window.addEventListener('hashchange',function(){})
+2. history api可以分为两大部分：切换和修改：
+    切换的话包括back(前进)、forward(后退)、go(跳转)
+    修改历史状态包括了 pushState(增加),  replaceState(更改)
+不同：
+1.刷新页面时产生的效果不同。用hash刷新还是当前页面，用history模式如果从首页进入A页，在A页刷新，就会抛出404，这时候需要后端配合把所有的请求定位到指定到一个特定的html页面中。
+2.hash本来是拿来做页面定位的，如果拿来做路由的话，原来的锚点功能就不能用了。其次，hash 的传参是基于 url 的，如果要传递复杂的数据，会有体积的限制，而 history 模式不仅可以在url里放参数，还可以将数据存放在一个特定的对象中。
+
+
+
+#Css部分
+>1.什么是BFC？
+答：
+href:'https://www.jianshu.com/p/0d713b32cd0d'
 
 
 

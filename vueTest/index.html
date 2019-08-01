@@ -11,18 +11,45 @@
 
 <body>
     <div id="app">
-        {{date}}
+        <ul>
+            <li v-for="(v,k) in obj">
+                <div>
+                    <div>{{k}}</div>
+                    <div style="border:1px solid red">
+                        <div v-for="(value,key) in v">
+                            {{key}}:{{value.pid_pid}}-{{value.pid_state}}
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
     <script>
         var app = new Vue({
             el: '#app',
             data: {
-                date:''
+                obj:{
+                   
+                },
+                map:{}
             },
             mounted() {
-                setInterval(() => {
-                    this.date = new Date().toLocaleString();
-                }, 1000);
+               let arr = [
+                   [1000,[[1,'aaa',0],[2,'bbb',1]]],
+                   [1001,[[1,'aaa',1],[2,'bbb',1]]],
+                   [1002,[[1,'aaa',1],[2,'bbb',1]]],
+                   [1003,[[1,'aaa',1],[2,'bbb',1]]],
+               ]
+               let obj = {};
+               arr.forEach(item=>{
+                    let pidObj = {};
+                    item[1].forEach(ele=>{
+                        pidObj[ele[0]] = {pid_pid:ele[1],pid_state:ele[2]}
+                    })
+                    obj[item[0]] = pidObj;
+               })
+               console.log(obj)
+               this.obj = obj;
             },
             methods: {
                 

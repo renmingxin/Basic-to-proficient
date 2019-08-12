@@ -115,7 +115,6 @@ href:'./js/21.防抖是什么？节流是什么?怎么处理？.html'
 herf：'./js/22.JS函数柯里化.html'
 
 
-
 #移动端
 >1.移动端300ms延迟由来及解决方案？
 答：
@@ -209,6 +208,7 @@ href:'@/EmploymentClass/数据双向绑定/数据劫持.html'
 
 >10.什么是MVC？什么是MVVM？
 答：
+href:'@/深入vue源码/重写getter，setter源码实现MVVM原理/index.html'
  __MVC的定义__：是Model-View-Controller的简写。即模型-视图-控制器。M和V指的意思跟MVVM中的M和V的意思一样。C即是Controller指的是页面业务逻辑。使用MVC的目的就是将M和V的代码分离。MVC是单向通信。也就是View跟Model，必须通过Controller来承上启下。
 
  __MVVM的定义__:是Mode-View-ViewModel的简写。即模型-视图-视图模型。【视图模型】是MVVM模式的核心，它是链接view和model的桥梁。它有两个方向：一是将【模型】转化成【视图】，即将后端传递的数据转化成所看到的页面。实现的方式是：实属绑定。而是将【视图】转化成【模型】,即将所看到的页面转化为后端的数据。实现的方式是：DOM事件监听。这两个方向都实现的，我们称之为数据双向绑定。总结：在MVVM的框架下视图和模型是不能直接通信的。它们通过ViewModel来通信，ViewModel通常要实现一个observer观察者，当数据发生变化，ViewModel能够监听到数据的变化，然后通知到对应的视图走自动更新，而当用户操作视图，ViewModel也能监听到视图的变化，然后通知数据做改动，这实际上实现了数据的双向绑定。并且MVVM中的View和ViewModel可以互相通信。
@@ -231,7 +231,8 @@ href:'@/EmploymentClass/数据双向绑定/数据劫持.html'
  3. 数组的方法也是在原型上二次添加进去的
 
  反观Proxy就没以上的问题，原生支持监听数组的变化，并且可以直接对整个对象进行拦截，所以Vue也将在下个大版本中使用Proxy替换Object.defineProperty
-
+>12.什么是虚拟DOM？为什么需要虚拟DOM？
+答:不需要数据双向绑定修改后刷新所有的dom，修改哪里就只干涉那一小部分。
 
 
 

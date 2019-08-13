@@ -42,10 +42,16 @@ herf:"@/成哥js课dome/预编译.html"
 2.可以通过 Object.prototype.toString.call(xx)。这样我们就可以获得类似 [object Type] 的字符串。(重点：Object是js中所有其他数据类型的父类。意思是所有的数据类型都继承了Object,,但是无论是string还是array都是会重写这个tostring方法,而且Object.prototype.toString.你要理解这代码的意思。prototype从英文就说了是“原型”的意思。就是说你这个Object.prototype.toString调用的是object的原型（也就是父类）的tostring方法);
 3.instanceof 可以正确的判断对象的类型，因为内部机制是通过判断对象的原型链中是不是能找到类型的 prototype
 herf:./js/7.怎么判断对象类型.html
->8.javaScript有多少种类型？
+>8.javaScript有多少种类型？基本数据类型和引用数据类型的区别是什么？
 答：
 1.基本数据类型：String、Number、Boolean、Symbol、undefined、null（六种）
 2.引用数据类型：Function Object Array(未知可能有很多种比如Date、RegExp)
+区别:
+1. 基本数据类型（存放在栈中）：基本数据类型是指存放在栈中的简单数据段，数据大小确定，内存空间大小可以分配，他们是直接按值存放的，所以可以直接按值访问的。
+2. 
+  (1)引用数据类型（存放在堆内存中的对象，每个空间大小不一样，要根据情况进行特定的配置）:引用类型是存放在堆内存中的对象，变量是是保存在栈内存中的一个指针（保存的是堆内存中的引用地址），这个指针指向堆内存。
+  (2)引用类型数据在栈内存中保存的实际上是对象在堆内存中的引用地址。通过这个引用地址可以快速查找到保存在堆内存中的对象。
+herf:'https://www.cnblogs.com/c2016c/articles/9328725.html'
 >9.箭头函数的特点？
 答：
 1.箭头函数其实是没有 this 的，这个函数中的this只取决于离他最近的的第一个不是箭头函数的函数的 this。

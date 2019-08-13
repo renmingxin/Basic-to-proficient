@@ -72,6 +72,17 @@ function buildVirtualNode(node){
             let child = buildVirtualNode.call(this,node.childNodes[i]);
             temp.appendChild(child);
         }else if(node.childNodes[i].nodeType === 3){//文本节点
+            let arr = analysisTemplate(node.childNodes[i].nodeValue)
+            console.log(arr);
+            for (let j = 0; arr && j < arr.length; j++) {
+                if(this.mapping.get(arr[j])){
+                    let templateArr = this.mapping.get(arr[j]);
+                    templateArr.push(node.childNodes[i]);
+                    this.mapping.set(arr[i],templateArr)
+                }else{
+                    this.mapping.set(arr[i],[node.childNodes[i]])
+                }
+            }
             let child = buildVirtualNode.call(this,node.childNodes[i]);
             temp.appendChild(child);
         }else{
@@ -90,9 +101,11 @@ function MVVM(id,data){
     this.originTemplate = this.el.innerHTML;//原始模板
     this.templates =  analysisTemplate(this.el.innerHTML);//["{{wd}}","{{sd}}"]
     this.cloneObj = deepClone(this.data);
+    this.mapping = new Map();
     proxyObj.call(this,this.data,this.cloneObj);
+    this.vNodeRoot = buildVirtualNode.call(this,this.el);
+    
     render(this.el,this.originTemplate,this.templates,this.data);
-    this.vNodeRoot = buildVirtualNode(this.el)
 }
 
 

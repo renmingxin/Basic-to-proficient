@@ -119,7 +119,9 @@ href:'./js/21.防抖是什么？节流是什么?怎么处理？.html'
 >22.JS函数柯里化(Currying)？
 函数柯里化，就是将一个接受多个参数的函数转化为接受单一参数的函数的技术。
 herf：'./js/22.JS函数柯里化.html'
-
+>怎么理解async和await？
+答：一句话，async 函数就是 Generator 函数的语法糖。一比较就会发现，async 函数就是将 Generator 函数的星号（*）替换成 async，将 yield 替换成 await，仅此而已。
+herf:'https://www.jb51.net/article/140002.htm'
 
 #移动端
 >1.移动端300ms延迟由来及解决方案？

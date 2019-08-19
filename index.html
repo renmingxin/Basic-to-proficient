@@ -7,14 +7,40 @@
     <title>Document</title>
     <style>
         .header {
-            color: red;
+            height: 200px;
+            width: 200px;
+            background: red;
+            border-radius: 100px;
+            transition: all .3s;
+            cursor: pointer;
+        }
+        .header:hover {
+            border-radius: 20px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        头
     </div>
-    <header>头2</header>
+    <script>
+        class elementTest{
+            constructor(name,age,height){
+                this.name = name;
+                this.age = age;
+                if(height > 190){
+                    this.height = '很高'
+                }else{
+                    this.height = height;
+                }
+            }
+            say(){
+                console.log(`我叫${this.name}，年龄${this.age},身高${this.height}`);
+                this.sing();
+            }
+            sing(){
+                console.log(11111)
+            }
+        }
+    </script>
 </body>
 </html>

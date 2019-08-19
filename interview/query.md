@@ -240,11 +240,11 @@ href:'@/深入vue源码/重写getter，setter源码实现MVVM原理/index.html'
 
  反观Proxy就没以上的问题，原生支持监听数组的变化，并且可以直接对整个对象进行拦截，所以Vue也将在下个大版本中使用Proxy替换Object.defineProperty
 >12.什么是虚拟DOM？为什么需要虚拟DOM？
-答:不需要数据双向绑定修改后刷新所有的dom，修改哪里就只干涉那一小部分。
+答:众所周知，操作 DOM 是很耗费性能的一件事情，既然如此，我们可以考虑通过 JS 对象来模拟 DOM 对象，毕竟操作 JS 对象比操作 DOM 省时的多。不需要数据双向绑定修改后刷新所有的dom，修改哪里就只干涉那一小部分。
 
 
 
-
+href:'https://juejin.im/post/5b10dd36e51d4506e04cf802'
 
  
 

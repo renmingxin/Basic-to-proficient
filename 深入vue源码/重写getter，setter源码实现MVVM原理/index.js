@@ -104,7 +104,6 @@ function MVVM(id,data){
     this.mapping = new Map();
     proxyObj.call(this,this.data,this.cloneObj);
     this.vNodeRoot = buildVirtualNode.call(this,this.el);
-    
     render(this.el,this.originTemplate,this.templates,this.data);
 }
 

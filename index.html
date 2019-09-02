@@ -23,24 +23,65 @@
     <div class="header">
     </div>
     <script>
-        class elementTest{
-            constructor(name,age,height){
-                this.name = name;
-                this.age = age;
-                if(height > 190){
-                    this.height = '很高'
-                }else{
-                    this.height = height;
-                }
+        let arr = [
+            { 
+                id:1,
+                children:[
+                    {id:101,children:[{id:1011},{id:1012}]},
+                    {id:102},
+                    {id:103},
+                ]
+            },
+            { 
+                id:2,
+                children:[
+                    {id:201},
+                    {id:202,children:[{id:2011}]},
+                    {id:203},
+                ]
+            },
+            { 
+                id:3,
+                children:[
+                    {id:301},
+                    {id:302},
+                    {id:303,children:[{id:3011},{id:3012}]},
+                ]
+            },
+        ]
+        let newArr = [];
+        function fn(arr){
+            if(arr){
+                arr.forEach(item=>{
+                    newArr.push(item.id);
+                    if(item.children){
+                        fn(item.children);
+                    }
+                })
             }
-            say(){
-                console.log(`我叫${this.name}，年龄${this.age},身高${this.height}`);
-                this.sing();
-            }
-            sing(){
-                console.log(11111)
-            }
+            return newArr;
         }
+        
+        console.log(fn(arr));
+        
+        // class elementTest{
+        //     constructor(name,age,height){
+        //         this.name = name;
+        //         this.age = age;
+        //         if(height > 190){
+        //             this.height = '很高'
+        //         }else{
+        //             this.height = height;
+        //         }
+        //     }
+        //     say(){
+        //         console.log(`我叫${this.name}，年龄${this.age},身高${this.height}`);
+        //         this.sing();
+        //     }
+        //     sing(){
+        //         console.log(11111)
+        //     }
+        // }
     </script>
 </body>
 </html>

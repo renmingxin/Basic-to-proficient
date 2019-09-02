@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            bordeR: 1px solid #000;
+            margin: 100px auto;
+        }
+
+        .box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box"></div>
+    </div>
+    <script>
+        var oBox = document.getElementsByClassName('box')[0];
+        var wrap = document.getElementsByClassName('wrapper')[0];
+        oBox.addEventListener('mousedown', function (e) {
+            
+            var lastX = e.clientX;
+            var lastY = e.clientY;
+            document.onmousemove = function (e) {
+                var nowX = e.clientX;
+                var nowY = e.clientY;
+                
+                var disX = nowX - lastX;
+                var disY = nowY - lastY;
+                var left = oBox.offsetLeft + disX;
+                var top = oBox.offsetTop + disY;
+                
+                left = left <= 0 ? 0 : left;
+                top = top <= 0 ? 0 : top;
+                left = left >= (500 - 200) ? 300 : left;
+                top = top >= (500 - 200) ? 300 : top;
+
+                oBox.style.left = left + 'px';
+                oBox.style.top = top + 'px';
+
+                lastX = nowX;
+                lastY = nowY;
+            };
+            oBox.addEventListener('mouseup', function () {
+                document.onmousemove = null;
+            });
+        });
+        wrap.onmouseleave = function () {
+            document.onmousemove = null;
+        }
+    </script>
+</body>
+
+</html>

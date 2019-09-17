@@ -12,7 +12,7 @@
             //创建一个空对象
             let obj = {};
             //获取构造函数
-            let Constructor = [].shift.call(arguments);
+            let Constructor = [].shift.call(arguments); //shift删除索引为0的值
             //链接到原型
             obj.__proto__ = Constructor.prototype;
             //绑定this值

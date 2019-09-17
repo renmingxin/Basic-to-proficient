@@ -15,7 +15,18 @@
             prototype从英文就说了是“原型”的意思。就是说你这个Object.prototype.toString调用的是object的原型
             （也就是父类）的tostring方法);
         */
-        let a ={},b=[],c = Symbol('aa'),d = 'asdad',e = 1111,f = true, g=undefined, h = null, i = NaN,j=function(){},k=new Date(),l=/asd/g;
+        let a ={},
+            b = [],
+            c = Symbol('aa'),
+            d = 'asdad',
+            e = 1111,
+            f = true, 
+            g = undefined, 
+            h = null, 
+            i = NaN,
+            j = function(){},
+            k = new Date(),
+            l = /asd/g;
         console.log('*******************Object.prototype.toString.call(xxx)**********************')
         console.log(Object.prototype.toString.call(a));//[object Object]
         console.log(Object.prototype.toString.call(b));//[object Array]

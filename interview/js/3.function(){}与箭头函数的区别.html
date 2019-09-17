@@ -16,6 +16,8 @@
         }
         //arrow function
         var foo = (a, b) => { return a + b };
+        //↓↓↓↓↓↓再简洁写法↓↓↓↓↓↓↓↓
+        var foo = (a,b) =>(a+b)
 
 
 
@@ -35,7 +37,6 @@
         obj.aa(); //Window
 
 
-
         //3.构造函数
         //使用function方法定义构造函数
         function Person(name, age) {
@@ -51,8 +52,6 @@
             this.age = age;
         };
         var lenhart = new Person('lenhart', 25); //Uncaught TypeError: Person is not a constructor
-
-
 
 
         //4.变量提升

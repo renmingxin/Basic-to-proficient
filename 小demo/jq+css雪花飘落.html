@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <marquee style="color:#fff">啊啊啊啊啊啊啊啊啊啊</marquee>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        let minSize = 5;//小雪花
+        let maxSize = 50;//大雪花❉
+        let newOne = 10;//生成雪花的时间
+        let flakColor = '#fff'//雪花的颜色
+        let flak = $('<div class="xh"></div>').css({position:'absolute','top':'0px'}).html('❉');//定义一个雪花
+        let dHight = $(window).height();//视图的高度
+        let dw = $(window).width();//视图的宽度
+        setInterval(() => {
+            let sizeFlak = minSize + Math.random() * maxSize;//产生大小不等的雪花
+            let startLeft = Math.random() * dw;//随机的left值
+            let startOpcity = 0.7 + Math.random() * 0.3;//随机透明
+            let endpositionTop = dHight - 100;//停止位置
+            let endLeft = Math.random() * dw;//随机left
+            let durationfull = 5000 + Math.random() * 3000;//雪花的速度
+            flak.clone().appendTo($('body')).css({
+                'left':startLeft,
+                'opacity':startOpcity,
+                'font-size':sizeFlak,
+                'color':flakColor
+            }).animate({
+                'top':endpositionTop,
+                'left':endLeft,
+                'opacity':0.1
+            },durationfull,function(){
+                $(this).remove();
+            })
+        }, newOne);
+    </script>
+</body>
+</html>

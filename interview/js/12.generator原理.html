@@ -25,10 +25,12 @@
 
         // cb 也就是编译过的 test 函数
         function generator(cb) {
-            return (function () {
+            return (function (){
                 var object = {
                     next: 0,
-                    stop: function () { }
+                    stop: function () {
+                        
+                    }
                 };
                 return {
                     next: function () {

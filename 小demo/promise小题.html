@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log('sync1');
+        setTimeout(function () { //1
+            console.log('setTimeout1')
+        }, 0);
+
+        var promise = new Promise(function (resolve, reject) {//2
+            setTimeout(function () {
+                console.log('setTimeoutPromise')
+            }, 0);
+            console.log('promise');
+            resolve();
+        });
+
+
+        promise.then(() => {
+            console.log('pro_then');
+            setTimeout(() => {
+                console.log('pro_timeout');
+            }, 0)
+        })
+        
+        setTimeout(function () { //3
+            console.log('last_setTimeout')
+        }, 0);
+        console.log('sync2');
+
+        /**
+        测试结果：
+         sync1
+         promise
+         sync2
+         pro_then
+         setTimeout1
+         setTimeoutPromise
+         last_setTimeout
+         pro_timeout
+        */
+
+        /**
+        首先我们看第一遍同步执行，这是第一个宏任务。
+
+        第一个宏任务中，调用了三次setTimeout(Peromise中的代码也是同步执行的)，调用了一次resolve，打印了三次。
+        所以它产生了三个宏任务，一个微任务，两次打印。
+
+        那么首先显示的是sync1、promise、sync2。 这时setTimeout1，setTimeoutPromise，last_setTimeout在宏任务队列中，pro_then
+        也在微任务汇总。
+
+        接下来，因为微任务队列没空,第一个宏任务没有结束,继续执行微任务队列,所以 pro_then,被显示出来,然后又调用了一次setTimeout ,
+        所以pro_timeout进入宏任务队列，成为第5个宏任务。
+
+        接下来，因为微任务队列没空,第一个宏任务没有结束,继续执行微任务队列,所以 pro_then,被显示出来,然后又调用了一次setTimeout ,
+        所以protimeout进入宏任务队列，成为第5个宏任务。
+
+        */
+
+
+        /**
+        执行顺序：
+        宏任务1
+            微任务1
+                sync1
+                promise
+                sync2
+            微任务2
+                pro_then
+        
+        宏任务2
+            setTimeout1
+
+        宏任务3
+            setTimeoutPromise
+        
+        宏任务4
+            last_setTimeout
+
+        宏任务5
+            pro_timeout
+        
+        */
+    </script>
+</body>
+</html>

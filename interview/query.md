@@ -408,8 +408,24 @@ created阶段的ajax请求与mounted请求的区别：前者页面视图未出�
 
 ## 1.你是如何理解HTML语义化的？
 答：
-+ 根据内容的结构化
++ 对人来说：
+  1. 增强可读性，对开发者更友好，在没有css的情况下也能较好的呈现网页的内容结构与代码结构，便于团队的开发和维护。
++ 对机器来说：
+  1. 有利于SEO，可以让搜索引擎爬虫更好地获取到更多有效信息，搜索引擎的爬虫依赖于标签来确定上下文和各个关键字的权重，有效提升网页的搜索量。
+  2. 支持读屏软件，方便其他设备的解析（如屏幕阅读器、盲人阅读器等），利于无障碍阅读，提高可访问性。
 
++ 总结：尽量只用自己熟悉的语义标签。用对 比 不用 好，不用 比 用错 好。
+
+## 2.meta viewport 是做什么用的，怎么写？
+答：
++ 例子：
+```Html
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+```
+
+
+
++ href:'https://www.cnblogs.com/leyili/archive/2019/04/04/semantics.html'
 ## 1.history模式和hash模式的区别？
 答：
 1. hash模式背后的原理是onhashchange事件。可以用window.location.hash进行设置和读取。监听                         window.addEventListener('hashchange',function(){})

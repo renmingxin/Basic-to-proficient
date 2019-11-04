@@ -15,13 +15,14 @@
 
 ## Sources（源代码资源面板）
 简介：调试Javascript页面源代码，进行断点调试代码
-
++ 在Sources面板底下的Snippets功能可以增加一些库和js代码片段辅助我们进行调试 New snippets ->输入片段名 ->在右侧输入代码 ->右击片段名run
++ 在Sources面板底下的Filesvstem功能可以直接加载文件,在里面修改的代码片段会覆盖加载本地的代码片段
 ## NetWork（网络面板）
 简介：调试请求，了解页面静态资源分布，网页性能检测
-
++ 使用waterfall去排查每个request的请求时间
 ## Performance（性能面板）__高阶__
 简介：查看页面性能细节，细粒度对网页载入进行性能优化
-
++ 
 ## Memory（内存面板） __高阶__
 简介：Javascript CPU分析器，内存堆分析器
 

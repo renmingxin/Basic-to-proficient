@@ -2,6 +2,7 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 var globalConf = require('./config')
+var loader = require('./loader')
 
 http.createServer((request,response)=>{
     let pathName = url.parse(request.url).pathname;//路径名
@@ -19,7 +20,22 @@ http.createServer((request,response)=>{
             response.end();
         }
     }else{//请求的是动态的数据
-
+        console.log(pathName)
+        if(loader.get(pathName) != null){
+            //避免程序内部出错 直接使得服务器停止
+            try {
+                //如果有的话 直接执行 且将request,response传进去
+                loader.get(pathName)(request,response);
+            } catch (error) {
+                response.writeHead(500);//服务器的错误
+                response.write('<html><body><h1>500服务器的问题</h1></body></html>');
+                response.end();
+            }
+        }else {
+            response.writeHead(404);//状态码
+            response.write('<html><body><h1>404 NOT FOUND</h1></body></html>');
+            response.end();
+        }
     }
 }).listen(globalConf.port)
 

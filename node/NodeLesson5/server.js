@@ -1,4 +1,4 @@
-const net = require("net");//TCP
+let net = require("net");//TCP
 
 let server = net.createServer();
 server
@@ -19,6 +19,7 @@ server
         socket.write(
             "HTTP 200OK\r\nContent-type:text/html\r\nServer:RMX/1.1\r\n\r\n<html><body>hello client</body></html>"
         )
+        socket.end();
     })
     
 })

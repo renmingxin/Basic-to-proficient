@@ -6,8 +6,10 @@ window.onload = function(){
 
     xmlHttp.onreadystatechange=function () {
         if (xmlHttp.readyState ==4 && xmlHttp.status ==200){
-            console.log(xmlHttp.responseText);
-            console.log(typeof xmlHttp.responseText)
+            console.log( xmlHttp.responseText);
+            // let div = document.createElement('div');
+            // div.innerText = xmlHttp.responseText;
+            // document.body.appendChild(div)
         }
     }
 }

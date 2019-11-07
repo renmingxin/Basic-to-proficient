@@ -2,8 +2,15 @@ let path = new Map();
 
 function getData(request,response){
     // throw new Error();
+    let obj = {
+        msg:200,
+        data:[
+            {name:'rmx',age:20},
+            {name:'lq',age:23}
+        ]
+    }
     response.writeHead(200);//状态码
-    response.write('hello');
+    response.write(JSON.stringify(obj));
     response.end();
 }
 function getData2(request,response){

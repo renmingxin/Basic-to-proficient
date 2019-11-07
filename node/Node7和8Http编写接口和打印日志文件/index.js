@@ -3,10 +3,12 @@ var url = require('url');
 var fs = require('fs');
 var globalConf = require('./config')
 var loader = require('./loader')
+var log = require('./log')
 
 http.createServer((request,response)=>{
     let pathName = url.parse(request.url).pathname;//路径名
-    let params = url.parse(request.url,true).query;//第二个参数传true 转换为object
+    log(pathName);
+    let params = url.parse(request.url,true).query;//第二个参数传true 转换为object ?name=rmx&age=20 -> {name:'rmx',age:'20'}
     let isStatic = isStaticRequest(pathName)
     if(isStatic){//请求的静态的文件
         try {
@@ -20,7 +22,6 @@ http.createServer((request,response)=>{
             response.end();
         }
     }else{//请求的是动态的数据
-        console.log(pathName)
         if(loader.get(pathName) != null){
             //避免程序内部出错 直接使得服务器停止
             try {
@@ -28,7 +29,7 @@ http.createServer((request,response)=>{
                 loader.get(pathName)(request,response);
             } catch (error) {
                 response.writeHead(500);//服务器的错误
-                response.write('<html><body><h1>500服务器的问题</h1></body></html>');
+                response.write('<html><body><h1>500</h1></body></html>');
                 response.end();
             }
         }else {
@@ -38,7 +39,7 @@ http.createServer((request,response)=>{
         }
     }
 }).listen(globalConf.port)
-
+log('服务已启动');
 //判断是否请求的是静态资源   用后缀来判断
 function isStaticRequest(pathName){
     for (let i = 0; i < globalConf.static_file_type.length; i++) {

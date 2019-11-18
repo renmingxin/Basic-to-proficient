@@ -1,3 +1,5 @@
+let studentService = require('../service/studentService');
+
 let path = new Map();
 
 function getData(request,response){
@@ -14,7 +16,11 @@ function getData(request,response){
     response.end();
 }
 function getData2(request,response){
-
+    studentService.queryAllStudent(result=>{
+        response.writeHead(200);//状态码
+        response.write(JSON.stringify(result));
+        response.end();
+    });
 }
 path.set('/getData',getData)
 path.set('/getData2',getData2)

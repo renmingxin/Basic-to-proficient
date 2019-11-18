@@ -656,3 +656,9 @@ created阶段的ajax请求与mounted请求的区别：前者页面视图未出�
     4. 低碰撞：存在这样的情况，Hash前输入不同，Hash后输出相同，但绝大多数情况是输入不同，输出不同。
 + 应用场景
     + HashTable肯定会应用到数据库的实现中，数据库是典型的字典模型。另外HashTable在Linux内核中也有应用，很多场景均使用了hash table（hlist），如tasklet、页表维护等
+
+
+# MYSQL部分
+## 1. mysql引擎（ENGINE）常用。
+1. MYISAM：读很多，写很少的情况。写是表级锁。
+2. INNOOB：读较多，写较多。行级锁。

@@ -39,6 +39,7 @@ http.createServer((request,response)=>{
         }
     }
 }).listen(globalConf.port)
+console.log('服务已启动，页面：login.html')
 log('服务已启动');
 //判断是否请求的是静态资源   用后缀来判断
 function isStaticRequest(pathName){

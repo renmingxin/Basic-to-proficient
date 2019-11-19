@@ -1,13 +1,21 @@
-var http = require('http');
-var url = require('url');
-var fs = require('fs');
-var globalConf = require('./config')
-var loader = require('./loader')
-var log = require('./log');
+let http = require('http');
+let url = require('url');
+let fs = require('fs');
+let globalConf = require('./config');
+let loader = require('./loader');
+let filterSet = require('./filterLoader');
+let log = require('./log');
 
 http.createServer((request,response)=>{
     let pathName = url.parse(request.url).pathname;//路径名
     log(pathName);
+    for (let i = 0; i < filterSet.length; i++) {
+        let flag = filterSet[i](request,response);
+        if (!flag){
+            return;
+        }
+    }
+
     let params = url.parse(request.url,true).query;//第二个参数传true 转换为object ?name=rmx&age=20 -> {name:'rmx',age:'20'}
     let isStatic = isStaticRequest(pathName)
     if(isStatic){//请求的静态的文件

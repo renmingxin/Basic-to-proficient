@@ -15,7 +15,7 @@ function myAjax(type='GET',url,params,callback){
         xmlHttp.send(params)
     }
     xmlHttp.onreadystatechange = function () {
-        if (xmlHttp.readyState ==4 && xmlHttp.status ==200){
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
             callback(xmlHttp.responseText)
         }
     }
@@ -27,7 +27,11 @@ function login(){
     let params = `stuNum=${stuNum}&password=${password}`
     myAjax('POST','/login',params,data=>{
         if(data === 'ok'){
-            alert('登录成功')
+            alert('登录成功');
+            document.cookie = `stuNum=${stuNum}`;
+            setTimeout(()=>{
+                location.href = '/main.html'
+            },1000)
         }else {
             alert('登录失败')
         }

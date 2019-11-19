@@ -1,5 +1,5 @@
-let fs = require('fs')
-let globalConf = require('./config')
+let fs = require('fs');
+let globalConf = require('./config');
 
 let fileName = globalConf.log_path + globalConf.log_name;
 //(路径，内容，callback) 

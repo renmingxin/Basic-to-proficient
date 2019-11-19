@@ -1,8 +1,9 @@
-let connection = require('./dbUtil');
+let dbUtil = require('./dbUtil');
 
 //查询所有学生
 function queryAllStudent(success){
     let querySql = 'select * from student;';
+    let connection = dbUtil.createConnection();
     connection.connect();
     connection.query(querySql,(error, result)=>{
         if(error){
@@ -11,7 +12,7 @@ function queryAllStudent(success){
             //result是数组
             success(result)
         }
-    })
+    });
     connection.end();
 }
 
@@ -21,6 +22,7 @@ function queryStudentByClassAndAge(classNum,age,success){
     // let querySql = `select * from student where class = ${classNum};`;
     let querySql = 'select * from student where class = ? and age = ?;';
     let queryParams = [classNum,age];
+    let connection = dbUtil.createConnection();
     connection.connect();
     connection.query(querySql, queryParams, (error, result)=>{
         if(error){
@@ -37,6 +39,7 @@ function queryStudentByClassAndAge(classNum,age,success){
 function queryStudentByStuNum(stuNum,success){
     let querySql = 'select * from student where stu_num = ?;';
     let queryParams = [stuNum];
+    let connection = dbUtil.createConnection();
     connection.connect();
     connection.query(querySql, stuNum, (error, result)=>{
         

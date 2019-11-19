@@ -3,7 +3,7 @@ var url = require('url');
 var fs = require('fs');
 var globalConf = require('./config')
 var loader = require('./loader')
-var log = require('./log')
+var log = require('./log');
 
 http.createServer((request,response)=>{
     let pathName = url.parse(request.url).pathname;//路径名
@@ -38,14 +38,14 @@ http.createServer((request,response)=>{
             response.end();
         }
     }
-}).listen(globalConf.port)
-console.log('服务已启动，页面：login.html')
+}).listen(globalConf.port);
+console.log('服务已启动1，页面：login.html');
 log('服务已启动');
 //判断是否请求的是静态资源   用后缀来判断
 function isStaticRequest(pathName){
     for (let i = 0; i < globalConf.static_file_type.length; i++) {
         let temp = globalConf.static_file_type[i];
-        if(pathName.indexOf(temp) == (pathName.length - temp.length)){//判断后缀名在末尾
+        if(pathName.indexOf(temp) === (pathName.length - temp.length)){//判断后缀名在末尾
             return true
         }
     }

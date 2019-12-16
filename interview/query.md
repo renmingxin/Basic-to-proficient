@@ -446,6 +446,72 @@ created阶段的ajax请求与mounted请求的区别：前者页面视图未出�
 答：
 + href:'https://www.jianshu.com/p/0d713b32cd0d'
 
+## 2.怎么让元素消失？
+答：visibility:hidden、display:none、z-index=-1、opacity：0
+
+1. visibility:hidden,该元素隐藏起来了，但不会改变页面布局，但是不会触发该元素已经绑定的事件。
+2. display:none, 把元素隐藏起来，并且会改变页面布局，可以理解成在页面中把该元素删掉。
+3. z-index=-1置于其他元素下面。
+4. opacity：0,该元素隐藏起来了，但不会改变页面布局，并且，如果该元素已经绑定了一些事件，如click事件也能触发。
+
+## 3.如何清除浮动？
+1. 在浮动元素后面添加 clear:both 的空 div 元素，
+```Html
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div style="clear:both"></div>
+    </div>
+```
+2. 给父元素添加 overflow:hidden 或者 auto 样式，触发BFC。
+```html
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+```
+```css
+    .container{
+        width: 300px;
+        background-color: #aaa;
+        overflow:hidden;
+        zoom:1;   /*IE6*/
+    }
+```
+3. 使用伪元素，也是在元素末尾添加一个点并带有 clear: both 属性的元素实现的。
+```html
+    <div class="container clearfix">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+```
+```css
+    .clearfix{
+        zoom: 1; /*IE6*/
+    }
+    .clearfix:after{
+        content: ".";
+        height: 0;
+        clear: both;
+        display: block;
+        visibility: hidden;
+    }
+```
++ 推荐使用第三种方法，不会在页面新增div，文档结构更加清晰。
+
+## 4. 移动端rem
++ rem官方定义『The font size of the root element』，即根元素的字体大小。rem是一个相对的CSS单位，1rem等于html元素上font-size的大小。所以，我们只要设置html上font-size的大小，就可以改变1rem所代表的大小。
+```js
+    (function () {
+        var html = document.documentElement;
+        function onWindowResize() {
+            html.style.fontSize = html.getBoundingClientRect().width / 20 + 'px';
+        }
+        window.addEventListener('resize', onWindowResize);
+        onWindowResize();
+    })();
+```
+
 # 网络知识
 
 ## >1.从输入URL到页面加载的全过程？

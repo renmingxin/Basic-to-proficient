@@ -28,6 +28,11 @@
             <button type="submit">提交</button>
         </form>
     </div>
+    <div>
+        <button onclick="bbb()">点我</button>
+        <button id="btn1">点</button>
+    </div>
+    <div id="testWindow"></div>
     <script>
         let arr = [
             { 
@@ -69,7 +74,12 @@
         }
         
         console.log(fn(arr));
-        
+        function bbb(){
+            console.log(111111)
+        }
+        document.getElementById('btn1').addEventListener('click',()=>{
+            console.log(222)
+        })
         // class elementTest{
         //     constructor(name,age,height){
         //         this.name = name;

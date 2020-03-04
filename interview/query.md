@@ -211,7 +211,6 @@
 1. async 告诉程序这是一个异步，awiat 会暂停执行async中的代码，等待await 表达式后面的结果，跳过async 函数，继续执行后面代码
 2. async 函数会返回一个Promise 对象，那么当 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值
 3. await  操作符用于等待一个Promise 对象，并且返回 Promise 对象的处理结果（成功把resolve 函数参数作为await 表达式的值），如果等待的不是 Promise 对象，则用 Promise.resolve(xx) 转化
-+ herf:'https://www.jb51.net/article/140002.htm'
 + herf:'https://www.cnblogs.com/CandyManPing/p/9384104.html'
 ## 24.null undefined NaN的区别是什么？
 答：未定义的值和定义未赋值的数据类型是undefined，null是一种特殊的object，NaN是一种特殊的number

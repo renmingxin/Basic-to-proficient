@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+        p{
+            font-size: 30px;
+        }
+        .aaa{
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div><p>111111</p><p>111111</p><p>111111</p><p>111111</p><p>111111</p><p>111111</p><p>111111</p><p>111111</p><p>111111</p><p>111111</p><p>111111</p><p>111111</p></div>
+    <button class="aaa" onclick="scrollToTop()">跳跃到顶部</button>
+    <script>
+        const scrollToTop = () => {
+        const c = document.documentElement.scrollTop || document.body.scrollTop;
+            if (c > 0) {
+                window.requestAnimationFrame(scrollToTop);
+                window.scrollTo(0, c - c / 8);
+            }
+        }
+
+        // 事例
+
+    </script>
+</body>
+</html>

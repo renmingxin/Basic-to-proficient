@@ -10,5 +10,53 @@
 <body>
     <h1>hello,world</h1>
     <img src="n1.jpg" alt="">
+    <script>
+        function myAjax(type='GET',url,params,callback){
+            let xmlHttp;
+            xmlHttp = new XMLHttpRequest();
+            if(type === 'GET'){
+                xmlHttp.open(type, url, true);
+                xmlHttp.send(null);
+            }else if(type === 'POST'){
+                xmlHttp.open(type,url);
+                xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                xmlHttp.send(params)
+            }
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+                    callback(xmlHttp.responseText)
+                }
+            }
+        }
+        function fomatFormData(msg){
+            let params = new URLSearchParams();
+            for (let key in msg) {
+                params.append(key, msg[key])
+            }
+            return params;
+        }
+        function login(){
+            let stuNum = 'root';
+            let password = '123456';
+            
+            let params = `stuNum=${stuNum}&password=${password}`
+            let params2 = {
+                stuNum,
+                password,
+            }
+            myAjax('POST','/login',fomatFormData(params2),data=>{
+                if(data === 'ok'){
+                    alert('登录成功');
+                    document.cookie = `stuNum=${stuNum}`;
+                    setTimeout(()=>{
+                        location.href = '/main.html'
+                    },1000)
+                }else {
+                    alert('登录失败')
+                }
+            })
+        }
+        login();
+    </script>
 </body>
 </html>

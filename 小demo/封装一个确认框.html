@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>登录确定提醒</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+        }
+
+        .wrap-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, .7);
+            z-index: 999;
+        }
+
+        .dialog {
+            top: 0;
+            left: 0;
+            position: relative;
+            /*margin: 10% auto;*/
+            width: 300px;
+            background-color: #FFFFFF;
+            border-radius: 2px;
+        }
+
+        .dialog .dialog-header {
+            height: 20px;
+            padding: 10px;
+            background-color: #F8F8F8;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        .dialog-title {
+            display: inline-block;
+            width: 50px;
+            margin-left: 0;
+        }
+
+        .dialog .dialog-body {
+            height: 30px;
+            padding: 20px;
+        }
+
+        .dialog .dialog-footer {
+            padding: 8px;
+            background-color: #f5f5f5;
+        }
+
+        .dialog-btn {
+            cursor: pointer;
+            background: #ff5622;
+            border: 1px solid #ff5622;
+            border-radius: 2px;
+            color: #fff;
+            height: 28px;
+            line-height: 28px;
+            margin: 5px 5px 0;
+            padding: 0 25px;
+
+        }
+
+        .dialog-hide {
+            display: none;
+        }
+
+        .dialog-ml50 {
+            margin-left: 50px;
+            background: #fcfbfc;
+            color: #000;
+            border: 1px solid #dedede;
+        }
+
+        .closeBtn {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            padding: 10px;
+            line-height: 20px;
+            text-align: center;
+            /*background: red;*/
+            color: #333;
+            font-size: 12px;
+            float: right;
+            cursor: pointer;
+            font-weight: bolder;
+        }
+
+        .closeBtn:hover {
+            color: #A0A8B4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap-dialog dialog-hide" id="dialog-hide">
+        <div class="dialog" id="dialog">
+            <a class="closeBtn" id="closeBtn">X</a>
+            <div class="dialog-header">
+                <span class="dialog-title">提示</span>
+            </div>
+            <div class="dialog-body">
+                <span class="dialog-message" id="dialog-message">是否要退出登录？</span>
+            </div>
+            <div class="dialog-footer">
+                <input type="button" class="dialog-btn" id="dialog-confirm" value="是" />
+                <input type="button" class="dialog-btn dialog-ml50" id="dialog-cancel" value="否" />
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    window.onload = function() {
+        var choose = function(id) {
+            return document.getElementById(id);
+        }
+        //自定義部分
+        window.confirm = function(message, yesCallBack, noCallBack) {
+
+            var message = message || "是否要退出登录?";
+
+            choose("dialog-message").innerHTML = message;
+            // 显示遮罩和对话框
+            choose("dialog-hide").className = "wrap-dialog";
+            // 确定按钮
+
+            choose("dialog").onclick = function(e) {
+                if (e.target.className == "dialog-btn") {
+                    choose("dialog-hide").className = "wrap-dialog dialog-hide";
+                    yesCallBack();
+                } else if (e.target.className == "dialog-btn dialog-ml50") {
+                    choose("dialog-hide").className = "wrap-dialog dialog-hide";
+                    noCallBack();
+                }
+            };
+            // 取消按钮
+            choose("closeBtn").onclick = function() {
+                choose("dialog-hide").style.display = "none";
+            }
+        }
+
+        function submitHand() {
+            function submitBtn() {
+                alert("确定");
+            }
+
+            function closeBtn() {
+                alert("取消");
+            }
+            confirm("确认登录？", submitBtn, closeBtn);
+        }
+        //页面打开自动弹出  
+        submitHand();
+    }
+</script>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">1</div>
+    <div id="div2">2</div>
+    <div id="div3">3</div>
+    <div id="div4">4</div>
+    <div id="div5">5</div>
+    <div id="div6">6</div>
+    <div id="div7">7</div>
+    <script>
+        const hide = (el) => Array.from(el).forEach(e => (e.style.display = 'none'));
+        // 事例:隐藏页面上所有`<div>`元素?
+        // hide(document.querySelectorAll('div'));
+
+        //隐藏 div2 div4 div7
+        let arr = ['div2','div4','div7'];
+        let tempArr = [];
+        arr.forEach(ele=>{
+            tempArr.push(document.getElementById(ele))
+        })
+        console.log(tempArr);
+        hide(tempArr)
+
+    </script>
+</body>
+</html>

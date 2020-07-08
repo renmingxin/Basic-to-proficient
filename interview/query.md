@@ -396,7 +396,6 @@ created阶段的ajax请求与mounted请求的区别：前者页面视图未出�
 8. 更好的拥抱TS（因为本身就是用TS重写Vue3），因为可以像写React类组件的方式书写Vue。
 
 # Webpack部分
-
 ## 1.优化打包速度
 1. 减少文件搜索范围
     比如通过别名
@@ -647,7 +646,37 @@ created阶段的ajax请求与mounted请求的区别：前者页面视图未出�
 1. 什么是版本控制？
   版本控制就是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。他可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态。你可以比较文件的变化细节，查出最后谁修改了哪个地方，从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等。使用版本控制系统通常还意味着，就算你乱来一气把整个项目中的文件改的改删的删，你也照样可以轻松回复到原先的样子。但额外增加的工作量却微乎其微。
 
+# 包管理部分（npm yarn）
+## 1.npm和yarn的区别，我们该如何选择?
++ yarn的优点？
+    1. 速度快 
+    2. 安装版本统一
+    3. 更简洁的输出
+    4. 多注册来源处理
+    5. 更好的语义化
++ nmp5+的优点？
+    1. 默认新增了类似yarn.lock的 package-lock.json；
+    2. git 依赖支持优化
+    3. 文件依赖优化
++ 总结：在npm5.0之前，yarn的优势特别明显。但是在npm之后，通过以上一系列对比，我们可以看到 npm5 在速度和使用上确实有了很大提升，值得尝试，不过还没有超过yarn。
++ href:'https://www.jianshu.com/p/254794d5e741'
 
+## 2.package和package-lock区别？dependencies和devDependencies区别？
++ package和package-lock
+    + package.json：主要用来定义项目中需要依赖的包
+    + package-lock.json：在 npm install时候生成一份文件，用以记录当前状态下实际安装的各个npm package的具体来源和版本号。
+    + '^' : 放在版本号之前，表示向后兼容依赖，说白了就是在大版本号不变的情况下，下载最新版的包
++ dependencies和devDependencies
+    + dependencies：依赖的项该是正常运行该包时所需要的依赖项。
+    + devDependencies：开发的时候需要的依赖项，像一些进行单元测试之类的包。
+    + devDependencies ： 用于本地环境开发时候；dependencies ： 生产环境（线上）
++ 执行命令
+    1. npm install：默认会安装两种依赖，如果你只是单纯的使用这个包而不需要进行一些改动测试之类的，可以使用
+    2. npm install --production：只安装dependencies而不安装devDependencies。
+    3. npm install packagename：那么只会安装dependencies
+    4. npm install packagename --dev ：则会安装到devDependencie。
++ devDependencies是只会在开发环境下依赖的模块，生产环境不会被打入包内。通过NODE_ENV=developement或NODE_ENV=production指定开发还是生产环境。
+而dependencies依赖的包不仅开发环境能使用，生产环境也能使用。其实这句话是重点，按照这个观念很容易决定安装模块时是使用--save还是--save-dev。
 # 高级部分
 ## 1.Babel原理
 + 本质就是编译器，当代码转为字符串生成 AST，对 AST 进行转变最后再生成新的代码
@@ -675,7 +704,7 @@ created阶段的ajax请求与mounted请求的区别：前者页面视图未出�
   4. 更高的复用性
   5. 更高的可维护性
 
-  ## 4.C语言里面是没有字符串的概念的，在最底层都是没有字符串的概念
+
 
 # 数据结构
 ## 1. 什么是数据结构？为什么我们要使用数据结构？

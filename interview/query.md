@@ -121,8 +121,12 @@
 ## 10.this的指向？
 + herf:https://www.cnblogs.com/pssp/p/5216085.html
 
-## 11.async、await 优缺点
-答：async 和 await 相比直接使用 Promise 来说，优势在于处理 then 的调用链，能够更清晰准确的写出代码。缺点在于滥用 await 可能会导致性能问题，因为 await 会阻塞代码，也许之后的异步代码并不依赖于前者，但仍然需要等待前者完成，导致代码失去了并发性。
+## 11.谈一谈async、await ？
++ 什么是Async/Await?
+  1. async/await是写异步代码的新方式，以前的方法有回调函数和Promise。
+  2. async/await是基于Promise实现的，它不能用于普通的回调函数。
+  3. async/await与Promise一样，是非阻塞的。 
+  4. async/await使得异步代码看起来像同步代码，这正是它的魔力所在。
 + href：./js/11.async、await 优缺点.html
 
 ## 12.generator 原理

@@ -14,6 +14,7 @@ server
         let url = data.toString().split('\r\n')[0].split(" ")[1];
         try {
             let dataFile = fs.readFileSync(globalConf["basePath"] + url);
+            console.log(dataFile)
             scoket.write("HTTP/1.1 200OK\r\n\r\n");
             scoket.write(dataFile);
         } catch (error) {

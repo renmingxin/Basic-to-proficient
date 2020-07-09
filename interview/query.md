@@ -176,7 +176,6 @@
 答：
 + JSON.parse(JSON.stringify(object));
    + 弊端：
-
      1.会忽略 undefined 
      2.会忽略 symbol 
      3.不能序列化函数 

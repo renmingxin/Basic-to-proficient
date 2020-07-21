@@ -3,105 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .header {
-            height: 200px;
-            width: 200px;
-            background: red;
-            border-radius: 100px;
-            transition: all .3s;
-            cursor: pointer;
-        }
-        .header:hover {
-            border-radius: 20px;
-        }
-    </style>
 </head>
 <body>
+    <div></div>
     <script>
-        console.log(document.getElementById('aaa'))
-    </script>
-    <div id="aaa" class="header">
-    </div>
-    <div>
-        <form action="">
-            <input required="true" type="text">
-            <button type="submit">提交</button>
-        </form>
-    </div>
-    <div>
-        <button onclick="bbb()">点我</button>
-        <button id="btn1">点</button>
-    </div>
-    <div id="testWindow"></div>
-    <script>
-        console.log(document.getElementById('aaa'))
-        let arr = [
-            { 
-                id:1,
-                children:[
-                    {id:101,children:[{id:1011},{id:1012}]},
-                    {id:102},
-                    {id:103},
-                ]
-            },
-            { 
-                id:2,
-                children:[
-                    {id:201},
-                    {id:202,children:[{id:2011}]},
-                    {id:203},
-                ]
-            },
-            { 
-                id:3,
-                children:[
-                    {id:301},
-                    {id:302},
-                    {id:303,children:[{id:3011},{id:3012}]},
-                ]
-            },
-        ]
-        let newArr = [];
-        function fn(arr){
-            if(arr){
-                arr.forEach(item=>{
-                    newArr.push(item.id);
-                    if(item.children){
-                        fn(item.children);
-                    }
-                })
-            }
-            return newArr;
+        function a(){
+            return new Promise((re,rj)=>{
+                setTimeout(() => {
+                    re('出子')
+                }, 2000);
+            })
         }
-        
-        console.log(fn(arr));
-        function bbb(){
-            console.log(111111)
+        async function test(){
+            let data = await a();
+            console.log(data);
         }
-        document.getElementById('btn1').addEventListener('click',()=>{
-            console.log(222)
-        })
-        // class elementTest{
-        //     constructor(name,age,height){
-        //         this.name = name;
-        //         this.age = age;
-        //         if(height > 190){
-        //             this.height = '很高'
-        //         }else{
-        //             this.height = height;
-        //         }
-        //     }
-        //     say(){
-        //         console.log(`我叫${this.name}，年龄${this.age},身高${this.height}`);
-        //         this.sing();
-        //     }
-        //     sing(){
-        //         console.log(11111)
-        //     }
-        // }
     </script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./bank.js"></script>
+    <script>
+        function aaa(cardNo) {
+            for (let i = 0; i < BANK_CARD_LIST.length; i++) {
+                const BANK_CARD_PATTERNS = BANK_CARD_LIST[i].patterns;
+                for (let j = 0; j < BANK_CARD_PATTERNS.length; j++) {
+                    let flag = BANK_CARD_PATTERNS[j].reg.test(cardNo);
+                    if (flag) {
+                        let result = {
+                            bankName: BANK_CARD_LIST[i].bankName,
+                            cardNo: cardNo,
+                            bankCode: BANK_CARD_LIST[i].bankCode,
+                            cardType: BANK_CARD_PATTERNS[j].cardType,
+                        }
+                        BANK_CARD_PATTERNS[j].reg.lastIndex = 0;
+                        return result;
+                    }
+                }
+            }
+            return false;
+        }
+        aaa();
+    </script>
+</body>
+
+</html>

@@ -4,21 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .aaa{
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <div></div>
+    <div class="aaa">111</div>
     <script>
-        function a(){
-            return new Promise((re,rj)=>{
-                setTimeout(() => {
-                    re('出子')
-                }, 2000);
-            })
-        }
-        async function test(){
-            let data = await a();
-            console.log(data);
-        }
+       
     </script>
 </body>
 </html>

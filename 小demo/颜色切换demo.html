@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #wrapper {
+        height: 300px;
+        width: 300px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script>
+      let dom = document.getElementById("wrapper");
+      let arr = [10, 20, 30, 40, 50, 70];
+
+      function sleep(wait = 1000) {
+        return new Promise((re) => {
+          setTimeout(() => {
+            re();
+          }, wait);
+        });
+      }
+      function getRbg() {
+        return `rgb(${(Math.random() * 255).toFixed()},${(
+          Math.random() * 255
+        ).toFixed()},${(Math.random() * 255).toFixed()})`;
+      }
+      async function changeColor() {
+        await sleep(20);
+        console.log(getRbg());
+        dom.style.background = getRbg();
+        changeColor();
+      }
+      changeColor();
+    </script>
+  </body>
+</html>
